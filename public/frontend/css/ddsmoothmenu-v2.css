@@ -1,0 +1,52 @@
+.ddsmoothmenu ul li{
+    margin-left:0; 
+}
+.ddsmoothmenu > ul > li > a{
+background: transparent;
+padding: 4px 22px;
+text-transform: uppercase;
+border-right: 1px solid #ff5f7c;
+font-weight: bold;
+}
+.ddsmoothmenu  ul  li a:hover {
+    color: #ffb400;
+}
+.ddsmoothmenu > ul > li.current-menu-item > a{
+    color: #ffb400;
+}
+.ddsmoothmenu > ul > li > ul > li.current-menu-item > a{
+    color: #ffb400;
+    background: #d80b30;
+} 
+.ddsmoothmenu > ul > li > a.selected{
+    background: transparent !important;
+}
+.ddsmoothmenu > ul > li > a:hover{
+    background:transparent; 
+}
+.ddsmoothmenu > ul > li > ul{
+    margin-top: 16px;
+}
+.ddsmoothmenu > ul > li ul{
+    width: 240px !important;
+}
+.ddsmoothmenu > ul > li ul li a{
+    padding: 10px 5px;
+    width: 239px;
+    background:url('../images/bg.png');
+    border-bottom: 1px solid #bc0022;
+    border-right: 0;
+}
+.ddsmoothmenu ul > li ul li a:hover{
+    background: #d80b30;
+}
+.ddsmoothmenu > ul > li ul{
+    border-top:1px solid #bc0022;
+    border-left: 1px solid #bc0022;
+    border-right: 1px solid #bc0022;
+}
+.ddsmoothmenu ul li ul li a{
+    font-family:"arial";
+    font-size: 15px;
+    text-transform: capitalize;
+}
