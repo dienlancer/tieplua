@@ -5,9 +5,9 @@ $map_url=$setting['map_url']['field_value'];
 	<h2 class="tieu-de-bai-viet">
 			Liên hệ
 		</h2>
-		<div class="margin-top-15">
+		<div >
 			<div class="col-md-4 contact no-padding-left">
-				<form method="post" name="frm-contact" enctype="multipart/form-data">							
+				<form method="post" class="margin-top-15" name="frm-contact" enctype="multipart/form-data">							
 					{{ csrf_field() }}      
 					<?php                           
     if(count($error) > 0 || count($success) > 0){
@@ -57,7 +57,8 @@ $map_url=$setting['map_url']['field_value'];
 				</form>
 			</div>
 			<div class="col-md-8 contact-info no-padding-left">
-				<?php 
+				<div class="margin-top-15">
+					<?php 
 				$module=getPage("thong-tin-lien-he-widget");
 				if(count($module) > 0){
 					$fullname=substr($module["fullname"],0,50);
@@ -68,6 +69,8 @@ $map_url=$setting['map_url']['field_value'];
 					echo $content;	
 				}
 				?>
+				</div>				
+				
 			</div>
 			<div class="clr"></div>
 		</div>

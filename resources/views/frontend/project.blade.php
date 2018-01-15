@@ -24,7 +24,7 @@ if(count($item) > 0){
 	<div class="margin-top-15 box-article">
 		<h2 class="tieu-de-bai-viet relative">
 			<?php echo $title; ?>		
-			<div class="tham-gia">
+			<div class="tham-gia margin-top-10">
 				<form method="post" name="frm-join-project">
 					{{ csrf_field() }}
 					<input type="hidden" name="project_id" value="<?php echo $id; ?>">

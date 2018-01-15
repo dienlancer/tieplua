@@ -131,11 +131,7 @@ figure:hover img{-webkit-transform:scale3d(1.2, 1.2, 1);transform:scale3d(1.2, 1
 div.mobilemenu{
     display: none;
 }
-@media (max-width: 767px){
-    div.mobilemenu{
-        display: block;
-    }    
-}
+
 .navbar-default {
         background-color:#d80027;
     border-top:1px solid #ce0025;
@@ -681,7 +677,10 @@ div.liverpool:hover div.youtube-img{
 .rena{
     float: right;   
 }
-@media (max-width: 767px){       
+@media (max-width: 767px){    
+    div.mobilemenu{
+        display: block;
+    }     
     .menu-cerex{
         display: none;
     }
