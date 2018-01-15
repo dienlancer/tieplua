@@ -26,7 +26,7 @@ $product_width = $setting['product_width']['field_value'];
 $product_height = $setting['product_height']['field_value'];  
 if(count(@$arrRowData)>0){
     if(!empty(@$arrRowData["image"])){
-        $picture        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.url("/upload/" . $product_width . "x" . $product_height . "-".@$arrRowData["image"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteImage();"><img src="'.url('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
+        $picture        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.asset("/upload/" . $product_width . "x" . $product_height . "-".@$arrRowData["image"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteImage();"><img src="'.asset('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
         $strImage       =   @$arrRowData["image"];
     }        
 }    

@@ -19,7 +19,7 @@ $pictureLogoFrontend                =   "";
 $strLogoFrontend               =   "";
 if(count(@$arrRowData)>0){
     if(!empty(@$arrRowData["logo_frontend"])){
-        $pictureLogoFrontend        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.url("/upload/".@$arrRowData["logo_frontend"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteLogoFrontend(this);"><img src="'.url('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
+        $pictureLogoFrontend        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.asset("/upload/".@$arrRowData["logo_frontend"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteLogoFrontend(this);"><img src="'.asset('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
         $strLogoFrontend       =   @$arrRowData["logo_frontend"];
     }        
 }   
@@ -28,7 +28,7 @@ $pictureFavicon                =   "";
 $strFavicon               =   "";
 if(count(@$arrRowData)>0){
     if(!empty(@$arrRowData["favicon"])){
-        $pictureFavicon        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.url("/upload/".@$arrRowData["favicon"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteFavicon(this);"><img src="'.url('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
+        $pictureFavicon        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.asset("/upload/".@$arrRowData["favicon"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteFavicon(this);"><img src="'.asset('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
         $strFavicon       =   @$arrRowData["favicon"];
     }        
 }   
