@@ -688,8 +688,10 @@ class IndexController extends Controller {
       if(!empty($category['meta_description'])){
         $meta_description=$category['meta_description'];
       }
-    }                           
-    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout"));                            
+    }      
+    $breadcrumb='';              
+    $breadcrumb= getBreadcrumb($alias);                       
+    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb"));                            
   }
       function addCart(){          
           $product_id=(int)($_POST["product_id"]);

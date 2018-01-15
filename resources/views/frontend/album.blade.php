@@ -5,9 +5,21 @@ $map_url=$setting['map_url']['field_value'];
 <form action="" method="POST">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<h2 class="tieu-de-bai-viet">
-		<?php echo $title; ?>
-	</h2>
+	<?php 		
+	if(empty($breadcrumb)){
+		?>
+		<h2 class="tieu-de">
+			<?php echo $title; ?>		
+		</h2>
+		<?php
+	}else{
+		?>
+		<h2 class="breadcrumb-title">
+			<?php echo $breadcrumb; ?>
+		</h2>
+		<?php
+	}	
+	?>
 	<div class="margin-top-15">
 		<?php 
 		if(count($items) > 0){

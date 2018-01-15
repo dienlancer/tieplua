@@ -192,4 +192,77 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$alias,$menu_class
     $menu_str .='</ul>'; 
   }
 }
+function getRecursiveMenu($alias,&$arrMenu){
+  $query=DB::table('menu')
+  ->join('menu_type','menu.menu_type_id', '=' ,'menu_type.id');
+  $query->where('menu_type.theme_location','main-menu');
+  $query->where('menu.alias',$alias);
+  $query->select('menu.id','menu.fullname','menu.alias','menu.parent_id');
+  $data=$query->get()->toArray();  
+  if(count($data) > 0){
+    $data=convertToArray($data);
+    $data1=$data[0];
+    $parent_id=$data1['parent_id'];
+    $query2=DB::table('menu')
+    ->join('menu_type','menu.menu_type_id', '=' ,'menu_type.id');
+    $query2->where('menu_type.theme_location','main-menu');
+    $query2->where('menu.id',(int)@$parent_id);
+    $query2->select('menu.id','menu.fullname','menu.alias','menu.parent_id');
+    $data2=$query2->get()->toArray();  
+    if(count($data2) > 0){
+      $data2=convertToArray($data2);
+      $data3=$data2[0];
+      $row=array(
+        'id'        =>  $data3['id'],
+        'fullname'  =>  $data3['fullname'],
+        'alias'     =>  $data3['alias'],
+        'parent_id' =>  $data3['parent_id']
+      );
+      $arrMenu[]=$row;
+      getRecursiveMenu($data3['alias'],$arrMenu);
+    }    
+  }      
+}
+function getBreadCrumb($alias){
+  $arrMenu=array();
+  $strBreadcrumb='';
+  getRecursiveMenu($alias,$arrMenu);  
+  if(count($arrMenu) > 0){
+    $menuHome=MenuModel::whereRaw('alias = ?',['trang-chu'])->select('menu.id','menu.fullname','menu.alias','menu.parent_id')->get()->toArray()[0];
+    $menuAlias=MenuModel::whereRaw('alias = ?',[$alias])->select('menu.id','menu.fullname','menu.alias','menu.parent_id')->get()->toArray()[0];
+    $rowHome=array(
+        'id'        =>  $menuHome['id'],
+        'fullname'  =>  $menuHome['fullname'],
+        'alias'     =>  $menuHome['alias'],
+        'parent_id' =>  $menuHome['parent_id']
+      );
+    $rowAlias=array(
+        'id'        =>  $menuAlias['id'],
+        'fullname'  =>  $menuAlias['fullname'],
+        'alias'     =>  $menuAlias['alias'],
+        'parent_id' =>  $menuAlias['parent_id']
+      );
+    $arrMenu[]=$rowHome;
+    $arrMenu[]=$rowAlias;
+    $data= get_field_data_array($arrMenu,'id');
+    ksort($data);  
+    foreach ($data as $key => $value) {
+      $id=$value['id'];
+      $fullname=$value['fullname'];
+      $alias=$value['alias'];
+      $parent_id=$value['parent_id'];
+      $permalink='';
+      switch ($alias) {
+        case 'trang-chu':
+          $permalink=url('/');
+          break;        
+        default:
+          $permalink=route('frontend.index.index',[$alias]);
+          break;
+      }      
+      $strBreadcrumb .='<a href="'.$permalink.'">'.$fullname.'</a>';
+    }
+  }
+  return $strBreadcrumb;
+}
 ?>

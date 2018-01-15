@@ -142,4 +142,5 @@ function getArrPrivilege(){
   /* end quyền truy cập */  
   return $arrPrivilege;
 }
+
 ?>

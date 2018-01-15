@@ -677,6 +677,23 @@ div.liverpool:hover div.youtube-img{
 .rena{
     float: right;   
 }
+.breadcrumb-title{
+        border: 1px solid #d8d8d8;
+    background: linear-gradient(to bottom, #ffffff , #F5F5F5);
+    font-size: 15px;    
+    text-transform: uppercase;
+    padding: 10px 10px;
+    font-weight: bold;
+}
+.breadcrumb-title a::after{
+font-family: 'FontAwesome';
+    content: "\f105";
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.breadcrumb-title a{
+    color: #b93d00;
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

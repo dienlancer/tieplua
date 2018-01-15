@@ -146,7 +146,7 @@ if(isset($alias)){
             case 'full-width':        
             ?>
             <div class="col-lg-12">
-                <div class="box-article margin-top-15">
+                
                     <?php
                     switch ($component) {                          
                         case "contact": 
@@ -163,7 +163,7 @@ if(isset($alias)){
                         break;                                                                                     
                     }  
                     ?>
-                </div>      
+                
             </div>            
             <?php
             break;

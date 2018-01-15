@@ -2,9 +2,11 @@
 $setting=getSettingSystem();
 $map_url=$setting['map_url']['field_value'];       
 ?>
-	<h2 class="tieu-de-bai-viet">
-			Liên hệ
-		</h2>
+<h2 class="tieu-de margin-top-15">
+		Liên hệ
+	</h2>
+<div class="box-article margin-top-10">
+	
 		<div >
 			<div class="col-md-4 contact no-padding-left">
 				<form method="post" class="margin-top-15" name="frm-contact" enctype="multipart/form-data">							
@@ -77,3 +79,5 @@ $map_url=$setting['map_url']['field_value'];
 		<div class="margin-top-15">
 			<iframe src="<?php echo $map_url; ?>" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
 		</div>
+</div>
+	
