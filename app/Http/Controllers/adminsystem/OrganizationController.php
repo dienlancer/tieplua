@@ -248,8 +248,8 @@ class OrganizationController extends Controller {
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
                   $strID=substr($strID, 0,strlen($strID) - 1);
-                  $sqlDelete = "DELETE FROM `organization` WHERE `id` IN  (".$strID.")";                                                 
-                  DB::statement($sqlDelete);                                    
+                  $sql = "DELETE FROM `organization` WHERE `id` IN  (".$strID.")";                                                 
+                  DB::statement($sql);                                    
             }
             $data                   =   $this->loadData($request);
             $info = array(

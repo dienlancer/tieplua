@@ -251,8 +251,8 @@ class PageController extends Controller {
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
                   $strID=substr($strID, 0,strlen($strID) - 1);
-                  $sqlDeletePage = "DELETE FROM `page` WHERE `id` IN  (".$strID.")";                                  
-                  DB::statement($sqlDeletePage);                  
+                  $sql = "DELETE FROM `page` WHERE `id` IN  (".$strID.")";                                  
+                  DB::statement($sql);                  
             }
             $data                   =   $this->loadData($request);
             $info = array(

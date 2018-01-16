@@ -223,7 +223,7 @@ class MenuController extends Controller {
           if(count($data) > 0){
             $checked     =   0;
             $type_msg           =   "alert-warning";            
-            $msg                =   "Không thể xóa";      
+            $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
           }          
           if($checked == 1){
             $item               =   MenuModel::find((int)@$id);
@@ -278,15 +278,15 @@ class MenuController extends Controller {
               if($count > 0){
                 $checked     =   0;
                 $type_msg           =   "alert-warning";            
-                $msg                =   "Không thể xóa";
+                $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
               } 
             }
           }
           
           if($checked == 1){        
             $strID = implode(',',$arrID);               
-            $sqlDeleteMenu = 'DELETE FROM `menu` WHERE `id` IN ('.$strID.') ';                 
-            DB::statement($sqlDeleteMenu);          
+            $sql = 'DELETE FROM `menu` WHERE `id` IN ('.$strID.') ';                 
+            DB::statement($sql);          
             
           }
           return redirect()->route("adminsystem.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 

@@ -145,23 +145,28 @@ class CategoryBannerController extends Controller {
         return $info;
     }
     public function deleteItem(Request $request){
-          $id                     =   (int)$request->id;              
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Xóa thành công";          
-          if($checked == 1){            
-            BannerModel::whereRaw("category_id = ?",[(int)@$id])->delete();
-            $item               =   CategoryBannerModel::find((int)@$id);
-            $item->delete();            
-          }        
-          $data                   =   $this->loadData($request);
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                
-            'data'              => $data
-          );
-          return $info;
+      $id                     =   (int)$request->id;              
+      $checked                =   1;
+      $type_msg               =   "alert-success";
+      $msg                    =   "Xóa thành công";         
+      $data=BannerModel::whereRaw("category_id = ?",[(int)@$id])->select('id')->get()->toArray();
+      if(count($data) > 0){
+        $checked                =   0;
+        $type_msg               =   "alert-warning";            
+        $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+      }    
+      if($checked == 1){                        
+        $item               =   CategoryBannerModel::find((int)@$id);
+        $item->delete();            
+      }        
+      $data                   =   $this->loadData($request);
+      $info = array(
+        'checked'           => $checked,
+        'type_msg'          => $type_msg,                
+        'msg'               => $msg,                
+        'data'              => $data
+      );
+      return $info;
     }
     public function updateStatus(Request $request){
           $str_id                 =   $request->str_id;   
@@ -194,32 +199,36 @@ class CategoryBannerController extends Controller {
           return $info;
     }
     public function trash(Request $request){
-          $str_id                 =   $request->str_id;   
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Xóa thành công";      
-          $arrID                  =   explode(",", $str_id)  ;    
-          if(empty($str_id)){
-            $checked     =   0;
-            $type_msg           =   "alert-warning";            
-            $msg                =   "Please choose at least one item to delete";
-          }
-          if($checked == 1){                
-              $strID = implode(',',$arrID);       
-              $strID = substr($strID, 0,strlen($strID) - 1);            
-              $sqlDeleteBanner = "DELETE FROM `banner` WHERE `category_id` IN (".$strID.")";                                 
-              $sqlDeleteCategoryBanner = "DELETE FROM `category_banner` WHERE `id` IN (".$strID.")";                    
-              DB::statement($sqlDeleteBanner);    
-              DB::statement($sqlDeleteCategoryBanner);    
-          }
-          $data                   =   $this->loadData($request);
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                
-            'data'              => $data
-          );
-          return $info;
+      $str_id                 =   $request->str_id;   
+      $checked                =   1;
+      $type_msg               =   "alert-success";
+      $msg                    =   "Xóa thành công";      
+      $arrID                  =   explode(",", $str_id)  ;    
+      if(empty($str_id)){
+        $checked     =   0;
+        $type_msg           =   "alert-warning";            
+        $msg                =   "Please choose at least one item to delete";
+      }
+      $data=DB::table('banner')->whereIn('category_id',@$arrID)->select('id')->get()->toArray();             
+      if(count($data) > 0){
+        $checked                =   0;
+        $type_msg               =   "alert-warning";            
+        $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+      }   
+      if($checked == 1){                
+        $strID = implode(',',$arrID);       
+        $strID = substr($strID, 0,strlen($strID) - 1);                                              
+        $sql = "DELETE FROM `category_banner` WHERE `id` IN (".$strID.")";                            
+        DB::statement($sql);    
+      }
+      $data                   =   $this->loadData($request);
+      $info = array(
+        'checked'           => $checked,
+        'type_msg'          => $type_msg,                
+        'msg'               => $msg,                
+        'data'              => $data
+      );
+      return $info;
     }
     public function sortOrder(Request $request){
           $sort_json              =   $request->sort_json;           

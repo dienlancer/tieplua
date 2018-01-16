@@ -172,15 +172,20 @@ class CategoryVideoController extends Controller {
                   return $info;
           }
         
-      public function deleteItem(Request $request){
+          public function deleteItem(Request $request){
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $msg                    =   "Xóa thành công";      
+            $data=VideoModel::whereRaw("category_video_id = ?",[(int)@$id])->select('id')->get()->toArray();        
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }                 
             if($checked == 1){
               $item = CategoryVideoModel::find((int)@$id);
-                $item->delete();                                
-                VideoModel::whereRaw("category_video_id = ?",[(int)@$id])->delete();
+              $item->delete();                                                
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -190,7 +195,7 @@ class CategoryVideoController extends Controller {
               'data'              => $data
             );
             return $info;
-      }
+          }
       public function updateStatus(Request $request){
           $str_id                 =   $request->str_id;   
           $status                 =   $request->status;  
@@ -232,13 +237,18 @@ class CategoryVideoController extends Controller {
               $type_msg           =   "alert-warning";            
               $msg                =   "Vui lòng chọn ít nhất một phần tử";
             }
+            $data=DB::table('video')->whereIn('category_video_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            } 
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
                   $strID=substr($strID, 0,strlen($strID) - 1);
-                  $sqlDeleteCategoryVideo = "DELETE FROM `category_video` WHERE `id` IN  (".$strID.")"; 
-                  $sqlDeleteVideo = "DELETE FROM `video` WHERE `category_video_id` IN  (".$strID.")";                                 
-                  DB::statement($sqlDeleteCategoryVideo);                  
-                  DB::statement($sqlDeleteVideo);                  
+                  $sql = "DELETE FROM `category_video` WHERE `id` IN  (".$strID.")"; 
+                  DB::statement($sql);                  
+                     
             }
             $data                   =   $this->loadData($request);
             $info = array(

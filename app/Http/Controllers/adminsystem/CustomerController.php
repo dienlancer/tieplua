@@ -3,6 +3,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CustomerModel;
+use App\InvoiceModel;
 use DB;
 use Hash;
 class CustomerController extends Controller {
@@ -161,7 +162,13 @@ class CustomerController extends Controller {
             $id                     =   (int)@$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $msg                    =   "Xóa thành công";            
+            $data=InvoiceModel::whereRaw("customer_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }            
             if($checked == 1){
                 $item = CustomerModel::find((int)@$id);
                 $item->delete();                
@@ -216,6 +223,12 @@ class CustomerController extends Controller {
               $type_msg           =   "alert-warning";            
               $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
             }
+            $data=DB::table('invoice')->whereIn('customer_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }   
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
                   $strID=substr($strID, 0,strlen($strID) - 1);

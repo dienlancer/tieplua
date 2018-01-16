@@ -159,7 +159,13 @@ class GroupMemberController extends Controller {
                 $checked     =   0;
                 $type_msg           =   "alert-warning";            
                 $msg                =   "Không thể xóa";            
-            }           
+            }     
+            $data=User::whereRaw("group_member_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }          
             if($checked == 1){
                 $item = GroupMemberModel::find((int)@$id);
                 $item->delete();
@@ -197,6 +203,12 @@ class GroupMemberController extends Controller {
                 }                
               }
             }
+            $data=DB::table('users')->whereIn('group_member_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }   
             if($checked == 1){                
               $strID = implode(',',$arrID);       
               $strID = substr($strID, 0,strlen($strID) - 1);            

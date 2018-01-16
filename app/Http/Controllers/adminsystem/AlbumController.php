@@ -174,11 +174,17 @@ class AlbumController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $msg                    =   "Xóa thành công";         
+            $data=PhotoModel::whereRaw("album_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }                       
             if($checked == 1){
               $item = AlbumModel::find((int)@$id);
                 $item->delete();                                
-                PhotoModel::whereRaw("album_id = ?",[(int)@$id])->delete();
+                
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -229,14 +235,18 @@ class AlbumController extends Controller {
               $checked     =   0;
               $type_msg           =   "alert-warning";            
               $msg                =   "Vui lòng chọn ít nhất một phần tử";
-            }
+            }            
+            $data=DB::table('photo')->whereIn('album_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }   
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
                   $strID=substr($strID, 0,strlen($strID) - 1);
-                  $sqlDeleteAlbum = "DELETE FROM `album` WHERE `id` IN  (".$strID.")"; 
-                  $sqlDeleteAlbumArticle = "DELETE FROM `photo` WHERE `album_id` IN  (".$strID.")";                                 
-                  DB::statement($sqlDeleteAlbum);                  
-                  DB::statement($sqlDeleteAlbumArticle);                  
+                  $sql = "DELETE FROM `album` WHERE `id` IN  (".$strID.")";                  
+                  DB::statement($sql);                                    
             }
             $data                   =   $this->loadData($request);
             $info = array(

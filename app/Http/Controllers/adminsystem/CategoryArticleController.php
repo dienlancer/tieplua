@@ -215,13 +215,13 @@ class CategoryArticleController extends Controller {
           if(count($data) > 0){
             $checked     =   0;
             $type_msg           =   "alert-warning";            
-            $msg                =   "Không thể xóa";            
+            $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
           }
           $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$id])->get()->toArray();              
           if(count($data) > 0){
             $checked     =   0;
             $type_msg           =   "alert-warning";            
-            $msg                =   "Không thể xóa";            
+            $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
           }
           if($checked == 1){
             $item               =   CategoryArticleModel::find((int)@$id);
@@ -277,13 +277,13 @@ class CategoryArticleController extends Controller {
                 if(count($data) > 0){
                   $checked     =   0;
                   $type_msg           =   "alert-warning";            
-                  $msg                =   "Không thể xóa";
+                  $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
                 }
                 $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$value])->get()->toArray();                     
                 if(count($data) > 0){
                   $checked     =   0;
                   $type_msg           =   "alert-warning";            
-                  $msg                =   "Không thể xóa"; 
+                  $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
                 }
               }                
             }

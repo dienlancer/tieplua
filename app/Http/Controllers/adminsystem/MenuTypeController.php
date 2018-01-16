@@ -145,23 +145,28 @@ class MenuTypeController extends Controller {
         return $info;
     }
     public function deleteItem(Request $request){
-          $id                     =   (int)$request->id;              
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Xóa thành công";          
-          if($checked == 1){            
-            MenuModel::whereRaw("menu_type_id = ?",[(int)@$id])->delete();
-            $item               =   MenuTypeModel::find((int)@$id);
-            $item->delete();            
-          }        
-          $data                   =   $this->loadData($request);
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                
-            'data'              => $data
-          );
-          return $info;
+      $id                     =   (int)$request->id;              
+      $checked                =   1;
+      $type_msg               =   "alert-success";
+      $msg                    =   "Xóa thành công"; 
+      $data=MenuModel::whereRaw("menu_type_id = ?",[(int)@$id])->select('id')->get()->toArray();
+      if(count($data) > 0){
+        $checked                =   0;
+        $type_msg               =   "alert-warning";            
+        $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+      }           
+      if($checked == 1){                        
+        $item               =   MenuTypeModel::find((int)@$id);
+        $item->delete();            
+      }        
+      $data                   =   $this->loadData($request);
+      $info = array(
+        'checked'           => $checked,
+        'type_msg'          => $type_msg,                
+        'msg'               => $msg,                
+        'data'              => $data
+      );
+      return $info;
     }
     public function updateStatus(Request $request){
           $str_id                 =   $request->str_id;   
@@ -204,13 +209,17 @@ class MenuTypeController extends Controller {
             $type_msg           =   "alert-warning";            
             $msg                =   "Please choose at least one item to delete";
           }
+          $data=DB::table('menu')->whereIn('menu_type_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }   
           if($checked == 1){                
               $strID = implode(',',$arrID);       
-              $strID = substr($strID, 0,strlen($strID) - 1);            
-              $sqlDeleteMenu = "DELETE FROM `menu` WHERE `menu_type_id` IN (".$strID.")";                                 
-              $sqlDeleteMenuType = "DELETE FROM `menu_type` WHERE `id` IN (".$strID.")";                    
-              DB::statement($sqlDeleteMenu);    
-              DB::statement($sqlDeleteMenuType);    
+              $strID = substr($strID, 0,strlen($strID) - 1);                                                
+              $sql = "DELETE FROM `menu_type` WHERE `id` IN (".$strID.")";                                  
+              DB::statement($sql);    
           }
           $data                   =   $this->loadData($request);
           $info = array(
