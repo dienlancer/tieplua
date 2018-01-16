@@ -186,7 +186,8 @@ class IndexController extends Controller {
     $item=array();     
     $items=array();                  
     $category=array();  
-    $component="";            
+    $component="";       
+    $menu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();         
     $lstCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
     $lstCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
     $lstArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
@@ -364,15 +365,13 @@ class IndexController extends Controller {
       $alias_1='';
       $alias_2='';
       switch ($alias) {
-        case 'tin-tuc-su-kien':   
-        $title="Tin tức sự kiện";
+        case 'tin-tuc-su-kien':           
         $meta_keyword="metakeyword tin tức sự kiện";
         $meta_description="metadescription tin tức sự kiện";
         $alias_1='tin-noi-bo';
         $alias_2='tin-cong-dong';
         break;
-        case 'dich-vu-hoat-dong':            
-        $title="Dịch vụ hoạt động";
+        case 'dich-vu-hoat-dong':                    
         $meta_keyword="metakeyword dịch vụ hoạt động";
         $meta_description="metadescription dịch vụ hoạt động";
         $alias_1='dich-vu';
@@ -422,8 +421,7 @@ class IndexController extends Controller {
         $items=convertToArray($data);  
       $layout="two-column";            
       break;
-      case 'projects':
-      $title="Dự án";
+      case 'projects':      
         $meta_keyword="metakeyword dự án";
         $meta_description="metadescription dự án";
       $data=DB::table('project')                                  
@@ -471,8 +469,7 @@ class IndexController extends Controller {
       }  
       $layout="two-column";  
       break;
-      case 'supporter':      
-      $title="Tiếp lửa";
+      case 'supporter':            
       $meta_keyword="metakeyword tiếp lửa";
       $meta_description="metadescription tiếp lửa";     
       $data=DB::table('supporter')  
@@ -509,7 +506,6 @@ class IndexController extends Controller {
         $layout="two-column";  
       break;
       case 'organizations':      
-      $title="Danh bạ";
       $meta_keyword="metakeyword danh bạ";
       $meta_description="metadescription danh bạ";     
       $data=DB::table('organization')                      
@@ -550,8 +546,7 @@ class IndexController extends Controller {
       }         
       $layout="two-column";  
       break;
-      case 'categories-album':      
-      $title="Album";
+      case 'categories-album':            
       $meta_keyword="metakeyword album";
       $meta_description="metadescription album";     
       $data=DB::table('album')                      
@@ -585,8 +580,7 @@ class IndexController extends Controller {
       $items=convertToArray($data);
       $layout="full-width";            
       break;
-      case 'album':      
-      $title="Photo";
+      case 'album':            
       $meta_keyword="metakeyword photo";
       $meta_description="metadescription photo";   
       $category_id=0;
@@ -670,7 +664,11 @@ class IndexController extends Controller {
       }      
       $layout="full-width";            
       break;
-    }         
+    }      
+    if(count($menu) > 0){
+      $menu=convertToArray($menu);
+      $title=$menu[0]['fullname'];
+    }      
     if(count($item) > 0){
       $title=$item['fullname'];                      
       if(!empty($item['meta_keyword'])){
