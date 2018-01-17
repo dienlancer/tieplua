@@ -519,8 +519,7 @@ class MenuController extends Controller {
            $error["fullname"]["type_msg"] = "has-error";
            $error["fullname"]["msg"] = "Thiếu tên menu";
          }else{
-          $alias=stripUnicode($fullname);
-          $alias=convertToAlias($alias);
+          $alias=convertToAlias($fullname);
           $dataMenu=array();          
           $checked_trung_alias=0;          
           if (empty($id)) {              

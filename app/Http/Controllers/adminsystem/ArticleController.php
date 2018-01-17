@@ -353,9 +353,8 @@ class ArticleController extends Controller {
            $checked = 0;
            $error["fullname"]["type_msg"] = "has-error";
            $error["fullname"]["msg"] = "Thiếu tên bài viết";
-         }else{
-          $alias=stripUnicode($fullname);
-          $alias=convertToAlias($alias);
+         }else{          
+          $alias=convertToAlias($fullname);
           $dataCategoryArticle=array();
           $dataCategoryProduct=array();
           $dataArticle=array();

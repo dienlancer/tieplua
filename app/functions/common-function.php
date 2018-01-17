@@ -54,7 +54,8 @@ function stripUnicode($str){
   } 
   return $str; 
 } 
-function convertToAlias($str){ 
+function convertToAlias($fullname){
+    $str=stripUnicode($fullname); 
     $str=trim($str); 
     if ($str=="") return ""; 
     $str =str_replace('"','',$str); 
