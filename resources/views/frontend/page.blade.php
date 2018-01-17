@@ -28,7 +28,7 @@ if(count($item) > 0){
 			<?php echo $intro; ?>
 		</div>	
 		<hr class="duong-ngang" />	
-		<div class="margin-top-15 justify">
+		<div class="margin-top-15">
 			<?php echo $content; ?>
 		</div>	
 	</div>

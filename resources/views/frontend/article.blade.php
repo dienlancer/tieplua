@@ -52,7 +52,7 @@ if(count($item) > 0){
 		<div class="margin-top-10 article-excerpt justify">
 			<?php echo $intro; ?>
 		</div>		
-		<div class="margin-top-15 justify">
+		<div class="margin-top-15">
 			<?php echo $content; ?>
 		</div>	
 		<hr class="duong-ngang" />

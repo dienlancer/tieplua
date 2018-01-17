@@ -8,13 +8,13 @@ $map_url=$setting['map_url']['field_value'];
 	<?php 		
 	if(empty($breadcrumb)){
 		?>
-		<h2 class="tieu-de">
+		<h2 class="tieu-de margin-top-15">
 			<?php echo $title; ?>		
 		</h2>
 		<?php
 	}else{
 		?>
-		<h2 class="breadcrumb-title">
+		<h2 class="breadcrumb-title margin-top-15">
 			<?php echo $breadcrumb; ?>
 		</h2>
 		<?php
