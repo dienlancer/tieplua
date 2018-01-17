@@ -37,8 +37,8 @@ class MenuController extends Controller {
         $totalItems=count($data);
         $totalItemsPerPage=$this->_totalItemsPerPage;       
         $pageRange=$this->_pageRange;
-        if(!empty(@$_POST["filter_page"])){
-          $currentPage=(int)@$_POST["filter_page"];    
+        if(!empty(@$request->filter_page)){
+          $currentPage=(int)@$request->filter_page;    
         }            
         $arrPagination=array(
           "totalItems"=>$totalItems,
@@ -326,22 +326,25 @@ class MenuController extends Controller {
         $icon=$this->_icon; 
         return view("adminsystem.".$this->_controller.".component",compact('menu_type_id',"title","icon","controller")); 
       }
-      public function getCategoryArticleComponent($menu_type_id = 0){
+      public function getCategoryArticleComponent(Request $request,$menu_type_id = 0){
         $controller=$this->_controller; 
         $task="list";
         $title="Category Article Component";
         $icon=$this->_icon; 
-        $currentPage=1;   
-        $filter_search="";
-        if(!empty(@$_POST["filter_search"])){
-          $filter_search=@$_POST["filter_search"];        
-        }        
-        $data=DB::select('call pro_getCategoryArticle(?)',array(mb_strtolower($filter_search)));
+        $currentPage=1;             
+        $query=DB::table('category_article');        
+        if(!empty(@$request->filter_search)){
+          $query->where('category_article.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('category_article.id')                                
+        ->groupBy('category_article.id')                
+        ->get()
+        ->toArray();
         $totalItems=count($data);
         $totalItemsPerPage=$this->_totalItemsPerPage;       
         $pageRange=$this->_pageRange;
-        if(!empty(@$_POST["filter_page"])){
-          $currentPage=(int)@$_POST["filter_page"];    
+        if(!empty(@$request->filter_page)){
+          $currentPage=(int)@$request->filter_page;    
         }            
         $arrPagination=array(
           "totalItems"=>$totalItems,
@@ -352,9 +355,18 @@ class MenuController extends Controller {
         $pagination=new PaginationModel($arrPagination);
         $position = (@$arrPagination['currentPage']-1)*$totalItemsPerPage;
         $data=array();
-        if($totalItemsPerPage > 0){
-            $data=DB::select('call pro_getCategoryArticleLimit(?,?,?)',array($filter_search,$position,$totalItemsPerPage));
-        }        
+        $query=DB::table('category_article as n')
+        ->leftJoin('category_article as a','n.parent_id','=','a.id');        
+        if(!empty(@$request->filter_search)){
+          $query->where('n.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('n.id','n.fullname','n.alias','n.parent_id','a.fullname as parent_fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')                           
+        ->groupBy('n.id','n.fullname','n.alias','n.parent_id','a.fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')
+        ->orderBy('n.sort_order', 'asc')
+        ->skip($position)
+        ->take($totalItemsPerPage)
+        ->get()
+        ->toArray();    
         $data=convertToArray($data);
         $data=categoryArticleComponentConverter($data,$this->_controller,$menu_type_id);   
         $data_recursive=array();
@@ -367,18 +379,21 @@ class MenuController extends Controller {
         $task="list";
         $title="Category Product Component";
         $icon=$this->_icon; 
-        $currentPage=1;   
-        $filter_search="";
-        if(!empty(@$_POST["filter_search"])){
-          $filter_search=@$_POST["filter_search"];        
-        }        
-        $data=DB::select('call pro_getCategoryProduct(?)',array(mb_strtolower($filter_search)));
+        $currentPage=1;             
+        $query=DB::table('category_product');        
+        if(!empty(@$request->filter_search)){
+          $query->where('category_product.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('category_product.id')                                
+        ->groupBy('category_product.id')                
+        ->get()
+        ->toArray();
         $totalItems=count($data);
         $totalItemsPerPage=$this->_totalItemsPerPage;       
         $pageRange=$this->_pageRange;
-        if(!empty(@$_POST["filter_page"])){
-          $currentPage=(int)@$_POST["filter_page"];    
-        }            
+        if(!empty(@$request->filter_page)){
+          $currentPage=(int)@$request->filter_page;    
+        }              
         $arrPagination=array(
           "totalItems"=>$totalItems,
           "totalItemsPerPage"=>$totalItemsPerPage,
@@ -388,9 +403,18 @@ class MenuController extends Controller {
         $pagination=new PaginationModel($arrPagination);
         $position = (@$arrPagination['currentPage']-1)*$totalItemsPerPage;
         $data=array();
-        if($totalItemsPerPage > 0){
-            $data=DB::select('call pro_getCategoryProductLimit(?,?,?)',array($filter_search,$position,$totalItemsPerPage));
-        }        
+        $query=DB::table('category_product as n')
+        ->leftJoin('category_product as a','n.parent_id','=','a.id');        
+        if(!empty(@$request->filter_search)){
+          $query->where('n.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('n.id','n.fullname','n.alias','n.parent_id','a.fullname as parent_fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')                           
+        ->groupBy('n.id','n.fullname','n.alias','n.parent_id','a.fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')
+        ->orderBy('n.sort_order', 'asc')
+        ->skip($position)
+        ->take($totalItemsPerPage)
+        ->get()
+        ->toArray();              
         $data=convertToArray($data);
         $data=categoryProductComponentConverter($data,$this->_controller,$menu_type_id);   
         $data_recursive=array();
@@ -411,22 +435,21 @@ class MenuController extends Controller {
         $filter_search="";    
         $category_article_id=0;  
         $menu_type_id=$request->menu_type_id;
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }
-        if(!empty(@$request->category_article_id)){
-          $category_article_id=(int)@$request->category_article_id;
-        }
-        /* begin lấy chuỗi ID */
-        $arrCategoryArticleID=array();
-        $strCategoryArticleID="";
-        $arrCategoryArticleID[]=$category_article_id;        
-        getStringCategoryID($category_article_id,$arrCategoryArticleID,'category_article');                    
-        $strCategoryArticleID=implode("#;#", $arrCategoryArticleID);    
-        $strCategoryArticleID="#".$strCategoryArticleID."#";    
-        /* end lấy chuỗi ID */        
-        $data=DB::select('call pro_getArticle(?,?)',array(mb_strtolower($filter_search,'UTF-8'),$strCategoryArticleID));        
-        $data=convertToArray($data);    
+        $query=DB::table('article')
+      ->join('article_category','article.id','=','article_category.article_id')
+      ->join('category_article','category_article.id','=','article_category.category_article_id')  ;      
+      if(!empty(@$request->filter_search)){
+        $query->where('article.fullname','like','%'.trim(@$request->filter_search).'%');
+      }     
+      if(!empty(@$request->category_article_id)){
+        $query->whereIn('article_category.category_article_id',(int)@$request->category_article_id);
+      }   
+      $data=$query->select('article.id','article.fullname','article.alias','article.image','article.sort_order','article.status','article.created_at','article.updated_at')
+                  ->groupBy('article.id','article.fullname','article.alias','article.image','article.sort_order','article.status','article.created_at','article.updated_at')
+                  ->orderBy('article.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);
         $data=articleComponentConverter($data,$this->_controller,$menu_type_id);           
         return $data;
     } 
@@ -444,39 +467,41 @@ class MenuController extends Controller {
         $filter_search="";    
         $category_product_id=0;  
         $menu_type_id=$request->menu_type_id;
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }
-        if(!empty(@$request->category_product_id)){
-          $category_product_id=(int)@$request->category_product_id;
-        }
-        /* begin lấy chuỗi ID */
-        $arrCategoryProductID=array();
-        $strCategoryProductID="";
-        $arrCategoryProductID[]=$category_product_id;        
-        getStringCategoryID($category_product_id,$arrCategoryProductID,'category_product');                    
-        $strCategoryProductID=implode("#;#", $arrCategoryProductID);    
-        $strCategoryProductID="#".$strCategoryProductID."#";    
-        /* end lấy chuỗi ID */        
-        $data=DB::select('call pro_getProduct(?,?)',array(mb_strtolower($filter_search,'UTF-8'),$strCategoryProductID));        
-        $data=convertToArray($data);    
+        $query=DB::table('product')
+      ->join('product_category','product.id','=','product_category.product_id')
+      ->join('category_product','category_product.id','=','product_category.category_product_id')  ;      
+      if(!empty(@$request->filter_search)){
+        $query->where('product.fullname','like','%'.trim(@$request->filter_search).'%');
+      }     
+      if(!empty(@$request->category_product_id)){
+        $query->whereIn('product_category.category_product_id',(int)@$request->category_product_id);
+      }   
+      $data=$query->select('product.id','product.code','product.alias','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->groupBy('product.id','product.code','product.alias','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->orderBy('product.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);    
         $data=productComponentConverter($data,$this->_controller,$menu_type_id);            
         return $data;
     } 
     public function getPageComponent($menu_type_id = 0){
         $controller=$this->_controller;         
         $title='Page component';
-        $icon=$this->_icon;           
+        $icon=$this->_icon;    
+
         return view("adminsystem.".$this->_controller.".page-component",compact("controller","title","icon","menu_type_id")); 
       }
       public function getPageList(Request $request){
-        $filter_search="";            
         $menu_type_id=$request->menu_type_id;
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }                
-        $data=DB::select('call pro_getPage(?)',array(mb_strtolower($filter_search,'UTF-8')));        
-        $data=convertToArray($data);    
+        $query=DB::table('page')  ;       
+      if(!empty(@$request->filter_search)){
+        $query->where('page.fullname','like','%'.trim(mb_strtolower(@$request->filter_search,'UTF-8')).'%')    ;
+      }
+      $data=$query->select('page.id','page.fullname','page.alias','page.theme_location','page.image','page.sort_order','page.status','page.created_at','page.updated_at')
+      ->groupBy('page.id','page.fullname','page.alias','page.theme_location','page.image','page.sort_order','page.status','page.created_at','page.updated_at')
+      ->orderBy('page.sort_order', 'asc')->get()->toArray();                
+      $data=convertToArray($data);    
         $data=pageComponentConverter($data,$this->_controller,$menu_type_id);           
         return $data;
     }  

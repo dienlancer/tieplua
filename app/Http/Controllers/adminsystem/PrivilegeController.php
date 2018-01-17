@@ -24,16 +24,18 @@ class PrivilegeController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";            
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }             
-    		$data=DB::select('call pro_getPrivilege(?)',array(mb_strtolower($filter_search)));
-    		$data=convertToArray($data);		
-    		$data=privilegeConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){           
+        $query=DB::table('privilege');        
+        if(!empty(@$request->filter_search)){
+          $query->where('privilege.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('privilege.id','privilege.fullname','privilege.controller','privilege.action','privilege.sort_order','privilege.created_at','privilege.updated_at')
+        ->groupBy('privilege.id','privilege.fullname','privilege.controller','privilege.action','privilege.sort_order','privilege.created_at','privilege.updated_at')
+        ->orderBy('privilege.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=privilegeConverter($data,$this->_controller);            
+        return $data;
+      }   
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

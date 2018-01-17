@@ -28,20 +28,19 @@ class UserController extends Controller {
         }
   	}	
     
-  	public function loadData(Request $request){
-    		$filter_search="";    
-        $group_member_id=0;  
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
+  	public function loadData(Request $request){           
+        $query=DB::table('users')
+                  ->join('group_member','users.group_member_id','=','group_member.id');        
+        if(!empty(@$request->filter_search)){
+          $query->where('users.fullname','like','%'.trim(@$request->filter_search).'%');
         }
-        if(!empty(@$request->group_member_id)){
-          $group_member_id=(int)@$request->group_member_id;
-        }        
-    		$data=DB::select('call pro_getUser(?,?)',array(mb_strtolower($filter_search),$group_member_id));
-    		$data=convertToArray($data);		
-    		$data=userConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+        $data=$query->select('users.id','users.username','users.email','users.fullname','users.group_member_id','group_member.fullname as group_member_name','users.status','users.sort_order','users.created_at','users.updated_at')
+        ->groupBy('users.id','users.username','users.email','users.fullname','users.group_member_id','group_member.fullname','users.status','users.sort_order','users.created_at','users.updated_at')
+        ->orderBy('users.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=userConverter($data,$this->_controller);            
+        return $data;
+      }   
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

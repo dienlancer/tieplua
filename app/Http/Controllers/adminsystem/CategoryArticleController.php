@@ -19,22 +19,25 @@ class CategoryArticleController extends Controller {
     	var $_icon="icon-settings font-dark";
       var $_totalItemsPerPage=9999;    
       var $_pageRange=10;
-    	public function getList(){		
-    		$controller=$this->_controller;	
-    		$task="list";
-    		$title=$this->_title;
-    		$icon=$this->_icon;	
-        $currentPage=1; 	
-        $filter_search="";
-        if(!empty(@$_POST["filter_search"])){
-          $filter_search=@$_POST["filter_search"];        
-        }        
-        $data=DB::select('call pro_getCategoryArticle(?)',array(mb_strtolower($filter_search)));
+      public function getList(Request $request){		
+        $controller=$this->_controller;	
+        $task="list";
+        $title=$this->_title;
+        $icon=$this->_icon;	
+        $currentPage=1; 	              
+        $query=DB::table('category_article');        
+        if(!empty(@$request->filter_search)){
+          $query->where('category_article.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('category_article.id')                                
+        ->groupBy('category_article.id')                
+        ->get()
+        ->toArray();
         $totalItems=count($data);
         $totalItemsPerPage=$this->_totalItemsPerPage;       
         $pageRange=$this->_pageRange;
-        if(!empty(@$_POST["filter_page"])){
-          $currentPage=(int)@$_POST["filter_page"];    
+        if(!empty(@$request->filter_page)){
+          $currentPage=(int)@$request->filter_page;    
         }            
         $arrPagination=array(
           "totalItems"=>$totalItems,
@@ -45,9 +48,18 @@ class CategoryArticleController extends Controller {
         $pagination=new PaginationModel($arrPagination);
         $position = (@$arrPagination['currentPage']-1)*$totalItemsPerPage;
         $data=array();
-        if($totalItemsPerPage > 0){
-            $data=DB::select('call pro_getCategoryArticleLimit(?,?,?)',array($filter_search,$position,$totalItemsPerPage));
-        }        
+        $query=DB::table('category_article as n')
+        ->leftJoin('category_article as a','n.parent_id','=','a.id');        
+        if(!empty(@$request->filter_search)){
+          $query->where('n.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('n.id','n.fullname','n.alias','n.parent_id','a.fullname as parent_fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')                           
+        ->groupBy('n.id','n.fullname','n.alias','n.parent_id','a.fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')
+        ->orderBy('n.sort_order', 'asc')
+        ->skip($position)
+        ->take($totalItemsPerPage)
+        ->get()
+        ->toArray();        
         $data=convertToArray($data);
         $data=categoryArticleConverter($data,$this->_controller);   
         $data_recursive=array();
@@ -61,7 +73,7 @@ class CategoryArticleController extends Controller {
         else{
           return view("adminsystem.no-access");
         }
-    	}	
+      }	
     	
       public function getForm($task,$id=""){		 
           $controller=$this->_controller;			

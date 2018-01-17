@@ -32,28 +32,25 @@ class ProductController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	
-  	public function loadData(Request $request){
-    		$filter_search="";    
-        $category_product_id=0;  
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(mb_strtolower(@$request->filter_search)) ;   
-        }
-        if(!empty(@$request->category_product_id)){
-          $category_product_id=(int)@$request->category_product_id;
-        }
-        /* begin lấy chuỗi ID */
-        $arrCategoryProductID=array();
-        $strCategoryProductID="";
-        $arrCategoryProductID[]=$category_product_id;
-        getStringCategoryID($category_product_id,$arrCategoryProductID,'category_product');      
-        $strCategoryProductID=implode("#;#", $arrCategoryProductID);    
-        $strCategoryProductID="#".$strCategoryProductID."#";    
-        /* end lấy chuỗi ID */
-    		$data=DB::select('call pro_getProduct(?,?)',array( mb_strtolower($filter_search) ,$strCategoryProductID));
-    		$data=convertToArray($data);		
-    		$data=productConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){      
+      $query=DB::table('product')
+      ->join('product_category','product.id','=','product_category.product_id')
+      ->join('category_product','category_product.id','=','product_category.category_product_id')  ;      
+      if(!empty(@$request->filter_search)){
+        $query->where('product.fullname','like','%'.trim(@$request->filter_search).'%');
+      }     
+      if(!empty(@$request->category_product_id)){
+        $query->whereIn('product_category.category_product_id',(int)@$request->category_product_id);
+      }   
+      $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->orderBy('product.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);    
+      $data=productConverter($data,$this->_controller);            
+      return $data;
+    } 
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

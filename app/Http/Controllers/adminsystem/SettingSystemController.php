@@ -23,16 +23,18 @@ class SettingSystemController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";            
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }                
-    		$data=DB::select('call pro_getSettingSystem(?)',array(mb_strtolower($filter_search)));        
-    		$data=convertToArray($data);		
-    		$data=settingSystemConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){           
+        $query=DB::table('setting_system');        
+        if(!empty(@$request->filter_search)){
+          $query->where('setting_system.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('setting_system.id','setting_system.fullname','setting_system.alias','setting_system.status','setting_system.sort_order','setting_system.created_at','setting_system.updated_at')
+        ->groupBy('setting_system.id','setting_system.fullname','setting_system.alias','setting_system.status','setting_system.sort_order','setting_system.created_at','setting_system.updated_at')
+        ->orderBy('setting_system.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=settingSystemConverter($data,$this->_controller);            
+        return $data;
+      }   
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

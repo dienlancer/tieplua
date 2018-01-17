@@ -24,13 +24,18 @@ class InvoiceController extends Controller {
           return view("adminsystem.no-access");
         }
     	}	
-    	public function loadData(Request $request){
-      		$filter_search="";
-      		$data=DB::select('call pro_getInvoice(?)',array(mb_strtolower($filter_search)));      		
-      		$data=convertToArray($data);    
-          $data=invoiceConverter($data,$this->_controller);         		          
-          return $data;
-    	}    	
+    	public function loadData(Request $request){           
+        $query=DB::table('invoice');        
+        if(!empty(@$request->filter_search)){
+          $query->where('invoice.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('invoice.id','invoice.code','invoice.username','invoice.fullname','invoice.address','invoice.phone','invoice.mobilephone','invoice.fax','invoice.quantity','invoice.total_price','invoice.status','invoice.sort_order','invoice.created_at','invoice.updated_at')
+        ->groupBy('invoice.id','invoice.code','invoice.username','invoice.fullname','invoice.address','invoice.phone','invoice.mobilephone','invoice.fax','invoice.quantity','invoice.total_price','invoice.status','invoice.sort_order','invoice.created_at','invoice.updated_at')
+        ->orderBy('invoice.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=invoiceConverter($data,$this->_controller);            
+        return $data;
+      }   	
       public function getForm($task,$id=""){		 
           $controller=$this->_controller;			
           $title="";

@@ -24,16 +24,18 @@ class PaymentMethodController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";            
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }                
-    		$data=DB::select('call pro_getPaymentMethod(?)',array(mb_strtolower($filter_search)));        
-    		$data=convertToArray($data);		
-    		$data=paymentMethodConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){           
+        $query=DB::table('payment_method');        
+        if(!empty(@$request->filter_search)){
+          $query->where('payment_method.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('payment_method.id','payment_method.fullname','payment_method.alias','payment_method.status','payment_method.sort_order','payment_method.created_at','payment_method.updated_at')
+        ->groupBy('payment_method.id','payment_method.fullname','payment_method.alias','payment_method.status','payment_method.sort_order','payment_method.created_at','payment_method.updated_at')
+        ->orderBy('payment_method.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=paymentMethodConverter($data,$this->_controller);            
+        return $data;
+      }   
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

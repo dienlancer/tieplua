@@ -28,16 +28,18 @@ class ModuleItemController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";            
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }                
-    		$data=DB::select('call pro_getModuleItem(?)',array(mb_strtolower($filter_search)));        
-    		$data=convertToArray($data);		
-    		$data=moduleItemConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){           
+        $query=DB::table('module_item');        
+        if(!empty(@$request->filter_search)){
+          $query->where('module_item.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('module_item.id','module_item.fullname','module_item.item_id','module_item.position','module_item.component','module_item.setting','module_item.status','module_item.sort_order','module_item.created_at','module_item.updated_at')
+        ->groupBy('module_item.id','module_item.fullname','module_item.item_id','module_item.position','module_item.component','module_item.setting','module_item.status','module_item.sort_order','module_item.created_at','module_item.updated_at')
+        ->orderBy('module_item.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=moduleItemConverter($data,$this->_controller);            
+        return $data;
+      }   
     public function getForm($task,$id=""){     
       $controller=$this->_controller;     
       $title="";

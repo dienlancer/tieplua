@@ -23,15 +23,19 @@ class BannerController extends Controller {
           return view("adminsystem.no-access");
         }
     }     
-    public function loadData(Request $request){       
-        $category_id=0;          
-        if(!empty(@$request->category_id)){
-          $category_id=(int)@$request->category_id;
-        }                
-        $data=DB::select('call pro_getBanner(?)',array($category_id));            
-        $data=convertToArray($data);    
-        $data=bannerConverter($data,$this->_controller);            
-        return $data;
+    public function loadData(Request $request){      
+      $query=DB::table('banner')
+                  ->join('category_banner','banner.category_id','=','category_banner.id');            
+      if(!empty(@$request->category_id)){
+        $query->where('banner.category_id',(int)@$request->category_id);
+      }   
+      $data=$query->select('banner.id','banner.caption','banner.alt','category_banner.fullname as category_name','banner.category_id','banner.image','banner.sort_order','banner.status','banner.created_at','banner.updated_at')
+      ->groupBy('banner.id','banner.caption','banner.alt','category_banner.fullname','banner.category_id','banner.image','banner.sort_order','banner.status','banner.created_at','banner.updated_at')
+      ->orderBy('banner.sort_order', 'asc')
+      ->get()->toArray();      
+      $data=convertToArray($data);    
+      $data=bannerConverter($data,$this->_controller);            
+      return $data;
     } 
     public function getForm($task,$category_id="",$id=""){   
         $controller=$this->_controller;     

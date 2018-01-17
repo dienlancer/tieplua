@@ -24,13 +24,20 @@ class MenuTypeController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	
-  	public function loadData(Request $request){
-        $filter_search="";        
-        $data=DB::select('call pro_getMenuType(?)',array( mb_strtolower($filter_search) ));    
-        $data=convertToArray($data);    
-        $data=menuTypeConverter($data,$this->_controller);           
-        return $data;
-    }
+  	public function loadData(Request $request){      
+      $query=DB::table('menu_type')   ;   
+      if(!empty(@$request->filter_search)){
+        $query->where('menu_type.fullname','like','%'.trim(@$request->filter_search).'%');
+      }             
+      $data=$query->select('menu_type.id','menu_type.fullname','menu_type.theme_location','menu_type.sort_order','menu_type.status','menu_type.created_at','menu_type.updated_at')
+                  ->groupBy('menu_type.id','menu_type.fullname','menu_type.theme_location','menu_type.sort_order','menu_type.status','menu_type.created_at','menu_type.updated_at')
+                  ->orderBy('menu_type.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);    
+      $data=menuTypeConverter($data,$this->_controller);            
+      return $data;
+    } 
     public function getForm($task,$id=""){		 
         $controller=$this->_controller;			
         $title="";

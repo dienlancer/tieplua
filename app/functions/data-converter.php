@@ -725,7 +725,7 @@ function itemArticleConverter($data=array(),$controller){
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }         
             $result[$i] = array(                
-                'checked'                  =>   '<input type="checkbox" onclick="checkWithListArticle(this)" name="cid" />',
+                'checked'                  =>   '<input type="checkbox" onclick="checkWithList(this)" name="cid" />',
                 'is_checked'               =>   0,
                 "id"                       =>   $id,
                 "fullname"                 =>   $data[$i]["fullname"],     
@@ -753,7 +753,7 @@ function itemProductConverter($data=array(),$controller){
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }          
             $result[$i] = array(   
-            'checked'                  =>   '<input type="checkbox" onclick="checkWithListArticle(this)" name="cid" />',
+            'checked'                  =>   '<input type="checkbox" onclick="checkWithList(this)" name="cid" />',
                 'is_checked'               =>   0,             
                 "id"                       =>   $id,
                 "fullname"                 =>   $data[$i]["fullname"],     

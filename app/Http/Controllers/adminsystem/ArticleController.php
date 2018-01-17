@@ -33,28 +33,25 @@ class ArticleController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";    
-        $category_article_id=0;  
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }
-        if(!empty(@$request->category_article_id)){
-          $category_article_id=(int)@$request->category_article_id;
-        }
-        /* begin lấy chuỗi ID */
-        $arrCategoryArticleID=array();
-        $strCategoryArticleID="";
-        $arrCategoryArticleID[]=$category_article_id;        
-        getStringCategoryID($category_article_id,$arrCategoryArticleID,'category_article');                    
-        $strCategoryArticleID=implode("#;#", $arrCategoryArticleID);    
-        $strCategoryArticleID="#".$strCategoryArticleID."#";    
-        /* end lấy chuỗi ID */        
-    		$data=DB::select('call pro_getArticle(?,?)',array(mb_strtolower($filter_search,'UTF-8'),$strCategoryArticleID));        
-    		$data=convertToArray($data);		
-    		$data=articleConverter($data,$this->_controller);		         
-    		return $data;
-  	}	
+  	public function loadData(Request $request){      
+      $query=DB::table('article')
+      ->join('article_category','article.id','=','article_category.article_id')
+      ->join('category_article','category_article.id','=','article_category.category_article_id')  ;      
+      if(!empty(@$request->filter_search)){
+        $query->where('article.fullname','like','%'.trim(@$request->filter_search).'%');
+      }     
+      if(!empty(@$request->category_article_id)){
+        $query->whereIn('article_category.category_article_id',(int)@$request->category_article_id);
+      }   
+      $data=$query->select('article.id','article.fullname','article.image','article.sort_order','article.status','article.created_at','article.updated_at')
+                  ->groupBy('article.id','article.fullname','article.image','article.sort_order','article.status','article.created_at','article.updated_at')
+                  ->orderBy('article.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);    
+      $data=articleConverter($data,$this->_controller);            
+      return $data;
+    } 
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

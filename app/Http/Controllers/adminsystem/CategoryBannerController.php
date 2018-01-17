@@ -24,13 +24,20 @@ class CategoryBannerController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	
-  	public function loadData(Request $request){
-        $filter_search="";        
-        $data=DB::select('call pro_getCategoryBanner(?)',array( mb_strtolower($filter_search) ));    
-        $data=convertToArray($data);    
-        $data=categoryBannerConverter($data,$this->_controller);           
-        return $data;
-    }
+  	public function loadData(Request $request){      
+      $query=DB::table('category_banner')   ;   
+      if(!empty(@$request->filter_search)){
+        $query->where('category_banner.fullname','like','%'.trim(@$request->filter_search).'%');
+      }             
+      $data=$query->select('category_banner.id','category_banner.fullname','category_banner.theme_location','category_banner.sort_order','category_banner.status','category_banner.created_at','category_banner.updated_at')
+                  ->groupBy('category_banner.id','category_banner.fullname','category_banner.theme_location','category_banner.sort_order','category_banner.status','category_banner.created_at','category_banner.updated_at')
+                  ->orderBy('category_banner.sort_order', 'asc')
+                  ->get()
+                  ->toArray();      
+      $data=convertToArray($data);    
+      $data=categoryBannerConverter($data,$this->_controller);            
+      return $data;
+    } 
     public function getForm($task,$id=""){		 
         $controller=$this->_controller;			
         $title="";

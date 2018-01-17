@@ -24,16 +24,18 @@ class CustomerController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){
-    		$filter_search="";            
-        if(!empty(@$request->filter_search)){      
-          $filter_search=trim(@$request->filter_search) ;    
-        }
-    		$data=DB::select('call pro_getCustomer(?)',array(mb_strtolower($filter_search)));
-    		$data=convertToArray($data);		
-    		$data=customerConverter($data,$this->_controller);		    
-    		return $data;
-  	}	
+  	public function loadData(Request $request){           
+      $query=DB::table('customer');        
+      if(!empty(@$request->filter_search)){
+        $query->where('customer.fullname','like','%'.trim(@$request->filter_search).'%');
+      }
+      $data=$query->select('customer.id','customer.username','customer.email','customer.fullname','customer.address','customer.phone','customer.mobilephone','customer.fax','customer.sort_order','customer.status','customer.created_at','customer.updated_at')
+      ->groupBy('customer.id','customer.username','customer.email','customer.fullname','customer.address','customer.phone','customer.mobilephone','customer.fax','customer.sort_order','customer.status','customer.created_at','customer.updated_at')
+      ->orderBy('customer.sort_order', 'asc')->get()->toArray()     ;              
+      $data=convertToArray($data);    
+      $data=customerConverter($data,$this->_controller);            
+      return $data;
+    } 
     public function getForm($task,$id=""){     
         $controller=$this->_controller;     
         $title="";

@@ -17,22 +17,25 @@ class CategoryProductController extends Controller {
       var $_icon="icon-settings font-dark";
       var $_totalItemsPerPage=9999;    
       var $_pageRange=10;
-    	public function getList(){   
+    	public function getList(Request $request){   
         $controller=$this->_controller; 
         $task="list";
         $title=$this->_title;
         $icon=$this->_icon; 
-        $currentPage=1;   
-        $filter_search="";
-        if(!empty(@$_POST["filter_search"])){
-          $filter_search=@$_POST["filter_search"];        
-        }        
-        $data=DB::select('call pro_getCategoryProduct(?)',array(mb_strtolower($filter_search)));
+        $currentPage=1;                 
+        $query=DB::table('category_product');        
+        if(!empty(@$request->filter_search)){
+          $query->where('category_product.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('category_product.id')                                
+        ->groupBy('category_product.id')                
+        ->get()
+        ->toArray();
         $totalItems=count($data);
         $totalItemsPerPage=$this->_totalItemsPerPage;       
         $pageRange=$this->_pageRange;
-        if(!empty(@$_POST["filter_page"])){
-          $currentPage=(int)@$_POST["filter_page"];    
+        if(!empty(@$request->filter_page)){
+          $currentPage=(int)@$request->filter_page;    
         }            
         $arrPagination=array(
           "totalItems"=>$totalItems,
@@ -43,18 +46,27 @@ class CategoryProductController extends Controller {
         $pagination=new PaginationModel($arrPagination);
         $position = (@$arrPagination['currentPage']-1)*$totalItemsPerPage;
         $data=array();
-        if($totalItemsPerPage > 0){
-            $data=DB::select('call pro_getCategoryProductLimit(?,?,?)',array($filter_search,$position,$totalItemsPerPage));
-        }        
+        $query=DB::table('category_product as n')
+        ->leftJoin('category_product as a','n.parent_id','=','a.id');        
+        if(!empty(@$request->filter_search)){
+          $query->where('n.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('n.id','n.fullname','n.alias','n.parent_id','a.fullname as parent_fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')                           
+        ->groupBy('n.id','n.fullname','n.alias','n.parent_id','a.fullname','n.image','n.sort_order','n.status','n.created_at','n.updated_at')
+        ->orderBy('n.sort_order', 'asc')
+        ->skip($position)
+        ->take($totalItemsPerPage)
+        ->get()
+        ->toArray();        
         $data=convertToArray($data);
-        $data=categoryProductConverter($data,$this->_controller);   
+        $data=categoryArticleConverter($data,$this->_controller);   
         $data_recursive=array();
-        categoryProductRecursive($data,0,null,$data_recursive);          
-        $data=$data_recursive;         
+        categoryArticleRecursive($data,0,null,$data_recursive);          
+        $data=$data_recursive;        
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-list";         
         if(in_array($requestControllerAction,$arrPrivilege)){
-          return view("adminsystem.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search')); 
+          return view("adminsystem.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search'));
         }
         else{
           return view("adminsystem.no-access");

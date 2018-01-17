@@ -431,6 +431,14 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         cell3.innerHTML = '<a href="javascript:void(0);"  onclick="removeRow(this);"><img src="<?php echo url("/public/adminsystem/images/delete-icon.png"); ?>" />'
     }
     function removeRow(control) {
+        var xac_nhan = 0;
+        var msg="Bạn có muốn xóa ?";
+        if(window.confirm(msg)){ 
+            xac_nhan = 1;
+        }
+        if(xac_nhan  == 0){
+            return false;   
+        }
         var tbody=$(control).closest("tbody")[0];
         var tr=$(control).closest("tr")[0];
         var index = $(tr).index(); 

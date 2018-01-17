@@ -27,13 +27,18 @@ class GroupMemberController extends Controller {
           return view("adminsystem.".$this->_pageAccessDenied);
         }
     	}	
-    	public function loadData(Request $request){
-      		$filter_search="";
-      		$data=DB::select('call pro_getGroupMember(?)',array(mb_strtolower($filter_search)));      		
-      		$data=convertToArray($data);    
-          $data=groupMemberConverter($data,$this->_controller);         		
-          return $data;
-    	}    	
+    	public function loadData(Request $request){           
+        $query=DB::table('group_member');        
+        if(!empty(@$request->filter_search)){
+          $query->where('group_member.fullname','like','%'.trim(@$request->filter_search).'%');
+        }
+        $data=$query->select('group_member.id','group_member.fullname','group_member.sort_order','group_member.created_at','group_member.updated_at')
+        ->groupBy('group_member.id','group_member.fullname','group_member.sort_order','group_member.created_at','group_member.updated_at')
+        ->orderBy('group_member.sort_order', 'asc')->get()->toArray()     ;              
+        $data=convertToArray($data);    
+        $data=groupMemberConverter($data,$this->_controller);            
+        return $data;
+      } 	
       public function getForm($task,$id=""){		 
           $controller=$this->_controller;			
           $title="";
