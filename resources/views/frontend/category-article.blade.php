@@ -25,7 +25,7 @@
 				$alias=$value['alias'];
 				$fullname=$value['fullname'];
 				$permalink=route('frontend.index.index',[$alias]) ;
-				$image=asset('upload/'.$value['image']);
+				$image=get_article_thumbnail($value['image']) ;
 				$intro=substr($value['intro'],0,200).'...' ;
 				$count_view=(int)@$value['count_view'];
 				$count_view_text=number_format($count_view,0,",",".");				

@@ -44,7 +44,7 @@ if(count($data_slideshow) > 0){
 				$module=getPage("dich-vu-hoat-dong-widget");
 				if(count($module) > 0){
 					$fullname=substr($module["fullname"],0,50);
-					$featuredImg=asset('upload/'.$module['image']);
+					$featuredImg=get_article_thumbnail($module['image']);
 					$permalink=route('frontend.index.index',[$module['alias']]);	
 					$intro=substr($module["intro"], 0,250) ;
 					?>
@@ -63,7 +63,7 @@ if(count($data_slideshow) > 0){
 				$module=getPage("du-an-widget");
 				if(count($module) > 0){
 					$fullname=substr($module["fullname"],0,50);
-					$featuredImg=asset('upload/'.$module['image']);
+					$featuredImg=get_article_thumbnail($module['image']);
 					$permalink=route('frontend.index.index',[$module['alias']]);	
 					$intro=substr($module["intro"], 0,250) ;
 					?>
@@ -82,7 +82,7 @@ if(count($data_slideshow) > 0){
 				$module=getPage("tham-van-widget");
 				if(count($module) > 0){
 					$fullname=substr($module["fullname"],0,50);
-					$featuredImg=asset('upload/'.$module['image']);
+					$featuredImg=get_article_thumbnail($module['image']);
 					$permalink=route('frontend.index.index',[$module['alias']]);	
 					$intro=substr($module["intro"], 0,250) ;
 					?>
@@ -151,7 +151,7 @@ if(count($data_slideshow) > 0){
 								foreach ($items as $key => $value) {
 									$fullname=$value["fullname"];
 									$intro=substr($value["intro"], 0,9999) ;
-									$featuredImg=asset("upload/".$value["image"]);
+									$featuredImg=get_article_thumbnail($value['image']);
 									$permalink=route('frontend.index.index',[$value["alias"]]);
 									?>
 									<div>

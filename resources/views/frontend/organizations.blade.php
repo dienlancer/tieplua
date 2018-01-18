@@ -13,7 +13,7 @@
 				$alias=$value['alias'];
 				$fullname=$value['fullname'];
 				$permalink=route('frontend.index.index',[$alias]) ;
-				$image=asset('upload/'.$value['image']);
+				$image=get_article_thumbnail($value['image']) ;
 				$intro=substr($value['intro'],0,200).'...' ;					
 				?>
 				<div class="box-row margin-top-10">
