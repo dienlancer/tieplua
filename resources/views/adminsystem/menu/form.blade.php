@@ -4,17 +4,17 @@
 $linkCancel             =   route('adminsystem.'.$controller.'.getList',[@$menu_type_id]);
 $linkSave               =   route('adminsystem.'.$controller.'.save');
 $linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
-$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"  onblur="createAlias()"     value="'.@$fullname.'">'; 
+$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$fullname.'">'; 
 $inputAlias             =   '';
 if(strcmp(@$alias, 'no-alias')==0){
     switch ($task) {
         case 'add':
-        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"   onblur="createAlias()"    value="">';
+        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="">';
 
         break;
         
         case 'edit':
-        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"  onblur="createAlias()"     value="'.@$arrRowData['alias'].'">';        
+        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="'.@$arrRowData['alias'].'">';        
         break;
     }    
 }else{

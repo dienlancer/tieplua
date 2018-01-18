@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 17, 2018 lúc 07:31 PM
+-- Thời gian đã tạo: Th1 18, 2018 lúc 06:16 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -775,12 +775,11 @@ CREATE TABLE `page` (
 INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Trung tâm tiếp lửa', 'trung-tam-tiep-lua', 'trung-tam-widget', NULL, '', '<p><strong>Địa chỉ :</strong> Th&ocirc;n 7 x&atilde; An Ph&uacute; - Pleiku - Gia Lai</p>\n\n<p><strong>Đơn vị trực thuộc :</strong> C&ocirc;ng ty cổ phần TaGroup</p>\n\n<p><strong>Chịu tr&aacute;ch nhiệm nội dung :</strong> L&ecirc; Th&uacute;c Vinh</p>', '', '', '', NULL, 8, 1, '2017-12-28 04:10:41', '2018-01-14 13:00:43'),
 (2, 'Về chúng tôi', 've-chung-toi', 'about-us-widget', NULL, '', '<p>Nghị lực sống l&agrave; một doanh nghiệp x&atilde; hội hoạt động trong lĩnh vực hỗ trợ ho&agrave; nhập to&agrave;n diện cho người khuyết tật ( NKT ) th&ocirc;ng qua đ&agrave;o tạo , tư vấn định hướng gi&uacute;p NKT t&igrave;m được việc l&agrave;m ph&ugrave; hợp , hỗ trợ t&igrave;m nguồn ti&ecirc;u thụ sản phẩm của NKT . Từ đ&oacute; , gi&uacute;p NKT tự tin v&agrave; dễ d&agrave;ng ho&agrave; nhập với cộng đồng , giảm bớt g&aacute;nh nặng cho gia đ&igrave;nh v&agrave; x&atilde; hội .</p>', '', '', '', NULL, 3, 1, '2017-12-28 04:54:45', '2018-01-14 13:00:54'),
-(3, 'Fanpage', 'fanpage', 'fanpage-widget', NULL, '<div id=\"fb-root\"></div>\n<script>(function(d, s, id) {\n  var js, fjs = d.getElementsByTagName(s)[0];\n  if (d.getElementById(id)) return;\n  js = d.createElement(s); js.id = id;\n  js.src = \'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=206740246563578\';\n  fjs.parentNode.insertBefore(js, fjs);\n}(document, \'script\', \'facebook-jssdk\'));</script>\n \n					<div class=\"fb-page\" data-href=\"https://www.facebook.com/Tích-tắc-số-535998846760760\" data-tabs=\"timeline\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"false\"><blockquote cite=\"https://www.facebook.com/Tích-tắc-số-535998846760760\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/Tích-tắc-số-535998846760760\">Tích tắc số</a></blockquote></div>', '', '', '', '', NULL, 5, 1, '2017-12-28 07:36:45', '2018-01-14 13:01:08'),
 (4, 'Giới thiệu', 'gioi-thieu', NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nWhy do we use it?\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '', 'metakeyword giới thiệu', 'metadescription giới thiệu', 196, 7, 1, '2018-01-03 10:35:10', '2018-01-17 01:38:56'),
 (5, 'Thông tin liên hệ', 'thong-tin-lien-he', 'thong-tin-lien-he-widget', NULL, '', '<p style=\"text-align:justify\"><span style=\"font-size:28px\"><span style=\"color:#ff8c00\"><strong>C&ocirc;ng Ty TNHH VIDOCO</strong></span></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Địa chỉ: 35/6 B&ugrave;i Quang L&agrave; - P.12 - Q. G&ograve; Vấp - HCM</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Website: www.vienthammyyurihanh.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>E-mail: tieplua.net@gmail.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Tel: <span style=\"color:#ff0000\">096.302.7720</span></strong></span></p>', '', '', '', NULL, 1, 1, '2018-01-03 18:36:03', '2018-01-14 16:15:30'),
 (6, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 'dich-vu-hoat-dong-widget', 'category-3.png', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metadescription dịch vụ hoạt động', 4, 2, 1, '2018-01-04 02:38:17', '2018-01-14 13:00:03'),
 (7, 'Dự án', 'du-an', 'du-an-widget', 'blog-6.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 2, 4, 1, '2018-01-04 02:39:28', '2018-01-14 13:00:14'),
-(8, 'Tham vấn đồng cảnh', 'tham-van-dong-canh', 'tham-van-widget', 'blog-5.png', 'Vivamus accumsan neque id auctor ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porttitor suscipit odio, ac viverra erat. Nullam ac felis nec erat placerat tincidunt. Phasellus dui libero, sollicitudin vitae vestibulum a, sagittis a risus. Nunc volutpat dolor nec erat congue, eu consequat erat consequat. Quisque nec placerat ligula. Donec convallis elit urna, nec dignissim lorem fermentum in. Ut vestibulum urna diam, ultrices porttitor massa blandit et. Ut a iaculis arcu. Sed accumsan in ipsum in suscipit. Quisque faucibus sed nisi quis accumsan. Vivamus sed nulla vel ante euismod faucibus nec in elit. Vestibulum quis est mauris.', '', 'chú thích tham vấn đồng cảnh', 'metakeyword tham vấn đồng cảnh', 'metadescription thấm vấn đồng cảnh', 2, 6, 1, '2018-01-04 02:40:35', '2018-01-14 13:18:37');
+(8, 'Tham vấn đồng cảnh', 'tham-van-dong-canh', 'tham-van-widget', 'blog-5.png', 'Vivamus accumsan neque id auctor ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porttitor suscipit odio, ac viverra erat. Nullam ac felis nec erat placerat tincidunt. Phasellus dui libero, sollicitudin vitae vestibulum a, sagittis a risus. Nunc volutpat dolor nec erat congue, eu consequat erat consequat. Quisque nec placerat ligula. Donec convallis elit urna, nec dignissim lorem fermentum in. Ut vestibulum urna diam, ultrices porttitor massa blandit et. Ut a iaculis arcu. Sed accumsan in ipsum in suscipit. Quisque faucibus sed nisi quis accumsan. Vivamus sed nulla vel ante euismod faucibus nec in elit. Vestibulum quis est mauris.', '', 'chú thích tham vấn đồng cảnh', 'metakeyword tham vấn đồng cảnh', 'metadescription thấm vấn đồng cảnh', 3, 6, 1, '2018-01-04 02:40:35', '2018-01-18 03:10:30');
 
 -- --------------------------------------------------------
 
@@ -1011,7 +1010,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (338, 1, 'E3BC47sHKa9A0iD3bI7UObLY3hE5sRkE', '2018-01-14 09:11:59', '2018-01-14 09:11:59'),
 (339, 1, 'JgsIzzzOyrSbY3CRiPSEJo87Lfo18qpB', '2018-01-14 23:43:27', '2018-01-14 23:43:27'),
 (340, 1, 'RA4cHX8X6dvE7kwfBXzcyGCAZL97Tx6Q', '2018-01-15 11:44:01', '2018-01-15 11:44:01'),
-(341, 1, 'dZMrtzjeb82Hizn0b7GLRgt9ORAmZ6i0', '2018-01-16 04:40:01', '2018-01-16 04:40:01');
+(341, 1, 'dZMrtzjeb82Hizn0b7GLRgt9ORAmZ6i0', '2018-01-16 04:40:01', '2018-01-16 04:40:01'),
+(342, 1, 'i5J9OKzFOF3urPxmHRFJ9X6w3xxgt1qQ', '2018-01-17 19:23:53', '2018-01-17 19:23:53');
 
 -- --------------------------------------------------------
 
@@ -1830,7 +1830,10 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (400, NULL, 'global', NULL, '2018-01-08 23:13:09', '2018-01-08 23:13:09'),
 (401, NULL, 'ip', '127.0.0.1', '2018-01-08 23:13:09', '2018-01-08 23:13:09'),
 (402, NULL, 'global', NULL, '2018-01-14 23:43:22', '2018-01-14 23:43:22'),
-(403, NULL, 'ip', '127.0.0.1', '2018-01-14 23:43:22', '2018-01-14 23:43:22');
+(403, NULL, 'ip', '127.0.0.1', '2018-01-14 23:43:22', '2018-01-14 23:43:22'),
+(404, NULL, 'global', NULL, '2018-01-17 19:23:49', '2018-01-17 19:23:49'),
+(405, NULL, 'ip', '127.0.0.1', '2018-01-17 19:23:49', '2018-01-17 19:23:49'),
+(406, 1, 'user', NULL, '2018-01-17 19:23:49', '2018-01-17 19:23:49');
 
 -- --------------------------------------------------------
 
@@ -1860,7 +1863,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-01-16 04:40:01', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 5, 1, '2017-11-12 07:23:56', '2018-01-16 04:40:01');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-01-17 19:23:53', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 5, 1, '2017-11-12 07:23:56', '2018-01-17 19:23:53');
 
 -- --------------------------------------------------------
 
@@ -2260,7 +2263,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=343;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2332,7 +2335,7 @@ ALTER TABLE `supporter`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

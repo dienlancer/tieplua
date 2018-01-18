@@ -270,8 +270,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::get("product-component/{menu_type_id}",["as"=>"adminsystem.menu.getProductComponent","uses"=>"adminsystem\MenuController@getProductComponent"]);
 		Route::post("product-list",["as"=>"adminsystem.menu.getProductList","uses"=>"adminsystem\MenuController@getProductList"]);
 		Route::get("page-component/{menu_type_id}",["as"=>"adminsystem.menu.getPageComponent","uses"=>"adminsystem\MenuController@getPageComponent"]);		
-		Route::post("page-list",["as"=>"adminsystem.menu.getPageList","uses"=>"adminsystem\MenuController@getPageList"]);
-		Route::post("create-alias",["as"=>"adminsystem.menu.createAlias","uses"=>"adminsystem\MenuController@createAlias"]);
+		Route::post("page-list",["as"=>"adminsystem.menu.getPageList","uses"=>"adminsystem\MenuController@getPageList"]);		
 	});	
 	Route::group(["prefix"=>"group"],function(){		
 		Route::match(["get","post"],"list",["as"=>"adminsystem.group.getList","uses"=>"adminsystem\GroupController@getList"]);
