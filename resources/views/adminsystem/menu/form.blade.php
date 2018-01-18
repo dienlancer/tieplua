@@ -3,7 +3,6 @@
 <?php 
 $linkCancel             =   route('adminsystem.'.$controller.'.getList',[@$menu_type_id]);
 $linkSave               =   route('adminsystem.'.$controller.'.save');
-$linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$fullname.'">'; 
 $inputAlias             =   '';
 if(strcmp(@$alias, 'no-alias')==0){
@@ -195,43 +194,6 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                 spinner.show();
             },
         });
-    }
-    function createAlias(){
-        var id=$('input[name="id"]').val();   
-        var fullname    = $('input[name="fullname"]').val();
-        var token       = $('form[name="frm"] > input[name="_token"]').val();     
-        var dataItem={      
-            "id":id,      
-            "fullname":fullname,            
-            "_token": token
-        };   
-        $('input[name="alias"]').val(''); 
-        resetErrorStatus();    
-        $.ajax({
-            url: '<?php echo $linkCreateAlias; ?>',
-            type: 'POST',
-            data: dataItem,            
-            async: false,
-            success: function (data) {                
-                if(data.checked==true){
-                    $('input[name="alias"]').val(data.alias); 
-                }else{                    
-                    var data_error=data.error;
-                    if(typeof data_error.fullname               != "undefined"){
-                        $('input[name="fullname"]').closest('.form-group').addClass(data_error.fullname.type_msg);
-                        $('input[name="fullname"]').closest('.form-group').find('span').text(data_error.fullname.msg);
-                        $('input[name="fullname"]').closest('.form-group').find('span').show();                        
-                    }                            
-                }
-                spinner.hide();
-            },
-            error : function (data){
-                spinner.hide();
-            },
-            beforeSend  : function(jqXHR,setting){
-                spinner.show();
-            },
-        });
-    }
+    }    
 </script>
 @endsection()            
