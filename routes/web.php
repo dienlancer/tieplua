@@ -293,10 +293,11 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"adminsystem.menu-type.changeStatus","uses"=>"adminsystem\MenuTypeController@changeStatus"]);
 		Route::post("trash",["as"=>"adminsystem.menu-type.trash","uses"=>"adminsystem\MenuTypeController@trash"]);		
 	});		
-	
 	Route::group(["prefix"=>"module-item"],function(){		
 		Route::get("list",["as"=>"adminsystem.module-item.getList","uses"=>"adminsystem\ModuleItemController@getList"]);
 		Route::post("load-data",["as"=>"adminsystem.module-item.loadData","uses"=>"adminsystem\ModuleItemController@loadData"]);		
+		Route::post("load-data-article",["as"=>"adminsystem.module-item.loadDataArticle","uses"=>"adminsystem\ModuleItemController@loadDataArticle"]);	
+		Route::post("load-data-product",["as"=>"adminsystem.module-item.loadDataProduct","uses"=>"adminsystem\ModuleItemController@loadDataProduct"]);
 		Route::get("form/{task}/{id?}",["as"=>"adminsystem.module-item.getForm","uses"=>"adminsystem\ModuleItemController@getForm"]);
 		Route::post("save",["as"=>"adminsystem.module-item.save","uses"=>"adminsystem\ModuleItemController@save"]);
 		Route::post("delete-item",["as"=>"adminsystem.module-item.deleteItem","uses"=>"adminsystem\ModuleItemController@deleteItem"]);		
