@@ -33,7 +33,7 @@ if(count($item) > 0){
 				<span class="margin-left-5"><b>Dự án:</b></span><span class="margin-left-5"><?php echo $project_name; ?></span>
 			</span>
 			<span class="post-view margin-left-15">
-				<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
+				<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>
 			</span>
 		</div>	
 		<hr class="duong-ngang" />	

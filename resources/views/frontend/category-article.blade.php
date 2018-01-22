@@ -36,7 +36,7 @@
 						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
 						<div class="margin-top-5">
 							<div class="view-post-count">
-								<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text; ?>&nbsp;lượt xem	
+								<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>
 							</div>							
 						</div>
 						<div class="margin-top-5 box-intro"><?php echo $intro; ?></div>
