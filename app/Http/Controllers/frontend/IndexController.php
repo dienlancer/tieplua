@@ -17,6 +17,8 @@ use App\ModuleArticleModel;
 use App\ModMenuTypeModel;
 use App\User;
 use App\UserGroupModel;
+use App\UserGroupMemberModel;
+use App\GroupMemberModel;
 use App\CustomerModel;
 use App\InvoiceModel;
 use App\InvoiceDetailModel;
@@ -35,6 +37,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Session;
 use DB;
+use Hash;
+use Sentinel;
 class IndexController extends Controller {  
   var $_pageRange=4;
   var $_ssNameUser="vmuser";
@@ -58,7 +62,7 @@ class IndexController extends Controller {
     $title="Tìm kiếm"; 
     $query=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')
+                ->join('category_article','category_article.id','=','article_category.category_id')
                 ->where('article.status',1);
     if(!empty(@$request->q)){
       $query->where('article.fullname','like', '%'.@$request->q.'%');
@@ -83,7 +87,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $query=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')
+                ->join('category_article','category_article.id','=','article_category.category_id')
                 ->where('article.status',1);
     if(!empty(@$request->q)){
       $query->where('article.fullname','like', '%'.@$request->q.'%');
@@ -258,9 +262,9 @@ class IndexController extends Controller {
         getStringCategoryID($category_id,$arr_category_id,'category_article');                 
         $data=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')                              
+                ->join('category_article','category_article.id','=','article_category.category_id')                              
                 ->select('article.id')
-                ->whereIn('article_category.category_article_id', $arr_category_id)
+                ->whereIn('article_category.category_id', $arr_category_id)
                 ->where('article.status',1)    
                 ->groupBy('article.id')                
                 ->get()->toArray();
@@ -281,9 +285,9 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')                     
+                ->join('category_article','category_article.id','=','article_category.category_id')                     
                 ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->whereIn('article_category.category_article_id', $arr_category_id)
+                ->whereIn('article_category.category_id', $arr_category_id)
                 ->where('article.status',1)     
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
                 ->orderBy('article.created_at', 'desc')
@@ -380,7 +384,7 @@ class IndexController extends Controller {
       }
       $data=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')                            
+                ->join('category_article','category_article.id','=','article_category.category_id')                            
                 ->select('article.id')
                 ->where('article.status',1)
                 ->where(function($query) use ($alias_1,$alias_2){
@@ -406,7 +410,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;
         $data=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_article_id')                
+                ->join('category_article','category_article.id','=','article_category.category_id')                
                 ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
                 ->where('article.status',1)
                 ->where(function($query) use ($alias_1,$alias_2){
@@ -633,7 +637,7 @@ class IndexController extends Controller {
         $data=DB::table('video')                      
         ->select('video.id')                
         ->where('video.status',1)   
-        ->whereIn('video.category_video_id', $arr_category_id)                  
+        ->whereIn('video.category_id', $arr_category_id)                  
         ->groupBy('video.id')                        
         ->get()->toArray();              
         $data=convertToArray($data);         
@@ -653,7 +657,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $query=DB::table('video');              
         $query->where('video.status',1);
-        $query->whereIn('video.category_video_id', $arr_category_id);     
+        $query->whereIn('video.category_id', $arr_category_id);     
         $data=$query->select('video.id','video.fullname','video.image','video.video_url')
         ->groupBy('video.id','video.fullname','video.image','video.video_url')
         ->orderBy('video.sort_order', 'asc')
@@ -901,7 +905,6 @@ class IndexController extends Controller {
       }
 
       public function register(Request $request){     
-
         $flag=1;
         $error=array();
         $success=array();  
@@ -910,22 +913,20 @@ class IndexController extends Controller {
         $layout="two-column";      
         if($request->isMethod('post')){                          
           $data             =   $request->all();     
-
           $username         =   trim(@$request->username) ;    
           $password         =   @$request->password ;
           $password_confirm =   @$request->password_confirm;
           $email            =   trim(@$request->email) ;
           $fullname         =   trim(@$request->fullname);
           $address          =   trim(@$request->address);
-          $phone            =   trim(@$request->phone);
-          $mobilephone      =   trim(@$request->mobilephone);
-          $fax              =   trim(@$request->fax);          
-          if(empty($username)){
-            $error["username"] = 'Username không được rỗng';
+          $phone            =   trim(@$request->phone);           
+          $group_member_id  =   trim(@$request->group_member_id) ;         
+          if(mb_strlen($username) < 6){
+            $error["username"] = 'Username phải từ 6 ký tự trở lên';
             $data["username"] = ""; 
             $flag = 0;
           }else{
-            $customer=CustomerModel::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray();
+            $customer=User::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray();
             if(count($customer) > 0){
               $error["username"] = 'Username đã tồn tại';
               $data["username"] = ""; 
@@ -933,7 +934,7 @@ class IndexController extends Controller {
             }  
           }
           if(mb_strlen($password) < 6){
-            $error["password"] = 'Password phải có độ dài lớn hơn hoặc bằng 6 ký tự';
+            $error["password"] = 'Mật khẩu phải có độ dài từ 6 ký tự trở lên';
             $data["password"] = "";
             $data["password_confirm"] = ""; 
             $flag = 0;
@@ -949,7 +950,7 @@ class IndexController extends Controller {
             $data["email"] = '';
             $flag = 0;
           }else{
-            $customer=CustomerModel::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
+            $customer=User::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
             if(count($customer) > 0){
               $error["email"] = 'Email đã tồn tại';
               $data["email"] = ""; 
@@ -966,41 +967,23 @@ class IndexController extends Controller {
             $data["address"] = ""; 
             $flag = 0;
           }  
-          if(!empty($phone)){
-            if(mb_strlen($phone) < 10){
+          if(mb_strlen($phone) < 10){
               $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
               $data["phone"] = ""; 
               $flag = 0;
-            }  
-          }
-          if(!empty($mobilephone)){
-            if(mb_strlen($mobilephone) < 10){
-              $error["mobilephone"] = 'Số mobile phải từ 10 ký tự trở lên';
-              $data["mobilephone"] = ""; 
-              $flag = 0;
-            }  
-          }          
-
+            }                    
           if($flag==1){
-            $item               =   new CustomerModel;
-            $item->username     =   $username;
-            $item->password     =   md5($password) ;
-            $item->email        =   $email;
-            $item->fullname     =   $fullname;
-            $item->address      =   $address;
-            $item->phone        =   $phone;
-            $item->mobilephone  =   $mobilephone;
-            $item->fax          =   $fax; 
-            $item->status       =   1;  
-            $item->sort_order   =   1;  
-            $item->created_at   =   date("Y-m-d H:i:s",time());
-            $item->updated_at   =   date("Y-m-d H:i:s",time());
-            $item->save(); 
-            $customer        =   CustomerModel::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray();            
-            $arrUser["userInfo"]=array("username" => $customer[0]["username"],"id"=>$customer[0]["id"]);                                            
-            Session::put($this->_ssNameUser,$arrUser);    
+
+            $user=Sentinel::registerAndActivate($request->all());                  
+            $item=new UserGroupMemberModel;
+            $item->group_member_id=(int)@$group_member_id;
+            $item->user_id=(int)@$user->id;      
+            $item->created_at=date("Y-m-d H:i:s",time());
+            $item->updated_at=date("Y-m-d H:i:s",time());
+            $item->save();                        
+            Sentinel::loginAndRemember($user);                        
             echo '<script language="javascript" type="text/javascript">alert("Đăng ký thành công")</script>';
-            return redirect()->route('frontend.index.viewAccount');                                  
+            return redirect()->route('frontend.index.viewAccount');                        
           }              
         }
         return view("frontend.index",compact("component","error","data","success","layout"));         
@@ -1016,9 +999,10 @@ class IndexController extends Controller {
           $project_id=$request->project_id;          
           $project_alias=$request->project_alias;
           $linkLogin='<span class="login-join-project"><a href="'.route('frontend.index.loginJoinProject',[$project_alias]).'" >tại đây</a></span>';
-          if(Session::has($this->_ssNameUser)){                
-            $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
-          }   
+          $user = Sentinel::forceCheck(); 
+          if(!empty($user)){                
+            $arrUser = $user->toArray();    
+          }                
           if(count($arrUser)==0){
             $checked=0;
             $msg='Bạn chưa đăng nhập. Vui lòng đăng nhập '.$linkLogin.' để được tham gia';            
@@ -1049,31 +1033,29 @@ class IndexController extends Controller {
         $error=array();
         $success=array();   
         $data=array();        
-        $component="login";        
-        $arrUser=array();    
-        $layout="two-column";              
+        $component="login";                
+        $layout="two-column";     
+        $arrUser=array();              
+        $user = Sentinel::forceCheck();         
+        if(!empty($user)){                
+          $arrUser = $user->toArray();    
+        }      
+        if(count($arrUser) > 0){
+          return redirect()->route('frontend.index.viewAccount');
+        }
         if($request->isMethod('post')){              
-          $username=trim(@$request->username);   
-          $password=md5(@$request->password);
-          $customer=CustomerModel::whereRaw("trim(lower(username)) = ? and password = ?",[trim(mb_strtolower($username,'UTF-8')),$password])->get()->toArray()  ;
-
-          if(count($customer) > 0){
-            $arrUser["userInfo"]=array("username" => $customer[0]["username"],"id"=>$customer[0]["id"]);                                          
-            Session::put($this->_ssNameUser,$arrUser);  
+          Sentinel::authenticate($request->all());
+          if(Sentinel::check()){
+            $user=Sentinel::getUser();     
+            
             echo '<script language="javascript" type="text/javascript">alert("Đăng nhập thành công")</script>';
             return redirect()->route('frontend.index.viewAccount'); 
           }else{
             $error["dang-nhap"]="Đăng nhập sai username và password";
-          }
-        }        
-        if(Session::has($this->_ssNameUser)){                
-          $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
-        }   
-        if(count($arrUser) > 0){
-          return redirect()->route("frontend.index.viewAccount"); 
-        }
+          }          
+        }                
         return view("frontend.index",compact("component","error","data","success","layout"));        
-      }
+      }      
       public function loginJoinProject(Request $request){   
         $flag=1;
         $error=array();
@@ -1085,27 +1067,26 @@ class IndexController extends Controller {
         $arrUser=array();      
         $project_alias=$request->project_alias;        
         if($request->isMethod('post')){              
-          $username=trim(@$request->username);   
-          $password=md5(@$request->password);
-          $customer=CustomerModel::whereRaw("trim(lower(username)) = ? and password = ?",[trim(mb_strtolower($username,'UTF-8')),$password])->get()->toArray()  ;
-
-          if(count($customer) > 0){
-            $arrUser["userInfo"]=array("username" => $customer[0]["username"],"id"=>$customer[0]["id"]);                                          
-            Session::put($this->_ssNameUser,$arrUser);  
-            $member_id=@$customer[0]["id"];
+          Sentinel::authenticate($request->all());
+          if(Sentinel::check()){
+            $user=Sentinel::getUser();        
+            $member_id=(int)@$user->id;            
             $project=ProjectModel::whereRaw('alias = ?',[@$project_alias])->select('id','fullname','alias')->get()->toArray();
-            $project_id=$project[0]['id'];            
-            $item 				= 	new ProjectMemberModel;       
-            $item->project_id 	=	(int)@$project_id;
-            $item->member_id 	=	(int)@$member_id;
-            $item->created_at 	=	date("Y-m-d H:i:s",time());
-            $item->updated_at 	=	date("Y-m-d H:i:s",time());
-            $item->save();
+            $project_id=$project[0]['id'];
+            $data_project_member=ProjectMemberModel::whereRaw('project_id = ? and member_id = ?',[(int)@$project_id,(int)@$member_id])->select('id')->get()->toArray();
+            if(count($data_project_member) == 0){
+              $item         =   new ProjectMemberModel;       
+              $item->project_id   = (int)@$project_id;
+              $item->member_id  = (int)@$member_id;
+              $item->created_at   = date("Y-m-d H:i:s",time());
+              $item->updated_at   = date("Y-m-d H:i:s",time());
+              $item->save();
+            }                        
             echo '<script language="javascript" type="text/javascript">alert("Đăng nhập thành công")</script>';
-            return redirect()->route('frontend.index.index',[$project_alias]); 
+            return redirect()->route('frontend.index.index',[$project_alias]);
           }else{
             $error["dang-nhap"]="Đăng nhập sai username và password";
-          }
+          }              
         }        
         if(Session::has($this->_ssNameUser)){                
           $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
@@ -1116,50 +1097,48 @@ class IndexController extends Controller {
         return view("frontend.index",compact("component","alias","error","data","success","layout"));        
       }
       public function viewSecurity(Request $request){
-       $flag=1;
-       $error=array();
-       $success=array();   
-       $data=array();        
-       $component="security";   
-       $layout="two-column";                      
-       if(Session::has($this->_ssNameUser)){                
-        $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
-      }   
-      if(count($arrUser) == 0){
-        return redirect()->route("frontend.index.login"); 
-      }
-      $data=CustomerModel::find((int)@$arrUser["id"])->toArray();    
-      $id=(int)@$data["id"];
-      if($request->isMethod('post')){              
-        $data =@$request->all();                     
-        $password=@$request->password ;
-        $password_confirm=@$request->password_confirm ;                
-        if(mb_strlen($password) < 6){
-          $error["password"] = 'Độ dài mật khẩu phải lớn hơn hoặc bằng 6';
-          $data["password"] = "";
-          $data["password_confirm"] = ""; 
-          $flag = 0;
+        $flag=1;
+        $error=array();
+        $success=array();   
+        $data=array();        
+        $component="security";   
+        $layout="two-column";        
+        $arrUser=array();              
+        $user = Sentinel::forceCheck(); 
+        if(!empty($user)){                
+          $arrUser = $user->toArray();    
+        }      
+        if(count($arrUser) == 0){
+          return redirect()->route("frontend.index.login"); 
         }
-        if(strcmp($password,$password_confirm)!=0){
-          $error["password_confirm"] = 'Mật khẩu xác nhận không khớp';
-          $data["password_confirm"] = "";   
-          $flag = 0;
-        }    
-        if($flag==1){
-          $item=CustomerModel::find($id);                         
-          $item->password=md5(@$request->password) ;
-          $item->save();  
-          $success['update-password']="Cập nhật mật khẩu thành công";                                                           
-        }              
-      }             
-      return view("frontend.index",compact("component","error","data","success","layout"));                      
-    }
-      public function getLgout(){        
-        $arrUser=array();            
-        if(Session::has($this->_ssNameUser)){
-          $arrUser=Session::get($this->_ssNameUser)["userInfo"]; 
-          Session::forget($this->_ssNameUser);      
-        }    
+        $data=User::find((int)@$arrUser["id"])->toArray();    
+        $id=(int)@$data["id"];
+        if($request->isMethod('post')){              
+          $data =@$request->all();                     
+          $password=@$request->password ;
+          $password_confirm=@$request->password_confirm ;                
+          if(mb_strlen($password) < 6){
+            $error["password"] = 'Độ dài mật khẩu phải lớn hơn hoặc bằng 6';
+            $data["password"] = "";
+            $data["password_confirm"] = ""; 
+            $flag = 0;
+          }
+          if(strcmp($password,$password_confirm)!=0){
+            $error["password_confirm"] = 'Mật khẩu xác nhận không khớp';
+            $data["password_confirm"] = "";   
+            $flag = 0;
+          }    
+          if($flag==1){
+            $item=User::find($id);                         
+            $item->password         = Hash::make(@$request->password);
+            $item->save();  
+            $success['update-password']="Cập nhật mật khẩu thành công";                                                           
+          }              
+        }             
+        return view("frontend.index",compact("component","error","data","success","layout"));                      
+      }
+      public function getLgout(){               
+        Sentinel::logout();               
         return redirect()->route('frontend.index.login'); 
       }
       public function viewAccount(Request $request){        
@@ -1170,29 +1149,28 @@ class IndexController extends Controller {
         $component="account";   
         $layout="two-column";       
         $id=0;         
-        $arrUser=array();           
-        if(Session::has($this->_ssNameUser)){                
-          $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
-        }   
-        if(count($arrUser)==0){
+        $arrUser=array();              
+        $user = Sentinel::forceCheck(); 
+        if(!empty($user)){                
+          $arrUser = $user->toArray();    
+        }      
+        if(count($arrUser) == 0){
           return redirect()->route("frontend.index.login"); 
-        }
-        $data=CustomerModel::find((int)@$arrUser["id"])->toArray();    
+        }        
+        $data=User::find((int)@$arrUser['id'])->toArray();    
         $id=(int)@$data["id"];                  
         if($request->isMethod('post')){                          
           $data             =   $request->all();                         
           $email            =   trim(@$request->email) ;
           $fullname         =   trim(@$request->fullname);
           $address          =   trim(@$request->address);
-          $phone            =   trim(@$request->phone);
-          $mobilephone      =   trim(@$request->mobilephone);
-          $fax              =   trim(@$request->fax);                                    
+          $phone            =   trim(@$request->phone);                                           
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
             $error["email"] = 'Email không hợp lệ';
             $data["email"] = '';
             $flag = 0;
           }else{
-            $customer=CustomerModel::whereRaw("trim(lower(email)) = ? and id != ? ",[mb_strtolower($email,'UTF-8'),(int)@$id])->get()->toArray();
+            $customer=User::whereRaw("trim(lower(email)) = ? and id != ? ",[mb_strtolower($email,'UTF-8'),(int)@$id])->get()->toArray();
             if(count($customer) > 0){
               $error["email"] = 'Email đã tồn tại';
               $data["email"] = ""; 
@@ -1209,30 +1187,17 @@ class IndexController extends Controller {
             $data["address"] = ""; 
             $flag = 0;
           }  
-          if(!empty($phone)){
-            if(mb_strlen($phone) < 10){
+          if(mb_strlen($phone) < 10){
               $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
               $data["phone"] = ""; 
               $flag = 0;
-            }  
-          }
-          if(!empty($mobilephone)){
-            if(mb_strlen($mobilephone) < 10){
-              $error["mobilephone"] = 'Số mobile phải từ 10 ký tự trở lên';
-              $data["mobilephone"] = ""; 
-              $flag = 0;
-            }  
-          }          
+            }               
           if($flag==1){
-            $item               =   CustomerModel::find((int)@$id);            
+            $item               =   User::find((int)@$id);            
             $item->email        =   $email;
             $item->fullname     =   $fullname;
             $item->address      =   $address;
-            $item->phone        =   $phone;
-            $item->mobilephone  =   $mobilephone;
-            $item->fax          =   $fax; 
-            $item->status       =   1;  
-            $item->sort_order   =   1;  
+            $item->phone        =   $phone;            
             $item->created_at   =   date("Y-m-d H:i:s",time());
             $item->updated_at   =   date("Y-m-d H:i:s",time());
             $item->save(); 
@@ -1243,17 +1208,17 @@ class IndexController extends Controller {
         return view("frontend.index",compact("component","error","data","success","layout"));         
       }
       public function checkout(){          
-          $arrUser=array(); 
-          $link="";       
-          if(Session::has($this->_ssNameUser)){                
-              $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
-          }   
-          if(count($arrUser) > 0){
-              $link="frontend.index.confirmCheckout";
-          }else{
-              $link="frontend.index.loginCheckout";
-          }
-          return redirect()->route($link); 
+        $arrUser=array();              
+        $user = Sentinel::forceCheck(); 
+        if(!empty($user)){                
+          $arrUser = $user->toArray();    
+        }              
+        if(count($arrUser) > 0){
+          $link="frontend.index.confirmCheckout";
+        }else{
+          $link="frontend.index.loginCheckout";
+        }
+        return redirect()->route($link); 
       }
       public function confirmCheckout(Request $request){
         
@@ -1308,7 +1273,7 @@ class IndexController extends Controller {
                       $item->address=@$request->address;
                       $item->phone=@$request->phone;
                       $item->mobilephone=@$request->mobilephone;
-                      $item->fax=@$request->fax;  
+                      
                       $item->payment_method_id=(int)$payment_method;
                       $item->quantity=(int)@$request->quantity;
                       $item->total_price=(float)@$request->total_price;
@@ -1435,7 +1400,7 @@ class IndexController extends Controller {
                       $item->address      =   trim(@$request->address);
                       $item->phone        =   trim(@$request->phone);
                       $item->mobilephone  =   trim(@$request->mobilephone);
-                      $item->fax          =   trim(@$request->fax); 
+                      
                       $item->status       =   1;  
                       $item->sort_order   =   1;  
                       $item->created_at   =   date("Y-m-d H:i:s",time());

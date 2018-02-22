@@ -107,7 +107,7 @@ class CategoryArticleController extends Controller {
         $alias_menu              =  trim($request->alias_menu);        
         $meta_keyword            =  trim($request->meta_keyword);
         $meta_description        =  trim($request->meta_description);
-        $category_article_id	   =	trim($request->category_article_id);
+        $category_id	   =	trim($request->category_id);
         $image                   =  trim($request->image);
         $image_hidden            =  trim($request->image_hidden);
         $sort_order 			       =	trim($request->sort_order);
@@ -166,17 +166,19 @@ class CategoryArticleController extends Controller {
         
         $item->meta_keyword     = $meta_keyword;
         $item->meta_description = $meta_description;           
-        $item->parent_id 		=	(int)$category_article_id;            
+        $item->parent_id 		=	(int)$category_id;            
         $item->sort_order 	=	(int)$sort_order;
         $item->status 			=	(int)$status;    
         $item->updated_at 	=	date("Y-m-d H:i:s",time());    	        	
         $item->save();  	
         $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
-        if(count($dataMenu) > 0){
-          $menu_id=(int)$dataMenu[0]['id'];
-          $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
-          DB::statement($sql);    
-        } 
+          if(count($dataMenu) > 0){
+            foreach ($dataMenu as $key => $value) {                   
+              $menu_id=(int)$value['id'];
+              $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
+                DB::statement($sql);    
+            }          
+          } 
         $info = array(
           'type_msg' 			=> "has-success",
           'msg' 				=> 'Lưu dữ liệu thành công',
@@ -229,7 +231,7 @@ class CategoryArticleController extends Controller {
             $type_msg           =   "alert-warning";            
             $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
           }
-          $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$id])->get()->toArray();              
+          $data                   =   ArticleCategoryModel::whereRaw("category_id = ?",[(int)@$id])->get()->toArray();              
           if(count($data) > 0){
             $checked     =   0;
             $type_msg           =   "alert-warning";            
@@ -291,7 +293,7 @@ class CategoryArticleController extends Controller {
                   $type_msg           =   "alert-warning";            
                   $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
                 }
-                $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$value])->get()->toArray();                     
+                $data                   =   ArticleCategoryModel::whereRaw("category_id = ?",[(int)@$value])->get()->toArray();                     
                 if(count($data) > 0){
                   $checked     =   0;
                   $type_msg           =   "alert-warning";            
@@ -300,10 +302,8 @@ class CategoryArticleController extends Controller {
               }                
             }
           }
-          if($checked == 1){                
-            $strID = implode(',',$arrID);                     
-            $sql = "DELETE FROM `category_article` WHERE `id` IN (".$strID.")";                 
-            DB::statement($sql);    
+          if($checked == 1){                            
+            DB::table('category_article')->whereIn('id',@$arrID)->delete();   
           }
           return redirect()->route("adminsystem.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
         }else{

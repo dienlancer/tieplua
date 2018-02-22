@@ -9,7 +9,7 @@ $linkDelete			=	route('adminsystem.'.$controller.'.deleteItem');
 $linkUpdateStatus	=	route('adminsystem.'.$controller.'.updateStatus');
 $linkTrash			=	route('adminsystem.'.$controller.'.trash');
 $linkSortOrder		=	route('adminsystem.'.$controller.'.sortOrder');
-$ddlCategoryArticle     =   cmsSelectboxCategory('category_article_id','category_article_id', 'form-control', $arrCategoryArticleRecursive, 0,"");
+$ddlCategoryArticle     =   cmsSelectboxCategory('category_id','category_id', 'form-control', $arrCategoryArticleRecursive, 0,"");
 $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_search"          value="">';
 ?>
 <form class="form-horizontal" role="form" name="frm">	
@@ -59,7 +59,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-article">
 				<thead>
 					<tr>
-						<th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                						
+						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                						
 						<th>Bài viết</th>
 						<th>Chủ đề</th>
 						<th width="1%">Hình</th>
@@ -79,12 +79,12 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 
 	function getList() {  	
 		var token = $('form[name="frm"] input[name="_token"]').val(); 
-        var category_article_id=$('select[name="category_article_id"]').val();
+        var category_id=$('select[name="category_id"]').val();
         var filter_search=$('form[name="frm"] input[name="filter_search"]').val();
 		var dataItem={            
             '_token': token,
             'filter_search':filter_search,
-            'category_article_id':category_article_id,               
+            'category_id':category_id,               
         };
 		$.ajax({
 			url: '<?php echo $linkLoadData; ?>',
@@ -102,23 +102,23 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			},
 		});
 	}	
-	function checkWithListArticle(this_checkbox){
+	function checkWithList(this_checkbox){
 		var dr = vArticleTable.row( $(this_checkbox).closest('tr') ).data();       		
 		if(parseInt(dr['is_checked']) == 0){
-			dr['checked'] ='<input type="checkbox" checked onclick="checkWithListArticle(this)" name="cid" />';
+			dr['checked'] ='<input type="checkbox" checked onclick="checkWithList(this)" name="cid" />';
 			dr['is_checked'] = 1;
 		}else{
-			dr['checked'] ='<input type="checkbox" onclick="checkWithListArticle(this)" name="cid" />';
+			dr['checked'] ='<input type="checkbox" onclick="checkWithList(this)" name="cid" />';
 			dr['is_checked'] = 0;
 		}
 		vArticleTable.row( $(this_checkbox).closest('tr') ).data(dr);
 	}	
 	function changeStatus(id,status){		
 		var token = $('input[name="_token"]').val();   
-		var category_article_id=$('select[name="category_article_id"]').val();
+		var category_id=$('select[name="category_id"]').val();
 		var dataItem={   
 			'id':id,
-			'category_article_id':category_article_id,               
+			'category_id':category_id,               
 			'status':status,         
 			'_token': token
 		};
@@ -149,10 +149,10 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			return 0;
 		}
 		var token 	 = $('input[name="_token"]').val();   
-		var category_article_id=$('select[name="category_article_id"]').val();
+		var category_id=$('select[name="category_id"]').val();
 		var dataItem ={   
 			'id':id,		
-			'category_article_id':category_article_id,               	
+			'category_id':category_id,               	
 			'_token': token
 		};
 		$.ajax({
@@ -173,7 +173,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	}
 	function updateStatus(status){				
 		var token 	= 	$('input[name="_token"]').val();   
-		var category_article_id=$('select[name="category_article_id"]').val();
+		var category_id=$('select[name="category_id"]').val();
 		var dt 		= 	vArticleTable.data();		
 		var str_id	=	"";		
 		for(var i=0;i<dt.length;i++){
@@ -184,7 +184,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		}
 		var dataItem ={   
 			'str_id':str_id,
-			'category_article_id':category_article_id,               
+			'category_id':category_id,               
 			'status':status,			
 			'_token': token
 		};		
@@ -214,7 +214,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			return 0;
 		}
 		var token 	= 	$('input[name="_token"]').val();   
-		var category_article_id=$('select[name="category_article_id"]').val();
+		var category_id=$('select[name="category_id"]').val();
 		var dt 		= 	vArticleTable.data();
 		var str_id	=	"";		
 		for(var i=0;i<dt.length;i++){
@@ -225,7 +225,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		}
 		var dataItem ={   
 			'str_id':str_id,		
-			'category_article_id':category_article_id,               		
+			'category_id':category_id,               		
 			'_token': token
 		};
 		$.ajax({
@@ -248,10 +248,10 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	function sort(){			
 		var token 	= 	$('input[name="_token"]').val();   
 		var sort_json=$('input[name="sort_json"]').val();
-		var category_article_id=$('select[name="category_article_id"]').val();
+		var category_id=$('select[name="category_id"]').val();
 		var dataItem ={   
 			sort_json:sort_json,	
-			'category_article_id':category_article_id,               	
+			'category_id':category_id,               	
 			'_token': token
 		};        
 		$.ajax({

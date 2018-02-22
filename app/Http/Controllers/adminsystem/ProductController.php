@@ -9,7 +9,11 @@ use App\ProductModel;
 use App\PageModel;
 use App\MenuModel;
 use App\ProductCategoryModel;
+use App\ProductParamModel;
+use App\CategoryParamModel;
+use App\InvoiceDetailModel;
 use DB;
+use Sentinel;
 class ProductController extends Controller {
   	var $_controller="product";	
   	var $_title="Sản phẩm";
@@ -32,18 +36,20 @@ class ProductController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	
-  	public function loadData(Request $request){      
+  	public function loadData(Request $request){    
+      $category_id=(int)@$request->category_id;
+        $arrCategoryID[]=@$category_id;
+        getStringCategoryID($category_id,$arrCategoryID,'category_product');        
       $query=DB::table('product')
-      ->join('product_category','product.id','=','product_category.product_id')
-      ->join('category_product','category_product.id','=','product_category.category_product_id')  ;      
+      ->join('category_product','product.category_id','=','category_product.id')  ;      
       if(!empty(@$request->filter_search)){
         $query->where('product.fullname','like','%'.trim(@$request->filter_search).'%');
       }     
-      if(!empty(@$request->category_product_id)){
-        $query->where('product_category.category_product_id',(int)@$request->category_product_id);
+      if(count($arrCategoryID)){
+        $query->whereIn('product.category_id',$arrCategoryID);
       }   
-      $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
-                  ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.sort_order','product.status','product.created_at','product.updated_at')
+      $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.sort_order','product.status','product.created_at','product.updated_at')
                   ->orderBy('product.sort_order', 'asc')
                   ->get()
                   ->toArray();      
@@ -55,8 +61,8 @@ class ProductController extends Controller {
         $controller=$this->_controller;     
         $title="";
         $icon=$this->_icon; 
-        $arrRowData=array();
-        $arrProductCategory=array();
+        $arrRowData=array();        
+        $arrProductParam=array();
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-form";  
         if(in_array($requestControllerAction, $arrPrivilege)){
@@ -64,16 +70,19 @@ class ProductController extends Controller {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=ProductModel::find((int)@$id)->toArray();       
-              $arrProductCategory=ProductCategoryModel::whereRaw("product_id = ?",[(int)@$id])->get()->toArray();
+              $arrProductParam=ProductParamModel::whereRaw("product_id = ?",[(int)@$id])->get()->toArray();                  
            break;
            case 'add':
               $title=$this->_title . " : Add new";
            break;     
         }    
-        $arrCategoryProduct=CategoryProductModel::select("id","fullname","alias","parent_id","image","sort_order","status","created_at","updated_at")->orderBy("sort_order","asc")->get()->toArray();        
+        $arrCategoryProduct=CategoryProductModel::select("id","fullname","alias","parent_id")->orderBy("sort_order","asc")->get()->toArray();       
+        $arrCategoryParam=CategoryParamModel::select("id","fullname","alias","parent_id")->orderBy("sort_order","asc")->get()->toArray(); 
         $arrCategoryProductRecursive=array();
-        categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ;      
-        return view("adminsystem.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrRowData","arrProductCategory","controller","task","title","icon"));
+        $arrCategoryParamRecursive=array();
+        categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ; 
+        categoryRecursiveForm($arrCategoryParam ,0,"",$arrCategoryParamRecursive)   ; 
+        return view("adminsystem.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrCategoryParamRecursive","arrProductParam","arrRowData","controller","task","title","icon"));
         }else{
             return view("adminsystem.no-access");
         }
@@ -81,7 +90,7 @@ class ProductController extends Controller {
     }
         public function save(Request $request){
             $id 					        =		trim($request->id);      
-            $code                 =   trim($request->code);  
+            $code                 =   randomCodeNumber(); 
             $fullname 				    =		trim($request->fullname);          
             $alias                =   trim($request->alias);
             $alias_menu           =   trim($request->alias_menu);
@@ -97,7 +106,9 @@ class ProductController extends Controller {
             $image_hidden         =   trim($request->image_hidden);  
             $child_image          =   trim($request->child_image);                    
             $sort_order           =   trim($request->sort_order);          
-            $category_product_id	=		($request->category_product_id);            
+            $category_id	        =		trim($request->category_id); 
+            $category_param_id    =   ($request->category_param_id);
+            $size_type            =   trim($request->size_type);
             $data 		            =   array();
             $info 		            =   array();
             $error 		            =   array();
@@ -138,16 +149,16 @@ class ProductController extends Controller {
                 }      	
             }          
       
-      if(count($category_product_id) == 0){
+      if(count($category_id) == 0){
         $checked = 0;
-        $error["category_product_id"]["type_msg"]   = "has-error";
-        $error["category_product_id"]["msg"]      = "Thiếu danh mục";
+        $error["category_id"]["type_msg"]   = "has-error";
+        $error["category_id"]["msg"]      = "Thiếu danh mục";
       }
       else{
-        if(empty($category_product_id[0])){
+        if(empty($category_id[0])){
           $checked = 0;
-          $error["category_product_id"]["type_msg"]   = "has-error";
-          $error["category_product_id"]["msg"]      = "Thiếu danh mục";
+          $error["category_id"]["type_msg"]   = "has-error";
+          $error["category_id"]["msg"]      = "Thiếu danh mục";
         }
       }
       if(empty($sort_order)){
@@ -162,11 +173,22 @@ class ProductController extends Controller {
        }
       if ($checked == 1) {    
           if(empty($id)){
-                $item 				= 	new ProductModel;       
-                $item->created_at 	=	date("Y-m-d H:i:s",time());        
+                $item 				= 	new ProductModel; 
+                $item->code             = $code;
                 if(!empty($image)){
                   $item->image    =   trim($image) ;  
-                }				
+                }   
+                /* begin user_id */
+                $arrUser =array();   
+                $user = Sentinel::forceCheck(); 
+                if(!empty($user)){                
+                  $arrUser = $user->toArray();    
+                } 
+                if(count($arrUser) > 0){
+                  $item->user_id=(int)@$arrUser['id'];
+                }
+                /* end user_id */      
+                $item->created_at 	=	date("Y-m-d H:i:s",time());                        		
           } else{
                 $item				=	ProductModel::find((int)@$id);   
                 $item->image=null;                       
@@ -176,19 +198,19 @@ class ProductController extends Controller {
                     if(!empty($image))  {
                       $item->image=$image;                                                
                     }               		  		 	
-          }  
-          $item->code             = $code;
+          }            
           $item->fullname 		    =	$fullname;                
-          $item->alias 			      =	$alias;  
-          
+          $item->alias 			      =	$alias;            
           $item->meta_keyword     = $meta_keyword;
           $item->meta_description = $meta_description;                  
           $item->status           = (int)@$status; 
           $item->price            = (int)(str_replace('.', '',@$price)) ;
           $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
           $item->detail           = $detail;       
-          $item->intro            = $intro;                                           
-          $item->sort_order 	    =	(int)$sort_order;                
+          $item->intro            = $intro;  
+          $item->category_id      = (int)@$category_id;                            
+          $item->size_type        = $size_type;  
+          $item->sort_order 	    =	(int)@$sort_order;                
           $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
           // begin upload product child image  
           $arrImage=array();                       
@@ -208,34 +230,37 @@ class ProductController extends Controller {
           $item->save();  	
           $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
           if(count($dataMenu) > 0){
-            $menu_id=(int)$dataMenu[0]['id'];
-            $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
-            DB::statement($sql);    
+            foreach ($dataMenu as $key => $value) {                   
+              $menu_id=(int)$value['id'];
+              $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
+                DB::statement($sql);    
+            }          
+          }              
+          if(count(@$category_param_id)>0){                            
+            $arrProductParam=ProductParamModel::whereRaw("product_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
+            $arrCategoryParamID=array();
+            foreach ($arrProductParam as $key => $value) {
+              $arrCategoryParamID[]=$value["param_id"];
+            }
+            $selected=@$category_param_id;
+            sort($selected);
+            sort($arrCategoryParamID);         
+            $resultCompare=0;
+            if($selected == $arrCategoryParamID){
+              $resultCompare=1;       
+            }
+            if($resultCompare==0){
+              ProductParamModel::whereRaw("product_id = ?",[(int)@$item->id])->delete();  
+              foreach ($selected as $key => $value) {
+                $param_id=$value;
+                $productParam=new ProductParamModel;
+                $productParam->product_id=(int)@$item->id;
+                $productParam->param_id=(int)@$param_id;            
+                $productParam->save();
+              }
+            }       
           }  
-          if(count(@$category_product_id) > 0){                            
-              $arrProductCategory=ProductCategoryModel::whereRaw("product_id = ?",[@$item->id])->select("category_product_id")->get()->toArray();
-              $arrCategoryProductID=array();
-              foreach ($arrProductCategory as $key => $value) {
-                $arrCategoryProductID[]=$value["category_product_id"];
-              }
-              $selected=@$category_product_id;
-              sort($selected);
-              sort($arrCategoryProductID);         
-              $resultCompare=0;
-              if($selected == $arrCategoryProductID){
-                $resultCompare=1;       
-              }
-              if($resultCompare==0){
-                ProductCategoryModel::whereRaw("product_id = ?",[(int)@$item->id])->delete();  
-                foreach ($selected as $key => $value) {
-                  $category_product_id=$value;
-                  $productCategory=new ProductCategoryModel;
-                  $productCategory->product_id=(int)@$item->id;
-                  $productCategory->category_product_id=(int)$category_product_id;            
-                  $productCategory->save();
-                }
-              }       
-          }
+          ProductParamModel::whereRaw("param_id = ?",[0])->delete();    
           $info = array(
             'type_msg' 			=> "has-success",
             'msg' 				=> 'Save data successfully',
@@ -277,11 +302,16 @@ class ProductController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $msg                    =   "Xóa thành công";     
+            $data=InvoiceDetailModel::whereRaw("product_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }                 
             if($checked == 1){
               $item = ProductModel::find((int)@$id);
-                $item->delete();
-                ProductCategoryModel::whereRaw("product_id = ?",[(int)$id])->delete();
+                $item->delete();                
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -293,53 +323,59 @@ class ProductController extends Controller {
             return $info;
       }
       public function updateStatus(Request $request){
-          $str_id                 =   $request->str_id;   
-          $status                 =   $request->status;  
-          $arrID                 =   explode(",", $str_id)  ;
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Cập nhật thành công";     
-          if(empty($str_id)){
-                    $checked                =   0;
-                    $type_msg               =   "alert-warning";            
-                    $msg                    =   "Please choose at least one item to delete";
+        $strID                 =   $request->str_id;     
+        $status                 =   $request->status;            
+        $checked                =   1;
+        $type_msg               =   "alert-success";
+        $msg                    =   "Cập nhật thành công";                  
+        $strID=substr($strID, 0,strlen($strID) - 1);
+        $arrID=explode(',',$strID);                 
+        if(empty($strID)){
+          $checked     =   0;
+          $type_msg           =   "alert-warning";            
+          $msg                =   "Please choose at least one item";
+        }
+        if($checked==1){
+          foreach ($arrID as $key => $value) {
+            if(!empty($value)){
+              $item=ProductModel::find($value);
+              $item->status=$status;
+              $item->save();      
+            }            
           }
-          if($checked==1){
-              foreach ($arrID as $key => $value) {
-                if(!empty($value)){
-                    $item=ProductModel::find($value);
-                    $item->status=$status;
-                    $item->save();      
-                }            
-              }
-          }                 
-          $data                   =   $this->loadData($request);
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                
-            'data'              => $data
-          );
-          return $info;
+        }                 
+        $data                   =   $this->loadData($request);
+        $info = array(
+          'checked'           => $checked,
+          'type_msg'          => $type_msg,                
+          'msg'               => $msg,                
+          'data'              => $data
+        );
+        return $info;
       }
       public function trash(Request $request){
-            $str_id                 =   $request->str_id;   
+            $strID                 =   $request->str_id;     
+            
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";      
-            $arrID                  =   explode(",", $str_id)  ;        
-            if(empty($str_id)){
+            $msg                    =   "Xóa thành công";                  
+            $strID=substr($strID, 0,strlen($strID) - 1);
+            
+            $arrID=explode(',',$strID);                 
+
+            if(empty($strID)){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Please choose at least one item";
             }
+            $data=DB::table('invoice_detail')->whereIn('product_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }  
             if($checked == 1){                
-                  $strID = implode(',',$arrID);   
-                  $strID=substr($strID, 0,strlen($strID) - 1);
-                  $sqlDeleteproduct = "DELETE FROM `product` WHERE `id` IN  (".$strID.")";       
-                  $sqlDeleteproductCategory = "DELETE FROM `product_category` WHERE `product_id` IN (".$strID.")";                
-                  DB::statement($sqlDeleteproduct);
-                  DB::statement($sqlDeleteproductCategory);           
+                  DB::table('product')->whereIn('id',@$arrID)->delete();                                              
             }
             $data                   =   $this->loadData($request);
             $info = array(

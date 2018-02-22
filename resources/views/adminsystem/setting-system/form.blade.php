@@ -15,7 +15,7 @@ $inputAuthor             =   '<input type="text" class="form-control" name="auth
 $inputCopyright             =   '<input type="text" class="form-control" name="copyright"       id="copyright"              value="'.@$arrRowData['copyright'].'">';   
 $inputGoogleSiteVerification             =   '<input type="text" class="form-control" name="google_site_verification"       id="google_site_verification"              value="'.@$arrRowData['google_site_verification'].'">';  
 $inputGoogleAnalytics             =   '<input type="text" class="form-control" name="google_analytics"       id="google_analytics"              value="'.@$arrRowData['google_analytics'].'">';  
- 
+
 $pictureLogoFrontend                =   "";
 $strLogoFrontend               =   "";
 if(count(@$arrRowData)>0){
@@ -173,8 +173,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                             <span class="help-block"></span>
                         </div>
                     </div> 
-                </div>                
-                          
+                </div>                                            
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Logo trang chủ</b></label>
@@ -270,7 +269,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var google_site_verification=$('input[name="google_site_verification"]').val();
         var google_analytics=$('input[name="google_analytics"]').val();
         
-      
+     
 
         var logo_frontend = $("input[type='file'][name='logo_frontend']").val();
         if (logo_frontend != ''){
@@ -316,7 +315,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             "google_site_verification":google_site_verification,
             "google_analytics":google_analytics,
             
-        
+            
             "logo_frontend":logo_frontend,
             "favicon":favicon,            
             "logo_frontend_hidden":logo_frontend_hidden,

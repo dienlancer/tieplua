@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 21, 2018 lúc 11:33 AM
+-- Thời gian đã tạo: Th2 22, 2018 lúc 10:55 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -49,7 +49,12 @@ INSERT INTO `activations` (`id`, `user_id`, `code`, `completed`, `completed_at`,
 (3, 1, 'AHbwHv4BMq4Z5b7nkdvOlvcOvXnPqMk0', 1, '2017-11-12 06:24:14', '2017-11-12 06:24:14', '2017-11-12 06:24:14'),
 (4, 1, 'JqmoT6nwuNXt0D5jape2qCQsEVQgWEqA', 1, '2017-11-12 06:26:26', '2017-11-12 06:26:26', '2017-11-12 06:26:26'),
 (5, 1, '1TnyfEnFLs7gdNZXKP2r35tc1hBvcnPg', 1, '2017-11-12 07:22:52', '2017-11-12 07:22:52', '2017-11-12 07:22:52'),
-(6, 1, 'QlzbRQWzVJgg01NkGUVewoQhT4qPKTMZ', 1, '2017-11-12 07:23:56', '2017-11-12 07:23:56', '2017-11-12 07:23:56');
+(6, 1, 'QlzbRQWzVJgg01NkGUVewoQhT4qPKTMZ', 1, '2017-11-12 07:23:56', '2017-11-12 07:23:56', '2017-11-12 07:23:56'),
+(8, 3, 'IzQs35qnOuO49XDzC61xMrUWb6GeluCU', 1, '2018-02-22 01:51:24', '2018-02-22 01:51:24', '2018-02-22 01:51:24'),
+(9, 4, 'H0xosjn0xieOocIICUqSPALdu22VAy1u', 1, '2018-02-22 02:03:03', '2018-02-22 02:03:03', '2018-02-22 02:03:03'),
+(10, 5, 'kiSYxxWL48klgmnCQAfUn7FIxBlggLDN', 1, '2018-02-22 02:05:06', '2018-02-22 02:05:06', '2018-02-22 02:05:06'),
+(11, 6, 'SiWYE6m7bvZUrXEr9c5nbaXrPBwXqAh9', 1, '2018-02-22 02:16:05', '2018-02-22 02:16:05', '2018-02-22 02:16:05'),
+(12, 7, 'PO3hFqqMoV5eFV1BvhAbekqXRDNpebOM', 1, '2018-02-22 02:26:37', '2018-02-22 02:26:37', '2018-02-22 02:26:37');
 
 -- --------------------------------------------------------
 
@@ -127,7 +132,7 @@ INSERT INTO `article` (`id`, `fullname`, `alias`, `image`, `intro`, `content`, `
 (11, 'Wenger gặp vạ vì bình luận về trọng tài', 'wenger-gap-va-vi-binh-luan-ve-trong-tai', 'conmochieu-12.png', 'HLV của Arsenal bị cho là dùng từ ngữ không đúng mực với các trọng tài sau trận hòa giữa Arsenal và West Brom.', '<p style=\"text-align:justify\">&quot;Từ ngữ hoặc h&agrave;nh động của &ocirc;ng ấy trong ph&ograve;ng thay đồ của trọng t&agrave;i bị buộc tội l&agrave; lạm dụng hoặc kh&ocirc;ng th&iacute;ch hợp, hoặc chất vấn t&iacute;nh trung thực của đội ngũ trọng t&agrave;i&quot;, th&ocirc;ng b&aacute;o của ban kỷ luật LĐBĐ Anh (FA) c&oacute; đoạn.<br />\nTrọng t&agrave;i Mike Dean thổi phạt lỗi để b&oacute;ng chạm tay trong v&ograve;ng cấm của Calum Chambers khi trận đấu bước sang ph&uacute;t 89, khiến Arsenal bị thủng lưới v&agrave; bị West Brom cầm h&ograve;a 1-1. Quyết định n&agrave;y khiến Arsene Wenger phản ứng dữ dội v&igrave; &ocirc;ng cho rằng Chambers r&otilde; r&agrave;ng kh&ocirc;ng cố &yacute; để b&oacute;ng chạm tay khi anh chỉ đứng c&aacute;ch Kieran Gibbs, người đưa b&oacute;ng tr&uacute;ng tay Chambers, 2 met.</p>\n\n<p style=\"text-align:justify\">Wenger sẽ c&oacute; thời hạn đến 18h ng&agrave;y 5/1 để phản hồi c&aacute;o buộc của FA. Trả lời phỏng vấn h&ocirc;m 2/1, HLV của Arsenal n&oacute;i: &quot;Chuyện n&agrave;y thật đ&aacute;ng thất vọng. Điều khiến t&ocirc;i phiền l&ograve;ng l&agrave; việc n&agrave;y diễn ra nhiều lần trong m&ugrave;a giải, tại Stoke, Watford, Man City, b&acirc;y giờ l&agrave; West Brom&quot;.</p>\n\n<p style=\"text-align:justify\">&quot;Đ&oacute; l&agrave; sự tr&ugrave;ng hợp khiến t&ocirc;i lo ngại. Đ&oacute; l&agrave; l&yacute; do tại sao t&ocirc;i kh&ocirc;ng h&agrave;i l&ograve;ng với quyết định của trọng t&agrave;i, t&ocirc;i kh&ocirc;ng hiểu tại sao &ocirc;ng ta thổi phạt đền. N&oacute; thật kh&ocirc;ng giống với những g&igrave; đ&atilde; diễn ra. Tr&ecirc;n kh&iacute;a cạnh đ&oacute;, c&oacute; một ch&uacute;t lo lắng với t&ocirc;i&quot;, Wenger n&oacute;i tiếp.</p>\n\n<p style=\"text-align:justify\">Arsenal, đang đứng thứ năm tại Ngoại hạng Anh, sẽ tiếp đội đứng thứ ba Chelsea v&agrave;o rạng s&aacute;ng ng&agrave;y 4/1 (giờ H&agrave; Nội).</p>', 'chú thích Wenger gặp vạ vì bình luận về trọng tài', 'metakeyword Wenger gặp vạ vì bình luận về trọng tài', 'metadescription Wenger gặp vạ vì bình luận về trọng tài', 2, 11, 1, '2018-01-03 07:45:23', '2018-01-19 10:45:45'),
 (12, 'Pochettino: \'Tottenham thắng vì lối chơi, không phải do nghỉ nhiều hơn\'', 'pochettino-tottenham-thang-vi-loi-choi,-khong-phai-do-nghi-nhieu-hon', 'conmochieu-13.png', 'HLV của Tottenham cho rằng thầy trò ông xứng đáng với chiến thắng ba điểm có được trên sân Swansea ở Ngoại hạng Anh hôm 2/1.', '<p style=\"text-align:justify\">&quot;T&ocirc;i nghĩ kết quả chung cuộc, tự th&acirc;n n&oacute; đ&atilde; n&oacute;i l&ecirc;n tất cả. Một chiến thắng xứng đ&aacute;ng d&agrave;nh cho Tottenham&quot;, Mauricio Pochettino n&oacute;i với Sky Sports. &quot;Ch&uacute;ng t&ocirc;i đơn giản l&agrave; hay hơn Swansea&quot;.</p>\n\n<p style=\"text-align:justify\">&Aacute; qu&acirc;n m&ugrave;a giải 2016-2017 c&oacute; bảy ng&agrave;y nghỉ, so với ba của Swansea, trước cuộc đọ sức tối 2/1. Tottenham cũng l&agrave; một trong những đội c&oacute; thời gian nghỉ d&agrave;i nhất trong chặng marathon từ Gi&aacute;ng sinh đến đầu năm mới. Họ chơi bốn trận trong v&ograve;ng 12 ng&agrave;y, so với 10 ng&agrave;y của Man City, v&agrave; ch&iacute;n của Man Utd.<br />\n&quot;Vấn đề ở đ&acirc;y kh&ocirc;ng nằm ở thể lực&quot;, Pochettino phủ nhận lợi thế nghỉ nhiều hơn so với Swansea. &quot;Ch&uacute;ng t&ocirc;i đ&atilde; &aacute;p đảo trong suốt 90 ph&uacute;t, tạo ra nhiều cơ hội ăn b&agrave;n hơn v&agrave; xứng đ&aacute;ng gi&agrave;nh chiến thắng chung cuộc. Tuy nhi&ecirc;n, điều t&ocirc;i mừng hơn l&agrave; c&aacute;ch học tr&ograve; vượt qua điều kiện thời tiết, trời mưa, lạnh, để gi&agrave;nh chiến thắng&quot;.</p>\n\n<p style=\"text-align:justify\">Tottenham đ&atilde; vươn l&ecirc;n vị tr&iacute; thứ năm, hơn hai điểm so với Arsenal đứng kế sau. &quot;G&agrave; trống&quot; c&ograve;n k&eacute;m Liverpool đứng tr&ecirc;n bốn điểm, nhưng c&ograve;n một trận trong tay, gặp West Ham sau đ&acirc;y hai ng&agrave;y.</p>\n\n<p style=\"text-align:justify\">Pochettino đ&atilde; chủ động dưỡng sức cho tiền đạo chủ lực Harry Kane trong chuyến h&agrave;nh qu&acirc;n tới s&acirc;n Liberty tối 2/1. Tiền đạo dẫn đầu danh s&aacute;ch vua ph&aacute; lưới Ngoại hạng Anh m&ugrave;a n&agrave;y v&agrave;o s&acirc;n ph&uacute;t 68, v&agrave; g&oacute;p c&ocirc;ng trong b&agrave;n ấn định chiến thắng 2-0 của Dele Alli.</p>\n\n<p style=\"text-align:justify\">&quot;Trận gặp Swansea giống như một buổi tập cho Harry Kane trước v&ograve;ng đấu kế tiếp. Cậu ấy gặp một ch&uacute;t vấn đề về tăng tốc trước trận gặp Swansea, v&agrave; hy vọng, Kane sẽ ổn trong 24 giờ tới&quot;, &ocirc;ng thầy 45 tuổi thổ lộ. &quot;Kane l&agrave; một tiền đạo to&agrave;n diện, kh&ocirc;ng chỉ giỏi ghi b&agrave;n, m&agrave; c&ograve;n biết c&aacute;ch giữ b&oacute;ng, x&acirc;y dựng lối chơi v&agrave; kiến tạo cơ hội&quot;.</p>', 'chú thích HLV của Tottenham cho rằng thầy trò ông xứng đáng với chiến thắng ba điểm có được trên sân Swansea ở Ngoại hạng Anh hôm 2/1.', 'metakeyword Pochettino: \'Tottenham thắng vì lối chơi, không phải do nghỉ nhiều hơn\'', 'metadescription Pochettino: \'Tottenham thắng vì lối chơi, không phải do nghỉ nhiều hơn\'', NULL, 12, 1, '2018-01-03 07:47:53', '2018-01-18 19:00:17'),
 (13, 'Man City mất Gabriel Jesus từ bốn đến sáu tuần', 'man-city-mat-gabriel-jesus-tu-bon-den-sau-tuan', 'conmochieu-14.png', 'HLV Pep Guardiola kỳ vọng tuyển thủ Brazil có thể trở lại trước vòng 1/8 Champions League gặp Basel ngày 13/2.', '<p style=\"text-align:justify\">&ldquo;Jesus sẽ vắng mặt trong bốn đến s&aacute;u tuần, c&oacute; thể l&acirc;u hơn&rdquo;, Guardiola tiết lộ về chấn thương đầu gối của học tr&ograve;.</p>\n\n<p style=\"text-align:justify\">Ch&acirc;n s&uacute;t 20 tuổi nhăn nh&oacute; rời s&acirc;n sau khi tranh chấp với Andros Townsend ở trận gặp Crystal Palace ng&agrave;y 31/12. Anh thậm ch&iacute; rơi nước mắt v&igrave; đau đớn.<br />\nTrang chủ Man City x&aacute;c nhận tiền đạo trưởng th&agrave;nh từ Palmeiras bị r&aacute;ch d&acirc;y chằng giữa gối. Trong th&ocirc;ng b&aacute;o mới nhất tr&ecirc;n Instagram, Jesus cho biết chấn thương kh&ocirc;ng nghi&ecirc;m trọng như lo ngại, v&igrave; kh&ocirc;ng cần phẫu thuật. Anh kỳ vọng sẽ kịp trở lại cho chuyến đi tới Basel. Trước đ&oacute;, Jesus phải lỡ nhiều trận ở Ngoại hạng Anh, trong đ&oacute; c&oacute; trận l&agrave;m kh&aacute;ch ở s&acirc;n Anfield của Liverpool.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n cạnh Jesus, tiền vệ David Silva c&oacute; nguy cơ tiếp tục vắng mặt trong một số trận đấu tới v&igrave; l&yacute; do c&aacute; nh&acirc;n. Tuyển thủ T&acirc;y Ban Nha d&agrave;nh thời gian b&ecirc;n gia đ&igrave;nh trong Gi&aacute;ng Sinh, nhưng đ&atilde; trở lại g&oacute;p c&ocirc;ng v&agrave;o chiến thắng 3-1 trước Watford. Dẫu vậy, Silva c&oacute; thể sẽ bay về qu&ecirc; nh&agrave; một lần nữa do vấn đề gia đ&igrave;nh vẫn chưa được giải quyết.</p>\n\n<p style=\"text-align:justify\">&ldquo;Ch&uacute;ng t&ocirc;i mừng khi Silva đ&atilde; trở lại. Cậu ấy rất quan trọng với đội b&oacute;ng. Nhưng kh&ocirc;ng biết Silva sẽ ở c&ugrave;ng ch&uacute;ng t&ocirc;i bao l&acirc;u, khi quyết định thuộc về cậu ấy. Silva muốn thi đấu, nhưng gia đ&igrave;nh l&agrave; quan trọng nhất thế gian. D&ugrave; Man City đ&aacute;nh rơi bao nhi&ecirc;u điểm, t&ocirc;i cũng kh&ocirc;ng hối th&uacute;c Silva. Cậu ấy c&oacute; thể ra s&acirc;n, hoặc trở về T&acirc;y Ban Nha, t&ugrave;y &yacute; muốn. Tất cả phụ thuộc v&agrave;o t&igrave;nh trạng gia đ&igrave;nh Silva&rdquo;, Guardiola cho hay.</p>', 'chú thích Man City mất Gabriel Jesus từ bốn đến sáu tuần', 'metakeyword Man City mất Gabriel Jesus từ bốn đến sáu tuần', 'metadescription Man City mất Gabriel Jesus từ bốn đến sáu tuần', 2, 13, 1, '2018-01-03 07:49:39', '2018-01-18 19:00:24'),
-(14, 'Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'man-city-dan-dau-ve-so-cau-thu-kien-tao-tai-ngoai-hang-anh', 'conmochieu-15.png', 'Đội chủ sân Etihad góp ba cầu thủ vào danh sách 10 ngôi sao kiến tạo giỏi nhất trong giai đoạn đầu Ngoại hạng Anh 2017-2018.', '<p style=\"text-align:justify\">Ba cầu thủ của Man City gồm Kevin De Bruyne, David Silva v&agrave; Leroy Sane. Đ&acirc;y cũng l&agrave; ba cầu thủ chiếm ba vị tr&iacute; dẫn đầu trong danh s&aacute;ch.</p>\n\n<p style=\"text-align:justify\">De Bruyne đứng ở vị tr&iacute; số một nhờ ch&iacute;n đường chuyền dọn cỗ th&agrave;nh c&ocirc;ng cho đồng đội. Ở hai suất tiếp theo, Silva v&agrave; Sane đều c&oacute; t&aacute;m lần dọn cỗ th&agrave;nh c&ocirc;ng.<br />\nMan Utd chỉ c&oacute; một cầu thủ g&oacute;p mặt trong Top 10 l&agrave; Paul Pogba. Tiền vệ người Ph&aacute;p c&oacute; bảy lần dọn cỗ th&agrave;nh c&ocirc;ng, bằng th&agrave;nh t&iacute;ch với Riyad Mahrez.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n cạnh Mahrez, Leicester City c&ograve;n c&oacute; một cầu thủ kh&aacute;c trong Top 10 l&agrave; Marc Albrighton. Việc c&oacute; hai ch&acirc;n chuyền hiệu quả phần n&agrave;o giải th&iacute;ch tại sao Leicester City thi đấy tốt thời gian gần đ&acirc;y.</p>\n\n<p style=\"text-align:justify\">Giống Man Utd, bốn đội gồm Liverpool, Chelsea, Tottenham v&agrave; Arsenal đều chỉ c&oacute; một cầu thủ lọt v&agrave;o Top 10. Đ&acirc;y cũng l&agrave; l&yacute; do dẫn đến việc năm ứng cử vi&ecirc;n n&agrave;y đều thua Man City về số b&agrave;n thắng.</p>\n\n<p style=\"text-align:justify\"><strong>10 cầu thủ kiến tạo giỏi nhất nửa đầu m&ugrave;a Ngoại hạng Anh:</strong></p>\n\n<p style=\"text-align:justify\">1. De Bruyne, đội Man City, 9 đường chuyền dọn cỗ th&agrave;nh c&ocirc;ng<br />\n2. Silva v&agrave; Sane, Man City, 8<br />\n3. Pogba (Man Utd) v&agrave; Mahrez (Leicester City), 7<br />\n4. Albrighton (Leicester City), Alli (Tottenham), Coutinho (Liverpool), Ramsey (Arsenal) v&agrave; Azpilicueta (Chelsea), 6</p>', 'chú thích Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'metakeyword Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'metadescription Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 12, 14, 1, '2018-01-03 07:52:45', '2018-01-18 19:00:32');
+(14, 'Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'man-city-dan-dau-ve-so-cau-thu-kien-tao-tai-ngoai-hang-anh', 'conmochieu-15.png', 'Đội chủ sân Etihad góp ba cầu thủ vào danh sách 10 ngôi sao kiến tạo giỏi nhất trong giai đoạn đầu Ngoại hạng Anh 2017-2018.', '<p style=\"text-align:justify\">Ba cầu thủ của Man City gồm Kevin De Bruyne, David Silva v&agrave; Leroy Sane. Đ&acirc;y cũng l&agrave; ba cầu thủ chiếm ba vị tr&iacute; dẫn đầu trong danh s&aacute;ch.</p>\n\n<p style=\"text-align:justify\">De Bruyne đứng ở vị tr&iacute; số một nhờ ch&iacute;n đường chuyền dọn cỗ th&agrave;nh c&ocirc;ng cho đồng đội. Ở hai suất tiếp theo, Silva v&agrave; Sane đều c&oacute; t&aacute;m lần dọn cỗ th&agrave;nh c&ocirc;ng.<br />\nMan Utd chỉ c&oacute; một cầu thủ g&oacute;p mặt trong Top 10 l&agrave; Paul Pogba. Tiền vệ người Ph&aacute;p c&oacute; bảy lần dọn cỗ th&agrave;nh c&ocirc;ng, bằng th&agrave;nh t&iacute;ch với Riyad Mahrez.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n cạnh Mahrez, Leicester City c&ograve;n c&oacute; một cầu thủ kh&aacute;c trong Top 10 l&agrave; Marc Albrighton. Việc c&oacute; hai ch&acirc;n chuyền hiệu quả phần n&agrave;o giải th&iacute;ch tại sao Leicester City thi đấy tốt thời gian gần đ&acirc;y.</p>\n\n<p style=\"text-align:justify\">Giống Man Utd, bốn đội gồm Liverpool, Chelsea, Tottenham v&agrave; Arsenal đều chỉ c&oacute; một cầu thủ lọt v&agrave;o Top 10. Đ&acirc;y cũng l&agrave; l&yacute; do dẫn đến việc năm ứng cử vi&ecirc;n n&agrave;y đều thua Man City về số b&agrave;n thắng.</p>\n\n<p style=\"text-align:justify\"><strong>10 cầu thủ kiến tạo giỏi nhất nửa đầu m&ugrave;a Ngoại hạng Anh:</strong></p>\n\n<p style=\"text-align:justify\">1. De Bruyne, đội Man City, 9 đường chuyền dọn cỗ th&agrave;nh c&ocirc;ng<br />\n2. Silva v&agrave; Sane, Man City, 8<br />\n3. Pogba (Man Utd) v&agrave; Mahrez (Leicester City), 7<br />\n4. Albrighton (Leicester City), Alli (Tottenham), Coutinho (Liverpool), Ramsey (Arsenal) v&agrave; Azpilicueta (Chelsea), 6</p>', 'chú thích Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'metakeyword Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 'metadescription Man City dẫn đầu về số cầu thủ kiến tạo tại Ngoại hạng Anh', 14, 14, 1, '2018-01-03 07:52:45', '2018-02-22 07:50:27');
 
 -- --------------------------------------------------------
 
@@ -139,7 +144,7 @@ DROP TABLE IF EXISTS `article_category`;
 CREATE TABLE `article_category` (
   `id` bigint(20) NOT NULL,
   `article_id` int(11) DEFAULT NULL,
-  `category_article_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -148,7 +153,7 @@ CREATE TABLE `article_category` (
 -- Đang đổ dữ liệu cho bảng `article_category`
 --
 
-INSERT INTO `article_category` (`id`, `article_id`, `category_article_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `article_category` (`id`, `article_id`, `category_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 6, '2017-12-18 02:25:21', '2017-12-18 02:25:21'),
 (3, 3, 6, '2017-12-18 02:25:56', '2017-12-18 02:25:56'),
 (4, 4, 6, '2017-12-18 02:27:42', '2017-12-18 02:27:42'),
@@ -357,6 +362,7 @@ DROP TABLE IF EXISTS `group_member`;
 CREATE TABLE `group_member` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -366,9 +372,10 @@ CREATE TABLE `group_member` (
 -- Đang đổ dữ liệu cho bảng `group_member`
 --
 
-INSERT INTO `group_member` (`id`, `fullname`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 1, '2016-12-17 05:05:18', '2018-01-09 10:42:35'),
-(2, 'Bài viết', 2, '2016-12-17 05:05:41', '2018-01-09 10:42:43');
+INSERT INTO `group_member` (`id`, `fullname`, `alias`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', NULL, 1, '2016-12-17 05:05:18', '2018-01-09 10:42:35'),
+(2, 'Bài viết', NULL, 2, '2016-12-17 05:05:41', '2018-01-09 10:42:43'),
+(3, 'Thành viên thường', 'thanh-vien-thuong', 3, '2018-02-22 08:04:14', '2018-02-22 08:04:14');
 
 -- --------------------------------------------------------
 
@@ -584,6 +591,7 @@ CREATE TABLE `menu` (
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `menu_type_id` int(11) DEFAULT NULL,
+  `menu_class` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
@@ -595,43 +603,43 @@ CREATE TABLE `menu` (
 -- Đang đổ dữ liệu cho bảng `menu`
 --
 
-INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `level`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Trang chủ', 'trang-chu', 0, 1, 0, 1, 1, '2017-12-15 03:38:30', '2018-01-10 03:36:35'),
-(2, 'Giới thiệu', 'gioi-thieu', 0, 1, 0, 2, 1, '2017-12-15 03:38:47', '2018-01-03 10:35:33'),
-(3, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 1, 0, 3, 1, '2017-12-15 03:39:06', '2017-12-15 03:39:06'),
-(4, 'Dự án', 'du-an', 0, 1, 0, 4, 1, '2017-12-15 03:39:22', '2017-12-15 03:39:22'),
-(5, 'Tin tức sự kiện', 'tin-tuc-su-kien', 0, 1, 0, 5, 1, '2017-12-15 03:39:38', '2018-01-02 10:07:26'),
-(6, 'Tiếp lửa', 'tiep-lua', 0, 1, 0, 6, 1, '2017-12-15 03:39:53', '2017-12-15 03:39:53'),
-(7, 'Danh bạ', 'danh-ba', 0, 1, 0, 7, 1, '2017-12-15 03:40:04', '2017-12-15 03:40:04'),
-(8, 'Thư viện', 'thu-vien', 0, 1, 0, 8, 1, '2017-12-15 03:40:21', '2018-01-05 01:28:12'),
-(9, 'Liên hệ', 'lien-he', 0, 1, 0, 9, 1, '2017-12-15 03:40:34', '2017-12-15 03:40:34'),
-(10, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 2, 0, 1, 1, '2017-12-28 05:03:15', '2017-12-28 05:03:15'),
-(11, 'Dự án', 'dich-vu-hoat-dong', 0, 2, 0, 2, 1, '2017-12-28 05:03:29', '2017-12-28 05:03:29'),
-(12, 'Tin tức sự kiện', 'dich-vu-hoat-dong', 0, 2, 0, 3, 1, '2017-12-28 05:03:45', '2017-12-28 05:03:45'),
-(13, 'Tiếp lửa', 'dich-vu-hoat-dong', 0, 2, 0, 4, 1, '2017-12-28 05:03:57', '2017-12-28 05:03:57'),
-(14, 'Danh bạ', 'dich-vu-hoat-dong', 0, 2, 0, 5, 1, '2017-12-28 05:04:12', '2017-12-28 05:04:12'),
-(15, 'Thư viện', 'dich-vu-hoat-dong', 0, 2, 0, 6, 1, '2017-12-28 05:04:28', '2017-12-28 05:04:28'),
-(16, 'Tin nội bộ', 'tin-noi-bo', 5, 1, 1, 1, 1, '2018-01-02 10:08:14', '2018-01-02 10:08:14'),
-(17, 'Tin cộng đồng', 'tin-cong-dong', 5, 1, 1, 2, 1, '2018-01-02 10:08:28', '2018-01-02 10:08:28'),
-(18, 'Dịch vụ', 'dich-vu', 3, 1, 1, 1, 1, '2018-01-02 10:08:51', '2018-01-02 10:08:51'),
-(19, 'Hoạt động', 'hoat-dong', 3, 1, 1, 2, 1, '2018-01-02 10:09:03', '2018-01-02 10:09:03'),
-(20, 'Tin nội bộ', 'tin-noi-bo', 0, 3, 0, 1, 1, '2018-01-03 04:28:30', '2018-01-03 04:28:30'),
-(21, 'Tin cộng đồng', 'tin-cong-dong', 0, 3, 0, 2, 1, '2018-01-03 04:28:42', '2018-01-03 04:28:42'),
-(22, 'Dịch vụ', 'dich-vu', 0, 4, 0, 1, 1, '2018-01-03 08:03:39', '2018-01-03 08:03:39'),
-(23, 'Hoạt động', 'hoat-dong', 0, 4, 0, 2, 1, '2018-01-03 08:03:48', '2018-01-03 08:03:48'),
-(24, 'Hình ảnh', 'hinh-anh', 8, 1, 1, 1, 1, '2018-01-09 03:31:00', '2018-01-09 03:31:00'),
-(25, 'Video', 'video', 8, 1, 1, 2, 1, '2018-01-09 03:31:12', '2018-01-09 11:08:24'),
-(26, 'Trang chủ', 'trang-chu', 0, 5, 0, 1, 1, '2018-01-09 19:32:06', '2018-01-09 19:32:06'),
-(27, 'Giới thiệu', 'gioi-thieu', 0, 5, 0, 2, 1, '2018-01-09 19:32:20', '2018-01-09 19:32:20'),
-(28, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 5, 0, 3, 1, '2018-01-09 19:32:58', '2018-01-09 19:33:02'),
-(29, 'Dự án', 'du-an', 0, 5, 0, 4, 1, '2018-01-09 19:33:36', '2018-01-09 19:33:40'),
-(30, 'Tin tức sự kiện', 'tin-tuc-su-kien', 0, 5, 0, 5, 1, '2018-01-09 19:34:04', '2018-01-09 19:34:19'),
-(31, 'Tiếp lửa', 'tiep-lua', 0, 5, 0, 6, 1, '2018-01-09 19:34:46', '2018-01-09 19:34:46'),
-(32, 'Danh bạ', 'danh-ba', 0, 5, 0, 7, 1, '2018-01-09 19:35:01', '2018-01-09 19:35:01'),
-(33, 'Thư viện', 'thu-vien', 0, 5, 0, 8, 1, '2018-01-09 19:35:30', '2018-01-09 19:35:30'),
-(34, 'Hình ảnh', 'hinh-anh', 33, 5, 1, 1, 1, '2018-01-09 19:35:52', '2018-01-09 19:35:52'),
-(35, 'Video', 'video', 33, 5, 1, 2, 1, '2018-01-09 19:36:42', '2018-01-09 19:36:42'),
-(36, 'Liên hệ', 'lien-he', 0, 5, 0, 9, 1, '2018-01-09 19:37:00', '2018-01-09 19:37:06');
+INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `menu_class`, `level`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Trang chủ', 'trang-chu', 0, 1, NULL, 0, 1, 1, '2017-12-15 03:38:30', '2018-01-10 03:36:35'),
+(2, 'Giới thiệu', 'gioi-thieu', 0, 1, NULL, 0, 2, 1, '2017-12-15 03:38:47', '2018-01-03 10:35:33'),
+(3, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 1, NULL, 0, 3, 1, '2017-12-15 03:39:06', '2017-12-15 03:39:06'),
+(4, 'Dự án', 'du-an', 0, 1, NULL, 0, 4, 1, '2017-12-15 03:39:22', '2017-12-15 03:39:22'),
+(5, 'Tin tức sự kiện', 'tin-tuc-su-kien', 0, 1, NULL, 0, 5, 1, '2017-12-15 03:39:38', '2018-01-02 10:07:26'),
+(6, 'Tiếp lửa', 'tiep-lua', 0, 1, NULL, 0, 6, 1, '2017-12-15 03:39:53', '2017-12-15 03:39:53'),
+(7, 'Danh bạ', 'danh-ba', 0, 1, NULL, 0, 7, 1, '2017-12-15 03:40:04', '2017-12-15 03:40:04'),
+(8, 'Thư viện', 'thu-vien', 0, 1, NULL, 0, 8, 1, '2017-12-15 03:40:21', '2018-01-05 01:28:12'),
+(9, 'Liên hệ', 'lien-he', 0, 1, NULL, 0, 9, 1, '2017-12-15 03:40:34', '2017-12-15 03:40:34'),
+(10, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 1, 1, '2017-12-28 05:03:15', '2017-12-28 05:03:15'),
+(11, 'Dự án', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 2, 1, '2017-12-28 05:03:29', '2017-12-28 05:03:29'),
+(12, 'Tin tức sự kiện', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 3, 1, '2017-12-28 05:03:45', '2017-12-28 05:03:45'),
+(13, 'Tiếp lửa', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 4, 1, '2017-12-28 05:03:57', '2017-12-28 05:03:57'),
+(14, 'Danh bạ', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 5, 1, '2017-12-28 05:04:12', '2017-12-28 05:04:12'),
+(15, 'Thư viện', 'dich-vu-hoat-dong', 0, 2, NULL, 0, 6, 1, '2017-12-28 05:04:28', '2017-12-28 05:04:28'),
+(16, 'Tin nội bộ', 'tin-noi-bo', 5, 1, NULL, 1, 1, 1, '2018-01-02 10:08:14', '2018-01-02 10:08:14'),
+(17, 'Tin cộng đồng', 'tin-cong-dong', 5, 1, NULL, 1, 2, 1, '2018-01-02 10:08:28', '2018-01-02 10:08:28'),
+(18, 'Dịch vụ', 'dich-vu', 3, 1, NULL, 1, 1, 1, '2018-01-02 10:08:51', '2018-01-02 10:08:51'),
+(19, 'Hoạt động', 'hoat-dong', 3, 1, NULL, 1, 2, 1, '2018-01-02 10:09:03', '2018-01-02 10:09:03'),
+(20, 'Tin nội bộ', 'tin-noi-bo', 0, 3, NULL, 0, 1, 1, '2018-01-03 04:28:30', '2018-01-03 04:28:30'),
+(21, 'Tin cộng đồng', 'tin-cong-dong', 0, 3, NULL, 0, 2, 1, '2018-01-03 04:28:42', '2018-01-03 04:28:42'),
+(22, 'Dịch vụ', 'dich-vu', 0, 4, NULL, 0, 1, 1, '2018-01-03 08:03:39', '2018-01-03 08:03:39'),
+(23, 'Hoạt động', 'hoat-dong', 0, 4, NULL, 0, 2, 1, '2018-01-03 08:03:48', '2018-01-03 08:03:48'),
+(24, 'Hình ảnh', 'hinh-anh', 8, 1, NULL, 1, 1, 1, '2018-01-09 03:31:00', '2018-01-09 03:31:00'),
+(25, 'Video', 'video', 8, 1, NULL, 1, 2, 1, '2018-01-09 03:31:12', '2018-01-09 11:08:24'),
+(26, 'Trang chủ', 'trang-chu', 0, 5, NULL, 0, 1, 1, '2018-01-09 19:32:06', '2018-01-09 19:32:06'),
+(27, 'Giới thiệu', 'gioi-thieu', 0, 5, NULL, 0, 2, 1, '2018-01-09 19:32:20', '2018-01-09 19:32:20'),
+(28, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 0, 5, NULL, 0, 3, 1, '2018-01-09 19:32:58', '2018-01-09 19:33:02'),
+(29, 'Dự án', 'du-an', 0, 5, NULL, 0, 4, 1, '2018-01-09 19:33:36', '2018-01-09 19:33:40'),
+(30, 'Tin tức sự kiện', 'tin-tuc-su-kien', 0, 5, NULL, 0, 5, 1, '2018-01-09 19:34:04', '2018-01-09 19:34:19'),
+(31, 'Tiếp lửa', 'tiep-lua', 0, 5, NULL, 0, 6, 1, '2018-01-09 19:34:46', '2018-01-09 19:34:46'),
+(32, 'Danh bạ', 'danh-ba', 0, 5, NULL, 0, 7, 1, '2018-01-09 19:35:01', '2018-01-09 19:35:01'),
+(33, 'Thư viện', 'thu-vien', 0, 5, NULL, 0, 8, 1, '2018-01-09 19:35:30', '2018-01-09 19:35:30'),
+(34, 'Hình ảnh', 'hinh-anh', 33, 5, NULL, 1, 1, 1, '2018-01-09 19:35:52', '2018-01-09 19:35:52'),
+(35, 'Video', 'video', 33, 5, NULL, 1, 2, 1, '2018-01-09 19:36:42', '2018-01-09 19:36:42'),
+(36, 'Liên hệ', 'lien-he', 0, 5, NULL, 0, 9, 1, '2018-01-09 19:37:00', '2018-01-09 19:37:06');
 
 -- --------------------------------------------------------
 
@@ -775,11 +783,11 @@ CREATE TABLE `page` (
 INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Trung tâm tiếp lửa', 'trung-tam-tiep-lua', 'trung-tam-widget', NULL, '', '<p><strong>Địa chỉ :</strong> Th&ocirc;n 7 x&atilde; An Ph&uacute; - Pleiku - Gia Lai</p>\n\n<p><strong>Đơn vị trực thuộc :</strong> C&ocirc;ng ty cổ phần TaGroup</p>\n\n<p><strong>Chịu tr&aacute;ch nhiệm nội dung :</strong> L&ecirc; Th&uacute;c Vinh</p>', '', '', '', NULL, 8, 1, '2017-12-28 04:10:41', '2018-01-14 13:00:43'),
 (2, 'Về chúng tôi', 've-chung-toi', 'about-us-widget', NULL, '', '<p>Nghị lực sống l&agrave; một doanh nghiệp x&atilde; hội hoạt động trong lĩnh vực hỗ trợ ho&agrave; nhập to&agrave;n diện cho người khuyết tật ( NKT ) th&ocirc;ng qua đ&agrave;o tạo , tư vấn định hướng gi&uacute;p NKT t&igrave;m được việc l&agrave;m ph&ugrave; hợp , hỗ trợ t&igrave;m nguồn ti&ecirc;u thụ sản phẩm của NKT . Từ đ&oacute; , gi&uacute;p NKT tự tin v&agrave; dễ d&agrave;ng ho&agrave; nhập với cộng đồng , giảm bớt g&aacute;nh nặng cho gia đ&igrave;nh v&agrave; x&atilde; hội .</p>', '', '', '', NULL, 3, 1, '2017-12-28 04:54:45', '2018-01-14 13:00:54'),
-(4, 'Giới thiệu', 'gioi-thieu', NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nWhy do we use it?\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '', 'metakeyword giới thiệu', 'metadescription giới thiệu', 205, 7, 1, '2018-01-03 10:35:10', '2018-01-20 19:04:50'),
+(4, 'Giới thiệu', 'gioi-thieu', NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nWhy do we use it?\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '', 'metakeyword giới thiệu', 'metadescription giới thiệu', 208, 7, 1, '2018-01-03 10:35:10', '2018-02-22 07:50:43'),
 (5, 'Thông tin liên hệ', 'thong-tin-lien-he', 'thong-tin-lien-he-widget', NULL, '', '<p style=\"text-align:justify\"><span style=\"font-size:28px\"><span style=\"color:#ff8c00\"><strong>C&ocirc;ng Ty TNHH VIDOCO</strong></span></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Địa chỉ: 35/6 B&ugrave;i Quang L&agrave; - P.12 - Q. G&ograve; Vấp - HCM</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Website: www.vienthammyyurihanh.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>E-mail: tieplua.net@gmail.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Tel: <span style=\"color:#ff0000\">096.302.7720</span></strong></span></p>', '', '', '', NULL, 1, 1, '2018-01-03 18:36:03', '2018-01-14 16:15:30'),
 (6, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 'dich-vu-hoat-dong-widget', 'conmochieu-1.png', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metadescription dịch vụ hoạt động', 4, 2, 1, '2018-01-04 02:38:17', '2018-01-18 19:00:56'),
 (7, 'Dự án', 'du-an', 'du-an-widget', 'conmochieu-2.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 2, 4, 1, '2018-01-04 02:39:28', '2018-01-18 19:01:04'),
-(8, 'Tham vấn đồng cảnh', 'tham-van-dong-canh', 'tham-van-widget', 'conmochieu-4.png', 'Vivamus accumsan neque id auctor ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porttitor suscipit odio, ac viverra erat. Nullam ac felis nec erat placerat tincidunt. Phasellus dui libero, sollicitudin vitae vestibulum a, sagittis a risus. Nunc volutpat dolor nec erat congue, eu consequat erat consequat. Quisque nec placerat ligula. Donec convallis elit urna, nec dignissim lorem fermentum in. Ut vestibulum urna diam, ultrices porttitor massa blandit et. Ut a iaculis arcu. Sed accumsan in ipsum in suscipit. Quisque faucibus sed nisi quis accumsan. Vivamus sed nulla vel ante euismod faucibus nec in elit. Vestibulum quis est mauris.', '', 'chú thích tham vấn đồng cảnh', 'metakeyword tham vấn đồng cảnh', 'metadescription thấm vấn đồng cảnh', 3, 6, 1, '2018-01-04 02:40:35', '2018-01-18 19:01:11'),
+(8, 'Tham vấn đồng cảnh', 'tham-van-dong-canh', 'tham-van-widget', 'conmochieu-4.png', 'Vivamus accumsan neque id auctor ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porttitor suscipit odio, ac viverra erat. Nullam ac felis nec erat placerat tincidunt. Phasellus dui libero, sollicitudin vitae vestibulum a, sagittis a risus. Nunc volutpat dolor nec erat congue, eu consequat erat consequat. Quisque nec placerat ligula. Donec convallis elit urna, nec dignissim lorem fermentum in. Ut vestibulum urna diam, ultrices porttitor massa blandit et. Ut a iaculis arcu. Sed accumsan in ipsum in suscipit. Quisque faucibus sed nisi quis accumsan. Vivamus sed nulla vel ante euismod faucibus nec in elit. Vestibulum quis est mauris.', '', 'chú thích tham vấn đồng cảnh', 'metakeyword tham vấn đồng cảnh', 'metadescription thấm vấn đồng cảnh', 4, 6, 1, '2018-01-04 02:40:35', '2018-01-21 10:38:52'),
 (9, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, '<div class=\"fb-page\" data-href=\"https://www.facebook.com/gonguyenlieumy/\" data-tabs=\"timeline\" data-width=\"250\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/gonguyenlieumy/\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/gonguyenlieumy/\">Công ty tnhh Greenecolife</a></blockquote></div>', '', '', '', '', NULL, 9, 1, '2018-01-18 15:55:58', '2018-01-18 15:56:06');
 
 -- --------------------------------------------------------
@@ -1018,7 +1026,17 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (345, 1, 'r55OQqD0Q9MytGbBFx86J93jiHbxuOZB', '2018-01-18 08:55:33', '2018-01-18 08:55:33'),
 (346, 1, '5DbaavVIEZo8zmsi90dIC2GJarHp6Cjw', '2018-01-18 08:59:02', '2018-01-18 08:59:02'),
 (347, 1, 'jLUQxFVvRf1dPrIqkbIOCdvrpGXejfKw', '2018-01-18 21:44:22', '2018-01-18 21:44:22'),
-(348, 1, 'XiAxHUrdrgfLtV5mTyLJrahAjOJnPoie', '2018-01-18 23:00:44', '2018-01-18 23:00:44');
+(348, 1, 'XiAxHUrdrgfLtV5mTyLJrahAjOJnPoie', '2018-01-18 23:00:44', '2018-01-18 23:00:44'),
+(349, 1, 'YGZKZA6av6Bg3zTd3QvrD4th2Xvcj1rB', '2018-01-31 10:52:46', '2018-01-31 10:52:46'),
+(350, 1, 'v95lgpEPmk1ty6oVpoXo6yQwObov9pqi', '2018-02-22 00:44:19', '2018-02-22 00:44:19'),
+(351, 1, 'FNWPwTCC3vzWKzgETu8FFLp2u0IC34F7', '2018-02-22 00:44:19', '2018-02-22 00:44:19'),
+(352, 1, 'PiZbnZMVev5ePGsjdBQ7vb7lwVzfNHcC', '2018-02-22 00:46:02', '2018-02-22 00:46:02'),
+(353, 1, 'znMG41fwjsJoAjijdfaHGOK9aSTR2ov1', '2018-02-22 00:46:02', '2018-02-22 00:46:02'),
+(354, 1, 'mazpAK1GQagyQuChDgfElWXBnur55vg9', '2018-02-22 00:51:07', '2018-02-22 00:51:07'),
+(355, 1, 'ZcuKBCUB1TgqFg079FOojePkonQP5BBc', '2018-02-22 00:51:07', '2018-02-22 00:51:07'),
+(356, 2, 'VVp6H6SC86xFm1fEQLZgWRKcnB78pT3o', '2018-02-22 01:34:04', '2018-02-22 01:34:04'),
+(358, 1, '1VGDvrl4etW2Ugelb2dSiBnyjtwnfcE8', '2018-02-22 01:54:47', '2018-02-22 01:54:47'),
+(370, 6, '9qQF9T55KfRVIAFOcUKwO8aqcKlLT2XY', '2018-02-22 02:53:57', '2018-02-22 02:53:57');
 
 -- --------------------------------------------------------
 
@@ -1162,6 +1180,7 @@ CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `code` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `meta_keyword` text COLLATE utf8_unicode_ci,
   `meta_description` text COLLATE utf8_unicode_ci,
   `alias` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -1182,34 +1201,9 @@ CREATE TABLE `product` (
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `child_image`, `price`, `sale_price`, `intro`, `detail`, `count_view`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, '778831', 'Sản phẩm 1', '', '', 'san-pham-1', NULL, 1, NULL, '500000.00', '200000.00', '', '', NULL, 1, '2018-01-02 05:01:01', '2018-01-07 19:00:34'),
-(2, '123321', 'Sản phẩm 2', '', '', 'san-pham-2', NULL, 1, NULL, '0.00', '0.00', '', '', NULL, 2, '2018-01-02 05:01:46', '2018-01-08 07:18:44');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `product_category`
---
-
-DROP TABLE IF EXISTS `product_category`;
-CREATE TABLE `product_category` (
-  `id` bigint(20) NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `category_product_id` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `product_category`
---
-
-INSERT INTO `product_category` (`id`, `product_id`, `category_product_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2018-01-02 05:01:01', '2018-01-02 05:01:01'),
-(2, 1, 3, '2018-01-02 05:01:01', '2018-01-02 05:01:01'),
-(3, 2, 2, '2018-01-02 05:01:46', '2018-01-02 05:01:46'),
-(4, 2, 3, '2018-01-02 05:01:46', '2018-01-02 05:01:46');
+INSERT INTO `product` (`id`, `code`, `fullname`, `category_id`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `child_image`, `price`, `sale_price`, `intro`, `detail`, `count_view`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, '778831', 'Sản phẩm 1', NULL, '', '', 'san-pham-1', NULL, 1, NULL, '500000.00', '200000.00', '', '', NULL, 1, '2018-01-02 05:01:01', '2018-01-07 19:00:34'),
+(2, '123321', 'Sản phẩm 2', NULL, '', '', 'san-pham-2', NULL, 1, NULL, '0.00', '0.00', '', '', NULL, 2, '2018-01-02 05:01:46', '2018-01-08 07:18:44');
 
 -- --------------------------------------------------------
 
@@ -1242,7 +1236,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `image`, `count_view`, `total_cost`, `intro`, `overview`, `plan`, `sponsor`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(10, 'Jesse Lingard với cú bật nhảy ở Man Utd', 'jesse-lingard-voi-cu-bat-nhay-o-man-utd', 'metakeyword Jesse Lingard với cú bật nhảy ở Man Utd', 'metadescription Jesse Lingard với cú bật nhảy ở Man Utd', 'conmochieu-6.png', 321, '<p>kinh ph&iacute;&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 'Lingard một lần nữa trở thành tâm điểm trong chiến thắng 2-0 mới đây trước Everton, tiếp đà vọt đi dưới sự dạy dỗ của HLV Jose Mourinho.', '<p>tổng quan&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>kế hoạch&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>t&agrave;i trợ&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 1, 1, '2018-01-04 18:34:30', '2018-01-18 19:01:21');
+(10, 'Jesse Lingard với cú bật nhảy ở Man Utd', 'jesse-lingard-voi-cu-bat-nhay-o-man-utd', 'metakeyword Jesse Lingard với cú bật nhảy ở Man Utd', 'metadescription Jesse Lingard với cú bật nhảy ở Man Utd', 'conmochieu-6.png', 343, '<p>kinh ph&iacute;&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 'Lingard một lần nữa trở thành tâm điểm trong chiến thắng 2-0 mới đây trước Everton, tiếp đà vọt đi dưới sự dạy dỗ của HLV Jose Mourinho.', '<p>tổng quan&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>kế hoạch&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>t&agrave;i trợ&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 1, 1, '2018-01-04 18:34:30', '2018-02-22 09:54:20');
 
 -- --------------------------------------------------------
 
@@ -1301,7 +1295,11 @@ CREATE TABLE `project_member` (
 --
 
 INSERT INTO `project_member` (`id`, `project_id`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, 10, 4, '2018-01-07 14:09:20', '2018-01-07 14:09:20');
+(1, 10, 4, '2018-01-07 14:09:20', '2018-01-07 14:09:20'),
+(2, 10, 7, '2018-02-22 09:29:09', '2018-02-22 09:29:09'),
+(3, 10, 3, '2018-02-22 09:30:55', '2018-02-22 09:30:55'),
+(6, 10, 5, '2018-02-22 09:38:13', '2018-02-22 09:38:13'),
+(8, 10, 6, '2018-02-22 09:53:57', '2018-02-22 09:53:57');
 
 -- --------------------------------------------------------
 
@@ -1860,7 +1858,10 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (424, 1, 'user', NULL, '2018-01-18 12:26:53', '2018-01-18 12:26:53'),
 (425, NULL, 'global', NULL, '2018-01-18 21:44:18', '2018-01-18 21:44:18'),
 (426, NULL, 'ip', '127.0.0.1', '2018-01-18 21:44:18', '2018-01-18 21:44:18'),
-(427, 1, 'user', NULL, '2018-01-18 21:44:18', '2018-01-18 21:44:18');
+(427, 1, 'user', NULL, '2018-01-18 21:44:18', '2018-01-18 21:44:18'),
+(428, NULL, 'global', NULL, '2018-02-22 00:44:14', '2018-02-22 00:44:14'),
+(429, NULL, 'ip', '127.0.0.1', '2018-02-22 00:44:14', '2018-02-22 00:44:14'),
+(430, 1, 'user', NULL, '2018-02-22 00:44:14', '2018-02-22 00:44:14');
 
 -- --------------------------------------------------------
 
@@ -1879,6 +1880,8 @@ CREATE TABLE `users` (
   `last_login` timestamp NULL DEFAULT NULL,
   `fullname` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1889,8 +1892,46 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-01-18 23:00:44', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 5, 1, '2017-11-12 07:23:56', '2018-01-18 23:00:44');
+INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `address`, `phone`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-02-22 01:54:47', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 5, 1, '2017-11-12 07:23:56', '2018-02-22 01:54:47'),
+(3, 'helenangochong', 'honghtn@dienkim.com', 3, '$2y$10$cLZi575jplnHn9UGNjH0SO3VWdYj4B9rEFtmXxQzjvTrJeu8ZBNzi', NULL, '2018-02-22 02:30:55', 'Hồ Thị Ngọc Hồng', NULL, NULL, NULL, NULL, NULL, '2018-02-22 01:51:24', '2018-02-22 02:30:55'),
+(4, 'linhdm', 'linhdm@dienkim.com', 3, '$2y$10$B948upn3X5XbsZfxa6BXIOYyI/gXNIjX3QKuIXDfFE/9gcsVfQ65C', NULL, '2018-02-22 02:37:26', 'Đỗ Mỹ Linh', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:03:03', '2018-02-22 02:37:26'),
+(5, 'phuongdh', 'phuongdh@dienkim.com', 3, '$2y$10$yuiN5EfBE8DPfhdcLXlPRuaYYtCD0vAdONs/Gd6WluOOSOYZlDam6', NULL, '2018-02-22 02:52:51', 'Đặng Hùng Phương', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:05:06', '2018-02-22 02:52:51'),
+(6, 'tiennv', 'tiennv@dienkim.com', 3, '$2y$10$4rPDlkYtmg1HUGio3kZvwe8JA8wTqewJlSz3S9eldfoJikeIEURji', NULL, '2018-02-22 02:53:57', 'Nguyễn Văn Tiến', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:16:05', '2018-02-22 02:53:57'),
+(7, 'trieudh', 'trieudh@dienkim.com', 3, '$2y$10$FtIVg8wlD/2ag.sx.E/8Ae3cmq7/pQ.Y1meAHoeuoUR1RnH23igjO', NULL, '2018-02-22 02:26:37', 'Đào Hải Triều', NULL, '28 Bùi Quang Là', '0988127882', NULL, NULL, '2018-02-22 02:28:58', '2018-02-22 02:28:58');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_group_member`
+--
+
+DROP TABLE IF EXISTS `user_group_member`;
+CREATE TABLE `user_group_member` (
+  `id` bigint(20) NOT NULL,
+  `group_member_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_group_member`
+--
+
+INSERT INTO `user_group_member` (`id`, `group_member_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(4, 1, 1, '2018-01-26 04:05:58', '2018-01-26 04:05:58'),
+(9, 4, 6, '2018-01-26 08:57:35', '2018-01-26 08:57:35'),
+(10, 4, 7, '2018-01-28 16:36:54', '2018-01-28 16:36:54'),
+(25, 3, 8, '2018-01-29 02:40:24', '2018-01-29 02:40:24'),
+(27, 4, 10, '2018-02-04 15:06:20', '2018-02-04 15:06:20'),
+(28, 3, 9, '2018-02-04 16:48:12', '2018-02-04 16:48:12'),
+(29, 4, 11, '2018-02-07 10:33:37', '2018-02-07 10:33:37'),
+(31, 3, 3, '2018-02-22 08:51:24', '2018-02-22 08:51:24'),
+(32, 3, 4, '2018-02-22 09:03:03', '2018-02-22 09:03:03'),
+(33, 3, 5, '2018-02-22 09:05:06', '2018-02-22 09:05:06'),
+(34, 3, 6, '2018-02-22 09:16:05', '2018-02-22 09:16:05'),
+(35, 3, 7, '2018-02-22 09:26:37', '2018-02-22 09:26:37');
 
 -- --------------------------------------------------------
 
@@ -1902,7 +1943,7 @@ DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `category_video_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `video_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
@@ -1915,7 +1956,7 @@ CREATE TABLE `video` (
 -- Đang đổ dữ liệu cho bảng `video`
 --
 
-INSERT INTO `video` (`id`, `fullname`, `category_video_id`, `image`, `video_url`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `video` (`id`, `fullname`, `category_id`, `image`, `video_url`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (4, 'Đi tham quan núi Bà Đen 2', 1, 'thuvienhinh-1.png', 'F5gQLpScOsI', 2, 1, '2018-01-09 11:01:55', '2018-01-09 11:49:30'),
 (5, 'Đi tham quan núi Bà Đen', 1, 'thuvienhinh-2.png', 'BDBb1h-eLsY', 1, 1, '2018-01-09 11:04:06', '2018-01-09 11:49:08'),
 (6, 'Đi tham quan núi Bà Đen 3', 1, 'thuvienhinh-3.png', 'rQt2EuoN6oo', 3, 1, '2018-01-09 11:04:29', '2018-01-09 11:49:42'),
@@ -2081,12 +2122,6 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product_category`
---
-ALTER TABLE `product_category`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Chỉ mục cho bảng `project`
 --
 ALTER TABLE `project`
@@ -2151,6 +2186,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Chỉ mục cho bảng `user_group_member`
+--
+ALTER TABLE `user_group_member`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `video`
 --
 ALTER TABLE `video`
@@ -2164,7 +2205,7 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT cho bảng `activations`
 --
 ALTER TABLE `activations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `album`
@@ -2224,7 +2265,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT cho bảng `group_member`
 --
 ALTER TABLE `group_member`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `group_privilege`
@@ -2290,7 +2331,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2311,12 +2352,6 @@ ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `product_category`
---
-ALTER TABLE `product_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT cho bảng `project`
 --
 ALTER TABLE `project`
@@ -2332,7 +2367,7 @@ ALTER TABLE `project_article`
 -- AUTO_INCREMENT cho bảng `project_member`
 --
 ALTER TABLE `project_member`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `reminders`
@@ -2362,13 +2397,19 @@ ALTER TABLE `supporter`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `user_group_member`
+--
+ALTER TABLE `user_group_member`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `video`

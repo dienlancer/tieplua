@@ -1,5 +1,12 @@
+<?php 
+use App\GroupMemberModel;
+?>
 <form method="post" name="frm" class="margin-top-15 box-article">
     {{ csrf_field() }}
+    <?php 
+    $data_group_member=GroupMemberModel::whereRaw('alias = ?',['thanh-vien-thuong'])->select('id')->get()->toArray()[0];    
+    ?>
+    <input type="hidden" name="group_member_id" value="<?php echo $data_group_member['id']; ?>">
     <h2 class="tieu-de-bai-viet">
         Đăng ký
     </h2>
@@ -68,15 +75,7 @@
             <tr>
                 <td align="right">Phone</td>
                 <td><input type="text" name="phone" value="<?php echo @$data["phone"]; ?>" /></td>            
-            </tr>
-            <tr>
-                <td align="right">Mobile phone</td>
-                <td><input type="text" name="mobilephone" value="<?php echo @$data["mobilephone"]; ?>" /></td>            
-            </tr>
-            <tr>
-                <td align="right">Fax</td>
-                <td><input type="text" name="fax" value="<?php echo @$data["fax"]; ?>" /></td>            
-            </tr>   
+            </tr>             
             <tr>           
                 <td></td>
                 <td class="com_product31">

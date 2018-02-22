@@ -3,6 +3,7 @@ use App\ProjectModel;
 use App\ProjectArticleModel;
 use App\ProjectMemberModel;
 use Illuminate\Support\Facades\DB;
+
 if(count($item) > 0){		
 	$id=$item["id"];
 	$fullname = $item["fullname"];	
@@ -30,9 +31,13 @@ if(count($item) > 0){
 					<input type="hidden" name="project_id" value="<?php echo $id; ?>">
 					<input type="hidden" name="project_alias" value="<?php echo $alias; ?>">
 					<?php 
-					$ssUser= Session::get('vmuser');
-					$user=$ssUser['userInfo'];
-					$member_id=$user['id'];
+					$arrUser=array();              
+			        $user = Sentinel::forceCheck(); 
+			        $member_id=0;
+			        if(!empty($user)){                
+			          $arrUser = $user->toArray();    
+			          $member_id=$arrUser['id'];
+			        }					
 					$project_id=$id;
 					$projectMember=ProjectMemberModel::whereRaw('project_id = ? and member_id = ?',[(int)@$project_id,(int)@$member_id])->select('id','project_id','member_id')->get()->toArray();					
 					if(count($projectMember) > 0){

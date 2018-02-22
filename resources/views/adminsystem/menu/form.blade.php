@@ -20,6 +20,7 @@ if(strcmp(@$alias, 'no-alias')==0){
     $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"        value="'.@$alias.'">';
     
 }
+$inputMenuClass         =   '<input type="text" class="form-control" name="menu_class"      value="'.@$arrRowData['menu_class'].'">';
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -86,7 +87,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                             <span class="help-block"></span>
                         </div>
                     </div>    
-                </div>       
+                </div> 
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Menu class</b></label>
+                        <div class="col-md-10">
+                            <?php echo $inputMenuClass; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>  
+                </div>      
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
@@ -137,6 +147,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         
         var parent_id=$('select[name="parent_id"]').val();        
         var menu_type_id=$('select[name="menu_type_id"]').val();  
+        var menu_class=$('input[name="menu_class"]').val();
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
@@ -148,6 +159,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             
             "parent_id":parent_id,
             "menu_type_id":menu_type_id,
+            "menu_class":menu_class,
             "sort_order":sort_order,
             "status":status,
             "_token": token

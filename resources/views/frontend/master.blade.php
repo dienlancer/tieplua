@@ -44,10 +44,11 @@ if(isset($alias)){
 }
 
 $ssName="vmuser";
-$arrUser=array();            
-if(Session::has($ssName)){
-	$arrUser=Session::get($ssName)["userInfo"];      
-}         
+$arrUser =array();   
+$user = Sentinel::forceCheck(); 
+if(!empty($user)){                
+    $arrUser = $user->toArray();    
+}          
 $account_link=route("frontend.index.viewAccount");  
 $logout_link=route("frontend.index.getLgout"); 
 $security_link=route("frontend.index.viewSecurity"); 

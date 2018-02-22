@@ -23,11 +23,11 @@ use App\ProjectMemberModel;
 				$count_view=(int)@$value['count_view'];
 				$count_view_text=number_format($count_view,0,",",".");
 
-				$dataMember=DB::table('customer')
-				->join('project_member','customer.id','=','project_member.member_id')
-				->select('customer.id')
+				$dataMember=DB::table('users')
+				->join('project_member','users.id','=','project_member.member_id')
+				->select('users.id')
 				->where('project_member.project_id','=',(int)@$id)
-				->groupBy('customer.id')        		
+				->groupBy('users.id')        		
 				->get()->toArray();				
 				$number_of_member=(int)count(@$dataMember);
 				?>

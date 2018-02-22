@@ -16,7 +16,7 @@ $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"        value="'.@$arrRowData['fullname'].'">'; 
-$ddlGroupMember         =   cmsSelectboxCategory('group_member_id','group_member_id', 'form-control',@$arrGroupMember,@$arrRowData['group_member_id'],"");
+$ddlGroupMember         =   cmsSelectboxGroupMemberMultiple("group_member_id","group_member_id[]", 'form-control', @$arrGroupMember, @$arrUserGroupMember,"");
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
@@ -199,7 +199,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
             image = image.substr(image.lastIndexOf('\\') + 1);       
         }
         var image_hidden=$('input[name="image_hidden"]').val(); 
-        var group_member_id=$('select[name="group_member_id"]').val();        
+        var group_member_id=$('select[name="group_member_id[]"]').val();        
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
