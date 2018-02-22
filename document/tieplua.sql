@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 22, 2018 lúc 10:55 AM
+-- Thời gian đã tạo: Th2 22, 2018 lúc 02:29 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -1874,7 +1874,6 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `username` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `group_member_id` int(11) DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `permissions` text COLLATE utf8mb4_unicode_ci,
   `last_login` timestamp NULL DEFAULT NULL,
@@ -1892,13 +1891,13 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `address`, `phone`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-02-22 01:54:47', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 5, 1, '2017-11-12 07:23:56', '2018-02-22 01:54:47'),
-(3, 'helenangochong', 'honghtn@dienkim.com', 3, '$2y$10$cLZi575jplnHn9UGNjH0SO3VWdYj4B9rEFtmXxQzjvTrJeu8ZBNzi', NULL, '2018-02-22 02:30:55', 'Hồ Thị Ngọc Hồng', NULL, NULL, NULL, NULL, NULL, '2018-02-22 01:51:24', '2018-02-22 02:30:55'),
-(4, 'linhdm', 'linhdm@dienkim.com', 3, '$2y$10$B948upn3X5XbsZfxa6BXIOYyI/gXNIjX3QKuIXDfFE/9gcsVfQ65C', NULL, '2018-02-22 02:37:26', 'Đỗ Mỹ Linh', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:03:03', '2018-02-22 02:37:26'),
-(5, 'phuongdh', 'phuongdh@dienkim.com', 3, '$2y$10$yuiN5EfBE8DPfhdcLXlPRuaYYtCD0vAdONs/Gd6WluOOSOYZlDam6', NULL, '2018-02-22 02:52:51', 'Đặng Hùng Phương', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:05:06', '2018-02-22 02:52:51'),
-(6, 'tiennv', 'tiennv@dienkim.com', 3, '$2y$10$4rPDlkYtmg1HUGio3kZvwe8JA8wTqewJlSz3S9eldfoJikeIEURji', NULL, '2018-02-22 02:53:57', 'Nguyễn Văn Tiến', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:16:05', '2018-02-22 02:53:57'),
-(7, 'trieudh', 'trieudh@dienkim.com', 3, '$2y$10$FtIVg8wlD/2ag.sx.E/8Ae3cmq7/pQ.Y1meAHoeuoUR1RnH23igjO', NULL, '2018-02-22 02:26:37', 'Đào Hải Triều', NULL, '28 Bùi Quang Là', '0988127882', NULL, NULL, '2018-02-22 02:28:58', '2018-02-22 02:28:58');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `image`, `address`, `phone`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-02-22 01:54:47', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 5, 1, '2017-11-12 07:23:56', '2018-02-22 01:54:47'),
+(3, 'helenangochong', 'honghtn@dienkim.com', '$2y$10$cLZi575jplnHn9UGNjH0SO3VWdYj4B9rEFtmXxQzjvTrJeu8ZBNzi', NULL, '2018-02-22 02:30:55', 'Hồ Thị Ngọc Hồng', NULL, NULL, NULL, NULL, NULL, '2018-02-22 01:51:24', '2018-02-22 02:30:55'),
+(4, 'linhdm', 'linhdm@dienkim.com', '$2y$10$B948upn3X5XbsZfxa6BXIOYyI/gXNIjX3QKuIXDfFE/9gcsVfQ65C', NULL, '2018-02-22 02:37:26', 'Đỗ Mỹ Linh', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:03:03', '2018-02-22 02:37:26'),
+(5, 'phuongdh', 'phuongdh@dienkim.com', '$2y$10$yuiN5EfBE8DPfhdcLXlPRuaYYtCD0vAdONs/Gd6WluOOSOYZlDam6', NULL, '2018-02-22 02:52:51', 'Đặng Hùng Phương', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:05:06', '2018-02-22 02:52:51'),
+(6, 'tiennv', 'tiennv@dienkim.com', '$2y$10$4rPDlkYtmg1HUGio3kZvwe8JA8wTqewJlSz3S9eldfoJikeIEURji', NULL, '2018-02-22 02:53:57', 'Nguyễn Văn Tiến', NULL, NULL, NULL, NULL, NULL, '2018-02-22 02:16:05', '2018-02-22 02:53:57'),
+(7, 'trieudh', 'trieudh@dienkim.com', '$2y$10$FtIVg8wlD/2ag.sx.E/8Ae3cmq7/pQ.Y1meAHoeuoUR1RnH23igjO', NULL, '2018-02-22 02:26:37', 'Đào Hải Triều', NULL, '28 Bùi Quang Là', '0988127882', NULL, NULL, '2018-02-22 02:28:58', '2018-02-22 02:28:58');
 
 -- --------------------------------------------------------
 
