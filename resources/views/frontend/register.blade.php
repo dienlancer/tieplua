@@ -7,6 +7,8 @@ use App\GroupMemberModel;
     $data_group_member=GroupMemberModel::whereRaw('alias = ?',['thanh-vien-thuong'])->select('id')->get()->toArray()[0];    
     ?>
     <input type="hidden" name="group_member_id" value="<?php echo $data_group_member['id']; ?>">
+    <input type="hidden" name="sort_order" value="1">          
+    <input type="hidden" name="status" value="0">          
     <h2 class="tieu-de-bai-viet">
         Đăng ký
     </h2>

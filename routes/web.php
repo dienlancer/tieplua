@@ -393,4 +393,7 @@ Route::post("join-project",["as"=>"frontend.index.joinProject","uses"=>"frontend
 Route::post("load-data-member",["as"=>"frontend.index.loadDataMember","uses"=>"frontend\IndexController@loadDataMember"]);	
 Route::post("load-data-supporter",["as"=>"frontend.index.loadDataSupporter","uses"=>"frontend\IndexController@loadDataSupporter"]);		
 Route::post("truy-cuu-an-nhan",["as"=>"frontend.index.searchSupporter","uses"=>"frontend\IndexController@searchSupporter"]);
+Route::get('sitemap', function() {
+    Artisan::call('sitemap:auto');
+});
 ?>
