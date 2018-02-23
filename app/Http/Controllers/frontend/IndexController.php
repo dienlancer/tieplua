@@ -44,7 +44,7 @@ class IndexController extends Controller {
   var $_ssNameUser="vmuser";
   var $_ssNameCart="vmart";      
   public function getHome(Request $request){   
-    //createSitemap();
+    \Artisan::call('sitemap:auto');
     return view("frontend.home");
   }  
   public function search(Request $request){
@@ -694,7 +694,7 @@ class IndexController extends Controller {
     }      
     $breadcrumb='';              
     $breadcrumb= getBreadcrumb($alias);     
-    //createSitemap();                  
+    \Artisan::call('sitemap:auto');                  
     return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb"));                            
   }
       function addCart(){          
