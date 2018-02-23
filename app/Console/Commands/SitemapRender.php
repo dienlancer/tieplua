@@ -38,11 +38,14 @@ class SitemapRender extends Command
     public function handle()
     {
         $sitemap = \App::make("sitemap");
+        
         $articles = \DB::table('article')->orderBy('created_at', 'desc')->select('alias','updated_at')->get();
-        echo "<pre>".print_r($articles,true)."</pre>";
+        
+        
+        
         foreach ($articles as $article)
         {
-            $sitemap->add($article->alias . '.html', $article->updated_at, 0.9, 'monthly'); //daily
+            $sitemap->add(url($article->alias . '.html') , $article->updated_at, 0.9, 'monthly'); //daily
         }
         $sitemap->store('xml', 'sitemap');
     }
