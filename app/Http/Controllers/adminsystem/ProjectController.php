@@ -162,7 +162,7 @@ class ProjectController extends Controller {
             return $info;       
     }
            
-         public function changeStatus(Request $request){
+      public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";

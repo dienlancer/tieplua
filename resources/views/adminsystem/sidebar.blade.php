@@ -172,46 +172,7 @@ switch ($controller) {
             <i class="icon-notebook"></i>
             <span class="title">Trang tĩnh</span>                                            
         </a>                                                                      
-    </li> 
-    <li class="nav-item  <?php echo $li_product_management; ?>">
-        <a href="javascript:;" class="nav-link nav-toggle">
-            <i class="fa fa-folder-open-o" ></i>
-            <span class="title">Chuyên mục bán hàng</span>
-            <span class="arrow"></span>
-        </a>
-        <ul class="sub-menu">                                    
-            <li class="nav-item  <?php echo $li_category_product; ?>">
-                <a href="{!! route('adminsystem.category-product.getList') !!}" class="nav-link nav-toggle">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Loại sản phẩm</span>                                            
-                </a>                                                                      
-            </li>
-            <li class="nav-item  <?php echo $li_product; ?>">
-                <a href="{!! route('adminsystem.product.getList') !!}" class="nav-link nav-toggle">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Sản phẩm</span>                                            
-                </a>                                                                      
-            </li>
-            <li class="nav-item  <?php echo $li_customer; ?>">
-                <a href="{!! route('adminsystem.customer.getList') !!}" class="nav-link nav-toggle">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Khách hàng</span>                                            
-                </a>                                                                      
-            </li>
-            <li class="nav-item <?php echo $li_payment_method; ?> ">
-                <a href="{!! route('adminsystem.payment-method.getList') !!}" class="nav-link nav-toggle">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Phương thức thanh toán</span>                                            
-                </a>                                                                      
-            </li>
-            <li class="nav-item  <?php echo $li_invoice; ?>">
-                <a href="{!! route('adminsystem.invoice.getList') !!}" class="nav-link nav-toggle">
-                    <i class="icon-notebook"></i>
-                    <span class="title">Đơn hàng</span>                                            
-                </a>                                                                      
-            </li>
-        </ul>
-    </li>
+    </li>     
     <li class="nav-item <?php echo $li_project_management; ?>">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="fa fa-folder-open-o" ></i>
