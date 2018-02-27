@@ -4,6 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	config.filebrowserBrowseUrl = '/tieplua/public/adminsystem/ckfinder/ckfinder.html',
-    config.filebrowserUploadUrl = '/tieplua/public/adminsystem/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+	config.filebrowserBrowseUrl = '/public/adminsystem/ckfinder/ckfinder.html',
+    config.filebrowserUploadUrl = '/public/adminsystem/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
 };

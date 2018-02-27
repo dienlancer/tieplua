@@ -1,224 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="http://demo.dienkim/tieplua/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
+<?xml-stylesheet href="http://tieplua.dienkim/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 	<url>
-	<loc>http://demo.dienkim/tieplua/trang-chu.html</loc>
+	<loc>http://tieplua.dienkim/trang-chu.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-10T03:36:35+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/gioi-thieu.html</loc>
+	<loc>http://tieplua.dienkim/gioi-thieu.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-03T10:35:33+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/dich-vu-hoat-dong.html</loc>
+	<loc>http://tieplua.dienkim/dich-vu-hoat-dong.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2017-12-15T03:39:06+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/du-an.html</loc>
+	<loc>http://tieplua.dienkim/du-an.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2017-12-15T03:39:22+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/tin-tuc-su-kien.html</loc>
+	<loc>http://tieplua.dienkim/tin-tuc-su-kien.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-02T10:07:26+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/tiep-lua.html</loc>
+	<loc>http://tieplua.dienkim/tiep-lua.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2017-12-15T03:39:53+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/danh-ba.html</loc>
+	<loc>http://tieplua.dienkim/danh-ba.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2017-12-15T03:40:04+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/thu-vien.html</loc>
+	<loc>http://tieplua.dienkim/thu-vien.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-05T01:28:12+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/lien-he.html</loc>
+	<loc>http://tieplua.dienkim/lien-he.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2017-12-15T03:40:34+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/tin-noi-bo.html</loc>
+	<loc>http://tieplua.dienkim/tin-noi-bo.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-02T10:08:14+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/tin-cong-dong.html</loc>
+	<loc>http://tieplua.dienkim/tin-cong-dong.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-02T10:08:28+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/dich-vu.html</loc>
+	<loc>http://tieplua.dienkim/dich-vu.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-02T10:08:51+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/hoat-dong.html</loc>
+	<loc>http://tieplua.dienkim/hoat-dong.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-02T10:09:03+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/hinh-anh.html</loc>
+	<loc>http://tieplua.dienkim/hinh-anh.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-09T03:31:00+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/video.html</loc>
+	<loc>http://tieplua.dienkim/video.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-09T11:08:24+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/man-city-dan-dau-ve-so-cau-thu-kien-tao-tai-ngoai-hang-anh.html</loc>
+	<loc>http://tieplua.dienkim/man-city-dan-dau-ve-so-cau-thu-kien-tao-tai-ngoai-hang-anh.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-22T07:50:27+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/man-city-mat-gabriel-jesus-tu-bon-den-sau-tuan.html</loc>
+	<loc>http://tieplua.dienkim/man-city-mat-gabriel-jesus-tu-bon-den-sau-tuan.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:00:24+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/pochettino-tottenham-thang-vi-loi-choi,-khong-phai-do-nghi-nhieu-hon.html</loc>
+	<loc>http://tieplua.dienkim/pochettino-tottenham-thang-vi-loi-choi,-khong-phai-do-nghi-nhieu-hon.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:00:17+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/wenger-gap-va-vi-binh-luan-ve-trong-tai.html</loc>
+	<loc>http://tieplua.dienkim/wenger-gap-va-vi-binh-luan-ve-trong-tai.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-19T10:45:45+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/tottenham-len-thu-nam-trong-ngay-harry-kane-du-bi.html</loc>
+	<loc>http://tieplua.dienkim/tottenham-len-thu-nam-trong-ngay-harry-kane-du-bi.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:00:02+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/man-city-trut-gian-len-watford.html</loc>
+	<loc>http://tieplua.dienkim/man-city-trut-gian-len-watford.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:55+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/guardiola-dua-de-bruyne-len-may.html</loc>
+	<loc>http://tieplua.dienkim/guardiola-dua-de-bruyne-len-may.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:47+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/thai-lan-ton-that-nghiem-trong-truoc-them-vong-chung-ket-u23-chau-a.html</loc>
+	<loc>http://tieplua.dienkim/thai-lan-ton-that-nghiem-trong-truoc-them-vong-chung-ket-u23-chau-a.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:40+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/trong-tai-duoc-benh-vuc-sau-khi-tuoc-ban-thang-hop-le-cua-barca.html</loc>
+	<loc>http://tieplua.dienkim/trong-tai-duoc-benh-vuc-sau-khi-tuoc-ban-thang-hop-le-cua-barca.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:33+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/thuy-linh-vo-dich-giai-cau-long-quoc-te-italy.html</loc>
+	<loc>http://tieplua.dienkim/thuy-linh-vo-dich-giai-cau-long-quoc-te-italy.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:25+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/mourinho-lam-tuong-tony-pulis-con-dan-dat-west-brom.html</loc>
+	<loc>http://tieplua.dienkim/mourinho-lam-tuong-tony-pulis-con-dan-dat-west-brom.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:59:15+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/rooney-man-city-hien-tai-chua-the-sanh-voi-man-utd-nam-2008.html</loc>
+	<loc>http://tieplua.dienkim/rooney-man-city-hien-tai-chua-the-sanh-voi-man-utd-nam-2008.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-23T09:18:37+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/liverpool-tro-lai-top-4-voi-tran-dai-thang-bournemouth.html</loc>
+	<loc>http://tieplua.dienkim/liverpool-tro-lai-top-4-voi-tran-dai-thang-bournemouth.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-20T19:05:33+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/juventus-len-nhi-bang-serie-a,-milan-tham-bai-truoc-doi-den-do.html</loc>
+	<loc>http://tieplua.dienkim/juventus-len-nhi-bang-serie-a,-milan-tham-bai-truoc-doi-den-do.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T18:58:40+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/jesse-lingard-voi-cu-bat-nhay-o-man-utd.html</loc>
+	<loc>http://tieplua.dienkim/jesse-lingard-voi-cu-bat-nhay-o-man-utd.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-26T17:25:23+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/trung-tam-hanh-dong-vi-su-phat-trien-cong-dong-acdc.html</loc>
+	<loc>http://tieplua.dienkim/trung-tam-hanh-dong-vi-su-phat-trien-cong-dong-acdc.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-23T10:01:15+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/ky-thu-tam-tuoi-gay-bat-ngo-o-cup-chien-thang.html</loc>
+	<loc>http://tieplua.dienkim/ky-thu-tam-tuoi-gay-bat-ngo-o-cup-chien-thang.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-26T17:25:13+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/lebron-james-bat-luc-nhin-doi-nha-tham-bai-truoc-boston-celtics.html</loc>
+	<loc>http://tieplua.dienkim/lebron-james-bat-luc-nhin-doi-nha-tham-bai-truoc-boston-celtics.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-26T17:25:27+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/lich-thi-dau-o-anh-khac-nghiet-nhu-the-nao.html</loc>
+	<loc>http://tieplua.dienkim/lich-thi-dau-o-anh-khac-nghiet-nhu-the-nao.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:01:49+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/pochettino:-tottenham-se-xem-xet-neu-kane-de-nghi-ra-di.html</loc>
+	<loc>http://tieplua.dienkim/pochettino:-tottenham-se-xem-xet-neu-kane-de-nghi-ra-di.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:01:42+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/andy-murray-rut-khoi-australia-mo-rong-2018.html</loc>
+	<loc>http://tieplua.dienkim/andy-murray-rut-khoi-australia-mo-rong-2018.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:01:37+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://demo.dienkim/tieplua/sam-allardyce---ga-hlv-thuc-dung-nhat-ngoai-hang-anh.html</loc>
+	<loc>http://tieplua.dienkim/sam-allardyce---ga-hlv-thuc-dung-nhat-ngoai-hang-anh.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-01-18T19:01:31+00:00</lastmod>
 		<changefreq>monthly</changefreq>
