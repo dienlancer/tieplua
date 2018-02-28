@@ -3,6 +3,7 @@
 <?php 
 use App\PaymentMethodModel;
 $data_slideshow=getBanner("slideshow");
+$seo=getSeo();
 if(count($data_slideshow) > 0){
 	$items=$data_slideshow["items"];
 	if(count($items) > 0){
@@ -36,6 +37,7 @@ if(count($data_slideshow) > 0){
 	}  
 }
 ?>
+<h1 style="display: none;"><?php echo $seo["title"]; ?></h1>
 <div class="content">
 	<div class="container">		
 		<div class="theraphy">

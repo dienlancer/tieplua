@@ -18,7 +18,7 @@ $li_project_article='';
 $li_product_management='';
 $li_category_product='';
 $li_product='';
-$li_customer='';
+
 $li_payment_method='';
 $li_invoice='';
 
@@ -82,10 +82,7 @@ switch ($controller) {
     $li_product='active open';
     $li_product_management='active open';
     break;
-    case 'customer': 
-    $li_customer='active open';
-    $li_product_management='active open';
-    break;
+    
     case 'payment-method':     
     $li_payment_method='active open';
     $li_product_management='active open';
