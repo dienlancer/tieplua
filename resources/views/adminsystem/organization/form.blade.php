@@ -6,16 +6,16 @@ $linkCancel             =   route('adminsystem.'.$controller.'.getList');
 $linkSave               =   route('adminsystem.'.$controller.'.save');
 $linkUploadFile         =   route('adminsystem.'.$controller.'.uploadFile');
 $linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
-$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"    onblur="createAlias()"   value="'.@$arrRowData['fullname'].'">'; 
-$inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"    disabled      value="'.@$arrRowData['alias'].'">';
-$inputMetakeyword             =   '<textarea id="meta_keyword" name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
-$inputMetadescription             =   '<textarea id="meta_description" name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
+$inputFullName          =   '<input type="text" class="form-control" name="fullname"      onblur="createAlias()"   value="'.@$arrRowData['fullname'].'">'; 
+$inputAlias             =   '<input type="text" class="form-control" name="alias"       disabled      value="'.@$arrRowData['alias'].'">';
+$inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
+$inputMetadescription             =   '<textarea   name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
 $inputAddress           =   '<input type="text" class="form-control" name="address"         value="'.@$arrRowData['address'].'">'; 
 $inputPhone             =   '<input type="text" class="form-control" name="phone"           value="'.@$arrRowData['phone'].'">'; 
 $inputEmail             =   '<input type="text" class="form-control" name="email"           value="'.@$arrRowData['email'].'">'; 
 $inputWebsite           =   '<input type="text" class="form-control" name="website"         value="'.@$arrRowData['website'].'">'; 
-$inputIntro             =   '<textarea id="intro" name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputContent           =   '<textarea id="content" name="content" rows="2" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
+$inputIntro             =   '<textarea   name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
+$inputContent           =   '<textarea   name="content" rows="2" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -245,7 +245,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==true){            
+                if(data.checked==1){            
                 uploadFileImport();        
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
@@ -316,7 +316,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             data: dataItem,            
             async: false,
             success: function (data) {                
-                if(data.checked==true){
+                if(data.checked==1){
                     $('input[name="alias"]').val(data.alias); 
                 }else{                    
                     var data_error=data.error;
