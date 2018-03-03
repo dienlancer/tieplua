@@ -86,13 +86,7 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $query=DB::table('article')
-                ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')
-                ->where('article.status',1);
-    if(!empty(@$request->q)){
-      $query->where('article.fullname','like', '%'.@$request->q.'%');
-    }                     
+        
     $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
                 ->orderBy('article.created_at', 'desc')
@@ -149,21 +143,7 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;             
-    $query=DB::table('supporter')  
-              ->join('payment_method','supporter.payment_method_id','=','payment_method.id')
-              ->where('supporter.status',1);  
-    if(!empty(@$request->month)){
-      $query->whereMonth('supporter.created_at',(int)@$request->month);
-    }
-    if(!empty(@$request->year)){
-      $query->whereYear('supporter.created_at',(int)@$request->year) ;
-    }
-    if(!empty(@$request->payment_method_id)){
-      $query->where('supporter.payment_method_id',(int)@$request->payment_method_id)   ;                                 
-    }  
-    if(!empty(@$request->q)){
-      $query->where('supporter.fullname','like','%'.trim(mb_strtolower(@$request->q,'UTF-8')).'%');
-    }
+    
     $data=$query->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                                                                 
     ->groupBy('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')  
     ->orderBy('supporter.created_at', 'desc')  
@@ -254,21 +234,18 @@ class IndexController extends Controller {
     switch ($component) {
       case 'category-article':      
       $category_id=0;
-      $category=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias,'UTF-8'))])->get()->toArray();      
+      $category=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias,'UTF-8'))])->get()->toArray();         
       if(count($category) > 0){
         $category     = $category[0];
-        $category_id    = $category['id'];
-        $str_category_id="";
+        $category_id    = $category['id'];        
         $arr_category_id[]=$category_id;
-        getStringCategoryID($category_id,$arr_category_id,'category_article');                 
-        $data=DB::table('article')
+        getStringCategoryID($category_id,$arr_category_id,'category_article');   
+        $query=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')                              
-                ->select('article.id')
+                ->join('category_article','category_article.id','=','article_category.category_id')
                 ->whereIn('article_category.category_id', $arr_category_id)
-                ->where('article.status',1)    
-                ->groupBy('article.id')                
-                ->get()->toArray();
+                ->where('article.status',1);
+        $data=$query->select('article.id')->groupBy('article.id')->get()->toArray();
         $data=convertToArray($data);
         $totalItems=count($data);
         $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
@@ -284,17 +261,13 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('article')
-                ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')                     
-                ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->whereIn('article_category.category_id', $arr_category_id)
-                ->where('article.status',1)     
-                ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()->toArray();        
+        $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
+                    ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
+                    ->orderBy('article.created_at', 'desc')
+                    ->skip($position)
+                    ->take($totalItemsPerPage)
+                    ->get()
+                    ->toArray();        
         $items=convertToArray($data);                            
       }              
       $layout="two-column";  
@@ -313,59 +286,7 @@ class IndexController extends Controller {
       }      
       $layout="two-column";         
       break; 
-      case 'category-product':
-      $category_id=0;
-      $category=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
-      if(count($category) > 0){
-        $category     = $category[0];
-        $category_id    = $category['id'];
-        $str_category_id="";
-        $arr_category_id[]=$category_id;
-        $data=DB::table('product')
-                ->join('product_category','product.id','=','product_category.product_id')
-                ->join('category_product','category_product.id','=','product_category.category_product_id')                                  
-                ->select('product.id')
-                ->whereIn('product_category.category_product_id', $arr_category_id)
-                ->where('product.status',1)  
-                ->groupBy('product.id')                
-                ->get()->toArray();
-        $data=convertToArray($data);
-        $totalItems=count($data);
-        $totalItemsPerPage=(int)$setting['product_perpage']['field_value']; 
-        $pageRange=$this->_pageRange;
-        if(!empty(@$request->filter_page)){
-          $currentPage=@$request->filter_page;
-        }       
-        $arrPagination=array(
-          "totalItems"=>$totalItems,
-          "totalItemsPerPage"=>$totalItemsPerPage,
-          "pageRange"=>$pageRange,
-          "currentPage"=>$currentPage   
-        );           
-        $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('product')
-                ->join('product_category','product.id','=','product_category.product_id')
-                ->join('category_product','category_product.id','=','product_category.category_product_id')                   
-                ->select('product.id','product.alias','product.fullname','product.image','product.intro')
-                ->whereIn('product_category.category_product_id', $arr_category_id)
-                ->where('product.status',1)       
-                ->groupBy('product.id','product.alias','product.fullname','product.image','product.intro')
-                ->orderBy('product.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()->toArray();   
-        $items=convertToArray($data);                  
-      }       
-      $layout="two-column";             
-      break; 
-      case 'product':
-      $row=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();              
-      if(count($row) > 0){
-        $item=$row[0];
-      }    
-      $layout="two-column";       
-      break;                
+      
       case 'categories-article':
       $alias_1='';
       $alias_2='';
@@ -383,15 +304,15 @@ class IndexController extends Controller {
         $alias_2='hoat-dong';
         break;                    
       }
-      $data=DB::table('article')
+      $query=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
                 ->join('category_article','category_article.id','=','article_category.category_id')                            
-                ->select('article.id')
                 ->where('article.status',1)
                 ->where(function($query) use ($alias_1,$alias_2){
                     $query->where('category_article.alias',@$alias_1)
                           ->orWhere('category_article.alias',@$alias_2);
-                }) 
+                });
+      $data=$query->select('article.id')
                 ->groupBy('article.id')
                 ->get()->toArray();
       $data=convertToArray($data);
@@ -409,15 +330,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;
-        $data=DB::table('article')
-                ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')                
-                ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
-                ->where('article.status',1)
-                ->where(function($query) use ($alias_1,$alias_2){
-                    $query->where('category_article.alias',@$alias_1)
-                          ->orWhere('category_article.alias',@$alias_2);
-                })                
+        $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
+                          
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
                 ->orderBy('article.created_at', 'desc')
                 ->skip($position)
@@ -429,9 +343,8 @@ class IndexController extends Controller {
       case 'projects':      
         $meta_keyword="metakeyword dự án";
         $meta_description="metadescription dự án";
-      $data=DB::table('project')                                  
-                ->select('project.id')                
-                ->where('project.status',1)    
+        $query=DB::table('project')->where('project.status',1)    ;
+      $data=$query->select('project.id')
                 ->groupBy('project.id')                
                 ->get()->toArray();
         $data=convertToArray($data);
@@ -449,9 +362,7 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('project')                
-                ->select('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')                
-                ->where('project.status',1)     
+        $data=$query->select('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')                                
                 ->groupBy('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
                 ->orderBy('project.created_at', 'desc')
                 ->skip($position)
@@ -476,11 +387,9 @@ class IndexController extends Controller {
       break;
       case 'supporter':            
       $meta_keyword="metakeyword tiếp lửa";
-      $meta_description="metadescription tiếp lửa";     
-      $data=DB::table('supporter')  
-                ->join('payment_method','supporter.payment_method_id','=','payment_method.id')              
-                ->select('supporter.id')                
-                ->where('supporter.status',1)                     
+      $meta_description="metadescription tiếp lửa";  
+      $query=DB::table('supporter')->join('payment_method','supporter.payment_method_id','=','payment_method.id')->where('supporter.status',1)                     ;
+      $data=$query->select('supporter.id')                                
                 ->groupBy('supporter.id')                        
                 ->get()->toArray();              
         $data=convertToArray($data);     
@@ -498,10 +407,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('supporter')  
-                ->join('payment_method','supporter.payment_method_id','=','payment_method.id')              
-                ->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                
-                ->where('supporter.status',1)                     
+        $data=$query->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                
+                
                 ->groupBy('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
                 ->orderBy('supporter.created_at', 'desc')  
                 ->skip($position)
@@ -512,10 +419,9 @@ class IndexController extends Controller {
       break;
       case 'organizations':      
       $meta_keyword="metakeyword danh bạ";
-      $meta_description="metadescription danh bạ";     
-      $data=DB::table('organization')                      
-                ->select('organization.id')                
-                ->where('organization.status',1)                     
+      $meta_description="metadescription danh bạ"; 
+      $query=DB::table('organization')->where('organization.status',1);                          
+      $data=$query->select('organization.id')                   
                 ->groupBy('organization.id')                        
                 ->get()->toArray();              
         $data=convertToArray($data);     
@@ -532,10 +438,9 @@ class IndexController extends Controller {
           "currentPage"=>$currentPage   
         );           
         $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('organization')                  
-                ->select('organization.id','organization.fullname','organization.alias','organization.intro','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')                
-                ->where('organization.status',1)                                
+        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
+        $data= $query->select('organization.id','organization.fullname','organization.alias','organization.intro','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')                
+                                                
                 ->groupBy('organization.id','organization.fullname','organization.alias','organization.intro','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')   
                 ->orderBy('organization.sort_order', 'asc')                
                 ->skip($position)
@@ -553,10 +458,9 @@ class IndexController extends Controller {
       break;
       case 'categories-album':            
       $meta_keyword="metakeyword album";
-      $meta_description="metadescription album";     
-      $data=DB::table('album')                      
-                ->select('album.id')                
-                ->where('album.status',1)                     
+      $meta_description="metadescription album";   
+      $query=DB::table('album')->where('album.status',1)            ;                        
+      $data=$query->select('album.id')                                         
                 ->groupBy('album.id')                        
                 ->get()->toArray();              
         $data=convertToArray($data);     
@@ -573,9 +477,7 @@ class IndexController extends Controller {
           "currentPage"=>$currentPage   
         );           
         $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $query=DB::table('album');              
-        $query->where('album.status',1);     
+        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('album.id','album.fullname','album.alias','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
         ->groupBy('album.id','album.fullname','album.alias','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
         ->orderBy('album.sort_order', 'asc')
@@ -593,11 +495,9 @@ class IndexController extends Controller {
       if(count($category) > 0){
         $category     = $category[0];
         $category_id    = $category['id'];        
-        $arr_category_id[]=$category_id;        
-        $data=DB::table('photo')                      
-        ->select('photo.id')                
-        ->where('photo.status',1)   
-        ->whereIn('photo.album_id', $arr_category_id)                  
+        $arr_category_id[]=$category_id;   
+        $query=DB::table('photo')->where('photo.status',1)->whereIn('photo.album_id', $arr_category_id);
+        $data=$query->select('photo.id')                                
         ->groupBy('photo.id')                        
         ->get()->toArray();              
         $data=convertToArray($data);         
@@ -614,10 +514,7 @@ class IndexController extends Controller {
           "currentPage"=>$currentPage   
         );           
         $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $query=DB::table('photo');              
-        $query->where('photo.status',1);
-        $query->whereIn('photo.album_id', $arr_category_id);     
+        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('photo.id','photo.image')
         ->groupBy('photo.id','photo.image')
         ->orderBy('photo.sort_order', 'asc')
@@ -634,11 +531,10 @@ class IndexController extends Controller {
       if(count($category) > 0){
         $category     = $category[0];
         $category_id    = $category['id'];        
-        $arr_category_id[]=$category_id;        
-        $data=DB::table('video')                      
-        ->select('video.id')                
-        ->where('video.status',1)   
-        ->whereIn('video.category_id', $arr_category_id)                  
+        $arr_category_id[]=$category_id;   
+        $query=DB::table('video')->where('video.status',1)   
+                                  ->whereIn('video.category_id', $arr_category_id)                  ;
+        $data=$query->select('video.id')                        
         ->groupBy('video.id')                        
         ->get()->toArray();              
         $data=convertToArray($data);         
@@ -655,10 +551,7 @@ class IndexController extends Controller {
           "currentPage"=>$currentPage   
         );           
         $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $query=DB::table('video');              
-        $query->where('video.status',1);
-        $query->whereIn('video.category_id', $arr_category_id);     
+        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('video.id','video.fullname','video.image','video.video_url')
         ->groupBy('video.id','video.fullname','video.image','video.video_url')
         ->orderBy('video.sort_order', 'asc')
