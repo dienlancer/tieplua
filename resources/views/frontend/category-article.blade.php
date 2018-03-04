@@ -2,7 +2,12 @@
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}		
 	<?php 			
-	$breadcrumb= getBreadCrumbCategoryArticle($category);	
+	$breadcrumb='';
+	if(count(@$category) > 0){
+		$breadcrumb= getBreadCrumbCategoryArticle(@$category);	
+	}else{
+		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">'.$title.'</a>';
+	}	
 	?>
 	<div class="breadcrumb-title">
 		<?php echo $breadcrumb; ?>

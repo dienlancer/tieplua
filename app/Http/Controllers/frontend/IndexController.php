@@ -66,7 +66,7 @@ class IndexController extends Controller {
                 ->join('category_article','category_article.id','=','article_category.category_id')
                 ->where('article.status',1);
     if(!empty(@$request->q)){
-      $query->where('article.fullname','like', '%'.@$request->q.'%');
+      $query->where('article.fullname','like', '%'.trim(@$request->q).'%');
     }                     
     $data=$query->select('article.id')
                 ->groupBy('article.id')                
@@ -338,6 +338,7 @@ class IndexController extends Controller {
                 ->take($totalItemsPerPage)
                 ->get()->toArray();        
         $items=convertToArray($data);  
+
       $layout="two-column";            
       break;
       case 'projects':      
