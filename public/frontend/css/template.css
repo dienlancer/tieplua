@@ -690,7 +690,7 @@ font-family: 'FontAwesome';
 .breadcrumb-title a{
     color: #b93d00;
 }
-@media (max-width: 767px){    
+@media (max-width: 768px){    
     div.mobilemenu{
         display: block;
     }     
@@ -711,14 +711,13 @@ font-family: 'FontAwesome';
     .immotal{
             padding-top: 15px;
     }
-}
-@media (max-width: 543px){
+
     .rappit{
         display: none;
     }       
    .rena{
     width: 100%;
    }
-    
 }
+
 
