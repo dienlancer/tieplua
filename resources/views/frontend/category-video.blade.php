@@ -31,13 +31,13 @@ if(empty($breadcrumb)){
 				<div class="col-lg-3 no-padding-left">
 					<div class="margin-top-15">
 						<div class="relative liverpool">
-						<div><center><img src="<?php echo $image; ?>" /></center></div>			
-						<div class="youtube"></div>		
-						<div class="youtube-img" >
-							<div><a class="js-modal-btn" data-video-id="<?php echo $video_url; ?>" href="javascript:void(0);"><img src="<?php echo asset('upload/youtube.png'); ?>"></a></div>		
-						</div>	
+							<div><center><img src="<?php echo $image; ?>" /></center></div>			
+							<div class="youtube"></div>		
+							<div class="youtube-img" >
+								<div><a class="js-modal-btn" data-video-id="<?php echo $video_url; ?>" href="javascript:void(0);"><img src="<?php echo asset('upload/youtube.png'); ?>"></a></div>		
+							</div>	
 
-					</div>
+						</div>
 						<div class="margin-top-5"><b><?php echo $fullname; ?></b></div>				
 					</div>					
 				</div>
