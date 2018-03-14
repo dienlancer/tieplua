@@ -2,93 +2,27 @@
 <?xml-stylesheet href="http://tieplua.dienkim/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 	<url>
-	<loc>http://tieplua.dienkim/trang-chu.html</loc>
+	<loc>http://tieplua.dienkim/tin-cong-dong.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-01-10T03:36:35+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/gioi-thieu.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-03T10:35:33+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/dich-vu-hoat-dong.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2017-12-15T03:39:06+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/du-an.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2017-12-15T03:39:22+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/tin-tuc-su-kien.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-02T10:07:26+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/tiep-lua.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2017-12-15T03:39:53+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/danh-ba.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2017-12-15T03:40:04+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/thu-vien.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-05T01:28:12+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/lien-he.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2017-12-15T03:40:34+00:00</lastmod>
+		<lastmod>2018-01-03T08:15:31+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://tieplua.dienkim/tin-noi-bo.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-01-02T10:08:14+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/tin-cong-dong.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-02T10:08:28+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/dich-vu.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-02T10:08:51+00:00</lastmod>
+		<lastmod>2018-01-03T08:15:13+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://tieplua.dienkim/hoat-dong.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-01-02T10:09:03+00:00</lastmod>
+		<lastmod>2018-01-08T07:17:28+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://tieplua.dienkim/hinh-anh.html</loc>
+	<loc>http://tieplua.dienkim/dich-vu.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-01-09T03:31:00+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://tieplua.dienkim/video.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-01-09T11:08:24+00:00</lastmod>
+		<lastmod>2018-01-04T17:04:18+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
@@ -172,7 +106,7 @@
 	<url>
 	<loc>http://tieplua.dienkim/juventus-len-nhi-bang-serie-a,-milan-tham-bai-truoc-doi-den-do.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-01-18T18:58:40+00:00</lastmod>
+		<lastmod>2018-03-14T02:23:00+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
