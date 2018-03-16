@@ -4,25 +4,33 @@
 $setting= getSettingSystem();
 $linkCancel             =   route('adminsystem.'.$controller.'.getList');
 $linkSave               =   route('adminsystem.'.$controller.'.save');
-$inputFullName          =   '<input type="text" class="form-control" name="fullname"       value="'.@$arrRowData['fullname'].'">'; 
-$inputNumberMoney          =   '<input type="text" class="form-control" name="number_money" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['number_money']).'">'; 
-$ddlPaymentMethod      =   cmsSelectboxCategory("payment_method_id","payment_method_id","form-control",@$arrPaymentMethod,@$arrRowData['payment_method_id'],"");
-$ddlDonation      =   cmsSelectboxCategory("donation_id","donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"");
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"     value="'.@$arrRowData['sort_order'].'">';
+$linkUploadFile         =   route('adminsystem.'.$controller.'.uploadFile');
+$linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
+$inputFullName          =   '<input type="text" class="form-control" name="fullname"   onblur="createAlias()"   value="'.@$arrRowData['fullname'].'">'; 
+ 
+$inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled      value="'.@$arrRowData['alias'].'">';
+
+$inputMetakeyword             =   '<textarea   name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
+$inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
+$inputTotalCost             =   '<input type="text" class="form-control" name="total_cost" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['total_cost']).'">';  
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
-$inputID                =   '<input type="hidden" name="id"  value="'.@$id.'" />'; 
+$inputID                =   '<input type="hidden" name="id"   value="'.@$id.'" />'; 
 $picture                =   "";
 $strImage               =   "";
+$setting= getSettingSystem();
+$article_width = $setting['article_width']['field_value'];
+$article_height = $setting['article_height']['field_value'];  
 if(count(@$arrRowData)>0){
     if(!empty(@$arrRowData["image"])){
-        $picture        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.asset("/upload/".@$arrRowData["image"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteImage();"><img src="'.asset('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
+        $picture        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.asset("/upload/" . $article_width . "x" . $article_height . "-".@$arrRowData["image"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteImage();"><img src="'.asset('public/adminsystem/images/delete-icon.png').'"/></a></div>';                        
         $strImage       =   @$arrRowData["image"];
     }        
 }   
-$inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.@$strImage.'" />';
+$inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@$strImage.'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -48,7 +56,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Họ tên</b></label>
+                        <label class="col-md-2 control-label"><b>Tên chương trình</b></label>
                         <div class="col-md-10">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
@@ -57,31 +65,41 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Chương trình</b></label>
+                        <label class="col-md-2 control-label"><b>Alias</b></label>
                         <div class="col-md-10">
-                            <?php echo $ddlDonation; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>                        
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Số tiền ủng hộ</b></label>
-                        <div class="col-md-10">
-                            <?php echo $inputNumberMoney; ?>
+                            <?php echo $inputAlias; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
                 </div>         
+                        
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Hình thức</b></label>
+                        <label class="col-md-2 control-label"><b>Meta keyword</b></label>
                         <div class="col-md-10">
-                            <?php echo $ddlPaymentMethod; ?>
+                            <?php echo $inputMetakeyword; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>                        
-                </div>                                       
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Meta description</b></label>
+                        <div class="col-md-10">                            
+                            <?php echo $inputMetadescription; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>     
+                </div>                                         
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Kinh phí</b></label>
+                        <div class="col-md-10">                            
+                            <?php echo $inputTotalCost; ?>
+                            <span class="help-block"></span>
+                        </div>
+                   </div>                       
+                </div>                                   
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
@@ -107,31 +125,32 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
 <script type="text/javascript" language="javascript">
     function resetErrorStatus(){
         var id                   =   $('input[name="id"]');
-        var fullname             =   $('input[name="fullname"]');  
-        var payment_method_id  =   $('select[name="payment_method_id"]');   
-        var donation_id  =   $('select[name="donation_id"]');     
+        var fullname             =   $('input[name="fullname"]');
+        var alias                =   $('input[name="alias"]');        
         var sort_order           =   $('input[name="sort_order"]');
         var status               =   $('select[name="status"]');
         
-        $(fullname).closest('.form-group').removeClass("has-error");    
-        $(payment_method_id).closest('.form-group').removeClass("has-error");    
-        $(donation_id).closest('.form-group').removeClass("has-error");    
+        $(fullname).closest('.form-group').removeClass("has-error");        
+        $(alias).closest('.form-group').removeClass("has-error");        
         $(sort_order).closest('.form-group').removeClass("has-error");
         $(status).closest('.form-group').removeClass("has-error");        
 
-        $(fullname).closest('.form-group').find('span').empty().hide();    
-        $(payment_method_id).closest('.form-group').find('span').empty().hide();    
-        $(donation_id).closest('.form-group').find('span').empty().hide();    
+        $(fullname).closest('.form-group').find('span').empty().hide();        
+        $(alias).closest('.form-group').find('span').empty().hide();       
         $(sort_order).closest('.form-group').find('span').empty().hide();
         $(status).closest('.form-group').find('span').empty().hide();        
     }
 
     function save(){
         var id=$('input[name="id"]').val();        
-        var fullname=$('input[name="fullname"]').val();        
-        var number_money=$('input[name="number_money"]').val();
-        var payment_method_id=$('select[name="payment_method_id"]').val();
-        var donation_id=$('select[name="donation_id"]').val();
+        var fullname=$('input[name="fullname"]').val();
+        var alias=$('input[name="alias"]').val();        
+         
+        var meta_keyword=$('textarea[name="meta_keyword"]').val();
+        var meta_description=$('textarea[name="meta_description"]').val();
+         
+        var total_cost=$('input[name="total_cost"]').val();
+        
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
@@ -139,9 +158,13 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var dataItem={
             "id":id,
             "fullname":fullname,
-            "number_money":number_money,    
-            "payment_method_id":payment_method_id,            
-            "donation_id":donation_id,                                 
+            "alias":alias,    
+            
+            "meta_keyword":meta_keyword,
+            "meta_description":meta_description,                   
+            
+            "total_cost":total_cost,     
+            
             "sort_order":sort_order,
             "status":status,
             "_token": token
@@ -160,17 +183,12 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                         $('input[name="fullname"]').closest('.form-group').addClass(data_error.fullname.type_msg);
                         $('input[name="fullname"]').closest('.form-group').find('span').text(data_error.fullname.msg);
                         $('input[name="fullname"]').closest('.form-group').find('span').show();                        
-                    }          
-                    if(typeof data_error.payment_method_id               != "undefined"){
-                        $('select[name="payment_method_id"]').closest('.form-group').addClass(data_error.payment_method_id.type_msg);
-                        $('select[name="payment_method_id"]').closest('.form-group').find('span').text(data_error.payment_method_id.msg);
-                        $('select[name="payment_method_id"]').closest('.form-group').find('span').show();                        
-                    }     
-                    if(typeof data_error.donation_id               != "undefined"){
-                        $('select[name="donation_id"]').closest('.form-group').addClass(data_error.donation_id.type_msg);
-                        $('select[name="donation_id"]').closest('.form-group').find('span').text(data_error.donation_id.msg);
-                        $('select[name="donation_id"]').closest('.form-group').find('span').show();                        
-                    }                                                    
+                    }                    
+                    if(typeof data_error.alias                  != "undefined"){
+                        $('input[name="alias"]').closest('.form-group').addClass(data_error.alias.type_msg);
+                        $('input[name="alias"]').closest('.form-group').find('span').text(data_error.alias.msg);
+                        $('input[name="alias"]').closest('.form-group').find('span').show();                       
+                    }                    
                     if(typeof data_error.sort_order               != "undefined"){
                         $('input[name="sort_order"]').closest('.form-group').addClass(data_error.sort_order.type_msg);
                         $('input[name="sort_order"]').closest('.form-group').find('span').text(data_error.sort_order.msg);
@@ -192,6 +210,43 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                 spinner.show();
             },
         });
-    }    
+    }
+    function createAlias(){
+        var id=$('input[name="id"]').val();   
+        var fullname    = $('input[name="fullname"]').val();
+        var token       = $('input[name="_token"]').val();     
+        var dataItem={      
+            "id":id,      
+            "fullname":fullname,            
+            "_token": token
+        };   
+        $('input[name="alias"]').val(''); 
+        resetErrorStatus();    
+        $.ajax({
+            url: '<?php echo $linkCreateAlias; ?>',
+            type: 'POST',
+            data: dataItem,            
+            async: false,
+            success: function (data) {                
+                if(data.checked==1){
+                    $('input[name="alias"]').val(data.alias); 
+                }else{                    
+                    var data_error=data.error;
+                    if(typeof data_error.fullname               != "undefined"){
+                        $('input[name="fullname"]').closest('.form-group').addClass(data_error.fullname.type_msg);
+                        $('input[name="fullname"]').closest('.form-group').find('span').text(data_error.fullname.msg);
+                        $('input[name="fullname"]').closest('.form-group').find('span').show();                        
+                    }                            
+                }
+                spinner.hide();
+            },
+            error : function (data){
+                spinner.hide();
+            },
+            beforeSend  : function(jqXHR,setting){
+                spinner.show();
+            },
+        });
+    }
 </script>
 @endsection()            

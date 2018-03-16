@@ -251,6 +251,19 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("upload-file",["as"=>"adminsystem.project.uploadFile","uses"=>"adminsystem\ProjectController@uploadFile"]);
 		Route::post("create-alias",["as"=>"adminsystem.project.createAlias","uses"=>"adminsystem\ProjectController@createAlias"]);
 	});	
+	Route::group(["prefix"=>"donation"],function(){		
+		Route::get("list",["as"=>"adminsystem.donation.getList","uses"=>"adminsystem\DonationController@getList"]);
+		Route::post("load-data",["as"=>"adminsystem.donation.loadData","uses"=>"adminsystem\DonationController@loadData"]);		
+		Route::get("form/{task}/{id?}",["as"=>"adminsystem.donation.getForm","uses"=>"adminsystem\DonationController@getForm"]);
+		Route::post("save",["as"=>"adminsystem.donation.save","uses"=>"adminsystem\DonationController@save"]);
+		Route::post("delete-item",["as"=>"adminsystem.donation.deleteItem","uses"=>"adminsystem\DonationController@deleteItem"]);		
+		Route::post("sort-order",["as"=>"adminsystem.donation.sortOrder","uses"=>"adminsystem\DonationController@sortOrder"]);
+		Route::post("update-status",["as"=>"adminsystem.donation.updateStatus","uses"=>"adminsystem\DonationController@updateStatus"]);
+		Route::post("change-status",["as"=>"adminsystem.donation.changeStatus","uses"=>"adminsystem\DonationController@changeStatus"]);
+		Route::post("trash",["as"=>"adminsystem.donation.trash","uses"=>"adminsystem\DonationController@trash"]);
+		Route::post("upload-file",["as"=>"adminsystem.donation.uploadFile","uses"=>"adminsystem\DonationController@uploadFile"]);
+		Route::post("create-alias",["as"=>"adminsystem.donation.createAlias","uses"=>"adminsystem\DonationController@createAlias"]);
+	});	
 	Route::group(["prefix"=>"album"],function(){		
 		Route::get("list",["as"=>"adminsystem.album.getList","uses"=>"adminsystem\AlbumController@getList"]);
 		Route::post("load-data",["as"=>"adminsystem.album.loadData","uses"=>"adminsystem\AlbumController@loadData"]);		

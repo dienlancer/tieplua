@@ -9,7 +9,7 @@ var vSupporterTable           =   null;
 var vOrganizationTable           =   null;
 var vProvinceTable           =   null;
 var vDistrictTable           =   null;
-
+var vDonationTable           =   null;
 var vProjectArticleTable           =   null;
 var vMediaTable           =   null;
 var vPageTable           =   null;
@@ -195,6 +195,25 @@ var basicTable = function () {
             ]
         });        
     };
+    var initDonationTable = function () {
+        vDonationTable = $('#tbl-donation').DataTable({
+            aLengthMenu: [
+                [10, -1],
+                [10, "All"]
+            ],
+            iDisplayLength: -1,
+            columns: [                
+                { data: "checked"            },                
+                { data: "fullname"      },
+                { data: "total_cost"      },
+                { data: "donated_cost"      },                              
+                { data: "sort_order"    },
+                { data: "status"        },                                
+                { data: "edited"    },         
+                { data: "deleted"    },                
+            ]
+        });        
+    };
     var initAlbumTable = function () {
         vAlbumTable = $('#tbl-album').DataTable({
             aLengthMenu: [
@@ -240,7 +259,8 @@ var basicTable = function () {
             iDisplayLength: -1,
             columns: [                
                 { data: "checked"            },                
-                { data: "fullname"      },               
+                { data: "fullname"      },        
+                { data: "donation_name"      },               
                 { data: "number_money"         },
                 { data: "payment_method_name"         },
                 { data: "sort_order"    },
@@ -759,6 +779,7 @@ var basicTable = function () {
             initVideoTable();
             initProvinceTable();
             initDistrictTable();  
+            initDonationTable();
         }
     };
 }();

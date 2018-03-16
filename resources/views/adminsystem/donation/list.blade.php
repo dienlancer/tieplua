@@ -40,7 +40,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		</div>
 		<div class="row">                     
                 <div class="col-md-6">
-                    <div><b>Người hỗ trợ</b>  </div>
+                    <div><b>Chương trình quyên góp</b>  </div>
                     <div><?php echo $inputFilterSearch; ?></div>
                 </div>            
                 <div class="col-md-6">
@@ -51,14 +51,13 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
                 </div>                
         </div>   
 		<div class="portlet-body">		
-			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-supporter">
+			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-donation">
 				<thead>
 					<tr>
-						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>
-						<th>Họ tên</th>	
-						<th>Chương trình</th>		
-						<th>Số tiền</th>												
-						<th>Loại hình</th>												
+						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                						
+						<th>Chương trình</th>						
+						<th>Kinh phí</th>
+						<th>Số tiền đã quyên góp</th>
 						<th width="10%">Sắp xếp</th>
 						<th width="10%">Trạng thái</th>							
 						<th width="1%">Sửa</th>  
@@ -85,8 +84,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			type: 'POST', 
 			data: dataItem,
 			success: function (data, status, jqXHR) {  								
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -95,7 +94,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		});
 	}	
 	function checkWithList(this_checkbox){
-		var dr = vSupporterTable.row( $(this_checkbox).closest('tr') ).data();       		
+		var dr = vDonationTable.row( $(this_checkbox).closest('tr') ).data();       		
 		if(parseInt(dr['is_checked']) == 0){
 			dr['checked'] ='<input type="checkbox" checked onclick="checkWithList(this)" name="cid" />';
 			dr['is_checked'] = 1;
@@ -103,7 +102,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			dr['checked'] ='<input type="checkbox" onclick="checkWithList(this)" name="cid" />';
 			dr['is_checked'] = 0;
 		}
-		vSupporterTable.row( $(this_checkbox).closest('tr') ).data(dr);
+		vDonationTable.row( $(this_checkbox).closest('tr') ).data(dr);
 	}	
 	function changeStatus(id,status){		
 		var token = $('input[name="_token"]').val();   		
@@ -118,8 +117,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			data: dataItem,
 			success: function (data, status, jqXHR) {   							                              				
 				showMsg('alert',data.msg,data.type_msg);               		
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data.data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data.data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -149,8 +148,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			data: dataItem,
 			success: function (data, status, jqXHR) {  				
 				showMsg('alert',data.msg,data.type_msg);               		
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data.data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data.data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -161,7 +160,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	}
 	function updateStatus(status){				
 		var token 	= 	$('input[name="_token"]').val();   		
-		var dt 		= 	vSupporterTable.data();		
+		var dt 		= 	vDonationTable.data();		
 		var str_id	=	"";		
 		for(var i=0;i<dt.length;i++){
 			var dr=dt[i];
@@ -181,8 +180,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			data: dataItem,
 			success: function (data, status, jqXHR) {   							                              				
 				showMsg('alert',data.msg,data.type_msg);               		
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data.data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data.data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -201,7 +200,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			return 0;
 		}
 		var token 	= 	$('input[name="_token"]').val();   		
-		var dt 		= 	vSupporterTable.data();
+		var dt 		= 	vDonationTable.data();
 		var str_id	=	"";		
 		for(var i=0;i<dt.length;i++){
 			var dr=dt[i];
@@ -221,8 +220,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			data: dataItem,
 			success: function (data, status, jqXHR) {
 				showMsg('alert',data.msg,data.type_msg);  
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data.data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data.data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -247,8 +246,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			data: dataItem,
 			success: function (data, status, jqXHR) {   	
 				showMsg('alert',data.msg,data.type_msg);  
-				vSupporterTable.clear().draw();
-				vSupporterTable.rows.add(data.data).draw();
+				vDonationTable.clear().draw();
+				vDonationTable.rows.add(data.data).draw();
 				spinner.hide();
 			},
 			beforeSend  : function(jqXHR,setting){
@@ -301,7 +300,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		}				
 		$('input[name="sort_json"]').val(JSON.stringify(data));
 	}
-	$(document).ready(function(){		
+	$(document).ready(function(){
+		
 		getList();
 	});
 </script>

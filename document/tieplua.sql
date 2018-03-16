@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 09, 2018 lúc 12:49 PM
+-- Thời gian đã tạo: Th3 16, 2018 lúc 06:21 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -119,7 +119,7 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `fullname`, `alias`, `image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Juventus lên nhì bảng Serie A, Milan thảm bại trước đội đèn đỏ', 'juventus-len-nhi-bang-serie-a,-milan-tham-bai-truoc-doi-den-do', 'conmochieu-1.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '<p style=\"text-align:justify\">Juventus đ&atilde; tận dụng thất bại của Inter ở v&ograve;ng n&agrave;y để vượt qua đối thủ l&ecirc;n đứng thứ hai tr&ecirc;n bảng điểm. Serie A đang chứng kiến một cuộc đua hấp dẫn sau lượt đi khi bốn đội đứng đầu kh&ocirc;ng c&aacute;ch xa nhau. Napoli, Juventus, Inter v&agrave; Roma lần lượt c&oacute; 42, 41, 40 v&agrave; 38 điểm.</p>\n\n<p style=\"text-align:justify\">Trong trận đấu ng&agrave;y chủ nhật, Juventus l&agrave;m kh&aacute;ch tới s&acirc;n Bologna v&agrave; c&oacute; chiến thắng nhờ m&agrave;n tr&igrave;nh diễn ấn tượng của tiền vệ Miralem Pjanic. Tiền vệ người Bosnia ghi b&agrave;n mở tỷ số từ chấm đ&aacute; phạt với c&uacute; dứt điểm v&agrave;o g&oacute;c gần g&acirc;y bất ngờ cho thủ m&ocirc;n Mirante. Đ&acirc;y l&agrave; lần thứ 14 đ&aacute; phạt th&agrave;nh b&agrave;n của Pjanic, th&agrave;nh t&iacute;ch m&agrave; kh&ocirc;ng cầu thủ n&agrave;o ở Serie A s&aacute;nh bằng trong 10 năm trở lại đ&acirc;y.</p>\n\n<p style=\"text-align:justify\"><br />\nChưa dừng lại ở đ&oacute;, Pjanic c&ograve;n c&oacute; đường chuyền đẳng cấp để kiến tạo cho Mandzukic băng xuống ghi b&agrave;n nh&acirc;n đ&ocirc;i tỷ số ở cuối hiệp một. Trận đấu được ấn định tỷ số 3-0 với pha bắt v&ocirc; l&ecirc; cực mạnh của tiền vệ Matuidi trong hiệp hai sau khi hậu vệ Bologna ph&aacute; b&oacute;ng thiếu quyết đo&aacute;n.</p>\n\n<p style=\"text-align:justify\">Ở trận đấu cuối c&ugrave;ng lượt đi, Juventus sẽ tiếp Roma trước khi bước v&agrave;o kỳ nghỉ dịp năm mới.<br />\nTrong khi th&agrave;nh Turin h&acirc;n hoan với chiến thắng th&igrave; ở trận đ&aacute; sớm, Milan đ&atilde; bất ngờ thua 0-3 tr&ecirc;n s&acirc;n đội b&oacute;ng đứng thứ 19 l&agrave; Hellas Verona. Một trong những cầu thủ đang được Juventus cho mượn ở Verona l&agrave; tiền đạo Moise Kean đ&atilde; ghi b&agrave;n v&agrave;o lưới Milan.</p>\n\n<p style=\"text-align:justify\">Điều đ&aacute;ng n&oacute;i khi Milan vừa gi&agrave;nh chiến thắng 3-0 trước Verona ở Coppa Italy chỉ ba ng&agrave;y trước. Mặc d&ugrave; phải l&agrave;m kh&aacute;ch thay v&igrave; được chơi ở San Siro th&igrave; đ&acirc;y vẫn l&agrave; kết quả kh&oacute; nuốt cho t&acirc;n HLV Gennaro Gattuso. Thất bại n&agrave;y khiến họ dậm ch&acirc;n ở vị tr&iacute; thứ bảy, k&eacute;m vị tr&iacute; thứ tư của Roma tới 14 điểm.</p>\n\n<p style=\"text-align:justify\">Trung vệ Antonio Caracciolo đ&aacute;nh đầu mở tỷ số cho Verona trong hiệp một trước khi hai cầu thủ v&agrave;o s&acirc;n thay người l&agrave; Moise Kean v&agrave; Daniel Bessa ghi b&agrave;n ở ph&uacute;t 55 v&agrave; 77. Thất bại nặng nề về tỷ số, Milan c&ograve;n phải kết th&uacute;c trận đấu với 10 người bởi Suso nhận thẻ đỏ sau h&agrave;nh vi dẫm l&ecirc;n Daniele Verde.</p>\n\n<p style=\"text-align:justify\">Kể từ khi Gattuso nhậm chức, Milan chỉ gi&agrave;nh vỏn vẹn một điểm trước hai đội cuối bảng. Ở trận đấu đầu ti&ecirc;n tr&ecirc;n ghế n&oacute;ng, Gattuso phải chứng kiến Milan bị Benevento cầm h&ograve;a 2-2 nhờ b&agrave;n đ&aacute;nh đầu của thủ m&ocirc;n.</p>', '', '', '', 2, 1, 1, '2017-12-18 02:25:20', '2018-01-18 18:58:40'),
+(1, 'Juventus lên nhì bảng Serie A, Milan thảm bại trước đội đèn đỏ', 'juventus-len-nhi-bang-serie-a,-milan-tham-bai-truoc-doi-den-do', 'conmochieu-1.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '<p style=\"text-align:justify\">Juventus đ&atilde; tận dụng thất bại của Inter ở v&ograve;ng n&agrave;y để vượt qua đối thủ l&ecirc;n đứng thứ hai tr&ecirc;n bảng điểm. Serie A đang chứng kiến một cuộc đua hấp dẫn sau lượt đi khi bốn đội đứng đầu kh&ocirc;ng c&aacute;ch xa nhau. Napoli, Juventus, Inter v&agrave; Roma lần lượt c&oacute; 42, 41, 40 v&agrave; 38 điểm.</p>\n\n<p style=\"text-align:justify\">Trong trận đấu ng&agrave;y chủ nhật, Juventus l&agrave;m kh&aacute;ch tới s&acirc;n Bologna v&agrave; c&oacute; chiến thắng nhờ m&agrave;n tr&igrave;nh diễn ấn tượng của tiền vệ Miralem Pjanic. Tiền vệ người Bosnia ghi b&agrave;n mở tỷ số từ chấm đ&aacute; phạt với c&uacute; dứt điểm v&agrave;o g&oacute;c gần g&acirc;y bất ngờ cho thủ m&ocirc;n Mirante. Đ&acirc;y l&agrave; lần thứ 14 đ&aacute; phạt th&agrave;nh b&agrave;n của Pjanic, th&agrave;nh t&iacute;ch m&agrave; kh&ocirc;ng cầu thủ n&agrave;o ở Serie A s&aacute;nh bằng trong 10 năm trở lại đ&acirc;y.</p>\n\n<p style=\"text-align:justify\"><br />\nChưa dừng lại ở đ&oacute;, Pjanic c&ograve;n c&oacute; đường chuyền đẳng cấp để kiến tạo cho Mandzukic băng xuống ghi b&agrave;n nh&acirc;n đ&ocirc;i tỷ số ở cuối hiệp một. Trận đấu được ấn định tỷ số 3-0 với pha bắt v&ocirc; l&ecirc; cực mạnh của tiền vệ Matuidi trong hiệp hai sau khi hậu vệ Bologna ph&aacute; b&oacute;ng thiếu quyết đo&aacute;n.</p>\n\n<p style=\"text-align:justify\">Ở trận đấu cuối c&ugrave;ng lượt đi, Juventus sẽ tiếp Roma trước khi bước v&agrave;o kỳ nghỉ dịp năm mới.<br />\nTrong khi th&agrave;nh Turin h&acirc;n hoan với chiến thắng th&igrave; ở trận đ&aacute; sớm, Milan đ&atilde; bất ngờ thua 0-3 tr&ecirc;n s&acirc;n đội b&oacute;ng đứng thứ 19 l&agrave; Hellas Verona. Một trong những cầu thủ đang được Juventus cho mượn ở Verona l&agrave; tiền đạo Moise Kean đ&atilde; ghi b&agrave;n v&agrave;o lưới Milan.</p>\n\n<p style=\"text-align:justify\">Điều đ&aacute;ng n&oacute;i khi Milan vừa gi&agrave;nh chiến thắng 3-0 trước Verona ở Coppa Italy chỉ ba ng&agrave;y trước. Mặc d&ugrave; phải l&agrave;m kh&aacute;ch thay v&igrave; được chơi ở San Siro th&igrave; đ&acirc;y vẫn l&agrave; kết quả kh&oacute; nuốt cho t&acirc;n HLV Gennaro Gattuso. Thất bại n&agrave;y khiến họ dậm ch&acirc;n ở vị tr&iacute; thứ bảy, k&eacute;m vị tr&iacute; thứ tư của Roma tới 14 điểm.</p>\n\n<p style=\"text-align:justify\">Trung vệ Antonio Caracciolo đ&aacute;nh đầu mở tỷ số cho Verona trong hiệp một trước khi hai cầu thủ v&agrave;o s&acirc;n thay người l&agrave; Moise Kean v&agrave; Daniel Bessa ghi b&agrave;n ở ph&uacute;t 55 v&agrave; 77. Thất bại nặng nề về tỷ số, Milan c&ograve;n phải kết th&uacute;c trận đấu với 10 người bởi Suso nhận thẻ đỏ sau h&agrave;nh vi dẫm l&ecirc;n Daniele Verde.</p>\n\n<p style=\"text-align:justify\">Kể từ khi Gattuso nhậm chức, Milan chỉ gi&agrave;nh vỏn vẹn một điểm trước hai đội cuối bảng. Ở trận đấu đầu ti&ecirc;n tr&ecirc;n ghế n&oacute;ng, Gattuso phải chứng kiến Milan bị Benevento cầm h&ograve;a 2-2 nhờ b&agrave;n đ&aacute;nh đầu của thủ m&ocirc;n.</p>', '', '', '', 4, 1, 1, '2017-12-18 02:25:20', '2018-03-14 02:25:45'),
 (2, 'Liverpool trở lại top 4 với trận đại thắng Bournemouth', 'liverpool-tro-lai-top-4-voi-tran-dai-thang-bournemouth', 'conmochieu-2.png', 'Nulla enim massa, fermentum nec ultrices ut, venenatis ac ante. Vestibulum aliquet nisi sed lectus tristique faucibus. Nullam rutrum accumsan augue. Integer ut nibh id ipsum fringilla facilisis. Ut ac dolor nisi. Nulla facilisi. Quisque varius sollicitudin pellentesque. Sed vulputate ex id sapien rhoncus, sed vehicula libero blandit. Nunc volutpat condimentum iaculis. Maecenas est justo, volutpat sollicitudin aliquet et, bibendum nec dolor. Nullam tincidunt dolor odio, imperdiet lobortis erat facilisis quis. Maecenas at neque nec tortor dignissim faucibus quis eu metus.', '<p style=\"text-align:justify\">Liverpool đ&atilde; trải qua hai trận h&ograve;a thất vọng trước những đội b&oacute;ng đang trong giai đoạn khủng hoảng l&agrave; Everton v&agrave; West Ham. Trướcđ&oacute; đo&agrave;n qu&acirc;n th&agrave;nh phố cảng gi&agrave;nh những chiến thắng đậm li&ecirc;n tiếp ở cả đấu trường Ngoại hạng Anh v&agrave; Champions League.</p>\n\n<p style=\"text-align:justify\">Hai bước lạc nhịp của Liverpool đ&atilde; được chấn chỉnh lại trước Bournemouth, đội b&oacute;ng đang tụt dần xuống cuối bảng. Bộ ba tấn c&ocirc;ng Coutinho, Salah v&agrave; Firmino thay nhau lập c&ocirc;ng, xen giữa l&agrave; b&agrave;n thắng của trung vệ Dejan Lovren đ&atilde; đưa Liverpool vượt mặt Arsenal để t&aacute;i chiếm vị tr&iacute; thứ tư.</p>\n\n<p style=\"text-align:center\"><img alt=\"\" src=\"/upload/hinh-the-thao.jpg\" style=\"height:278px; width:500px\" /></p>\n\n<p style=\"text-align:justify\">Trong đ&oacute; phải kể tới hai pha độc diễn của Coutinho v&agrave; Salah ngay ở hiệp đầu ti&ecirc;n. Coutinho mở tỷ số với pha đi b&oacute;ng từ ngo&agrave;i v&ograve;ng 16m50 v&agrave; cắt ngang từ c&aacute;nh tr&aacute;i trước khi dứt điểm sệt v&agrave;o g&oacute;c gần. Salah kh&ocirc;ng chịu thua k&eacute;m với pha lập c&ocirc;ng b&ecirc;n c&aacute;nh tr&aacute;i nhưng lần n&agrave;y cầu thủ người Ai Cập c&oacute; c&uacute; cứa l&ograve;ng v&agrave;o g&oacute;c xa sau khi lừa qua ba hậu vệ đối phương.<br />\nB&agrave;n thắng của Salah gi&uacute;p anh trở th&agrave;nh cầu thủ đầu ti&ecirc;n thi đấu ở Ngoại hạng Anh c&aacute;n mốc 20 b&agrave;n tr&ecirc;n mọi đấu trường m&ugrave;a n&agrave;y. Trong khi đ&oacute; Coutinho ghi dấu ấn l&ecirc;n b&agrave;n thứ 14 sau 10 trận s&acirc;n kh&aacute;ch gần nhất của Liverpool, bao gồm t&aacute;m pha lập c&ocirc;ng v&agrave; s&aacute;u kiến tạo.</p>\n\n<p style=\"text-align:justify\">Th&agrave;nh vi&ecirc;n c&ograve;n lại của bộ ba tấn c&ocirc;ng l&agrave; Roberto Firmino thậm ch&iacute; c&ograve;n hiệu quả hơn hai đồng đội ở trận đấu n&agrave;y. Tiền đạo Brazil c&oacute; pha m&oacute;c b&oacute;ng đầy nỗ lực để kiến tạo cho Lovren đ&aacute;nh đầu cận th&agrave;nh ghi b&agrave;n trước khi tự m&igrave;nh ấn định tỷ số 4-0 ở hiệp hai.</p>\n\n<p style=\"text-align:justify\">Chiến thắng tưng bừng trước Bournemouth sẽ l&agrave; m&agrave;n chạy đ&agrave; cho trận đại chiến với Arsenal v&agrave;o cuối tuần sau. Đ&acirc;y l&agrave; trận đấu mang t&iacute;nh quyết định tới vị tr&iacute; thứ tư ở m&ugrave;a giải năm nay.</p>\n\n<p style=\"text-align:justify\">Liverpool thậm ch&iacute; c&ograve;n c&oacute; lợi thế về ng&agrave;y nghỉ khi họ kh&ocirc;ng phải đ&aacute; Cup li&ecirc;n đo&agrave;n v&agrave;o giữa tuần, trong khi Arsenal ra s&acirc;n đấu với West Ham.</p>', '', '', '', 8, 2, 1, '2017-12-18 02:25:44', '2018-01-20 19:05:33'),
 (3, 'Rooney: \'Man City hiện tại chưa thể sánh với Man Utd năm 2008\'', 'rooney-man-city-hien-tai-chua-the-sanh-voi-man-utd-nam-2008', 'conmochieu-3.png', 'Integer pellentesque vehicula mauris, vel volutpat ante ultricies id. Nulla ultrices nibh risus, ac varius nisl varius non. Nulla eu quam bibendum, porta turpis in, tincidunt ligula. In nisl turpis, hendrerit tempor elit sit amet, lobortis faucibus diam. Nunc eget quam ut justo viverra euismod at eu ligula. Etiam ex tortor, luctus in laoreet sed, bibendum id nunc. Etiam eu finibus felis, ut consectetur lectus. Mauris sit amet lectus purus. Ut nec sapien orci. Vestibulum ut neque sit amet tellus viverra venenatis. Mauris gravida ultricies lorem a ultrices. Nam eget laoreet arcu, non scelerisque elit.', '<p style=\"text-align:justify\">&quot;T&ocirc;i kh&ocirc;ng nghĩ Man City đang l&agrave; đội hay nhất lịch sử. Họ phải duy tr&igrave; phong độ v&agrave; đạt th&ecirc;m nhiều th&agrave;nh tựu để bắt kịp Man Utd năm 2008&quot;, Wayne Rooney n&oacute;i tr&ecirc;n talkSPORT. &quot;C&oacute; rất nhiều đội mạnh xuy&ecirc;n suốt lịch sử giải. Man City cần đoạt danh hiệu, v&agrave; giữ được sự ổn định để lọt v&agrave;o nh&oacute;m đ&oacute;&quot;.<br />\nRooney l&agrave; trụ cột trong đội h&igrave;nh của HLV Sir Alex Ferguson v&ocirc; địch Ngoại hạng Anh v&agrave; Champions League năm 2008. Khi đ&oacute;, họ đứng tr&ecirc;n Chelsea hai điểm ở giải trong nước, đồng thời đ&aacute;nh gục đội b&oacute;ng T&acirc;y London ở chung kết Champions League tại Moscow. Trong giai đoạn 2007-2011, Man Utd đoạt bốn danh hiệu Ngoại hạng Anh trong năm m&ugrave;a, b&ecirc;n cạnh hai ng&ocirc;i &aacute; qu&acirc;n giải danh gi&aacute; ch&acirc;u &Acirc;u.</p>\n\n<p style=\"text-align:justify\">D&ugrave; vậy, cựu đội trưởng Man Utd v&agrave; tuyển Anh đ&aacute;nh gi&aacute; cao Man City hiện tại: &quot;Pep Guardiola xứng đ&aacute;ng được vinh danh trong th&agrave;nh c&ocirc;ng của Man City l&uacute;c n&agrave;y. C&aacute;ch &ocirc;ng ấy vận h&agrave;nh đội b&oacute;ng hiện tại thật xuất sắc. Nhưng t&ocirc;i kh&ocirc;ng nghĩ họ sẽ bất bại cho đến hết m&ugrave;a giải. C&oacute; khoảng năm, s&aacute;u đội đủ khả năng thắng bất cứ đối thủ n&agrave;o. T&ocirc;i d&aacute;m chắc Man City sẽ gục ng&atilde; ở một trong những trận đ&oacute;&quot;.<br />\nĐội chủ s&acirc;n Etihad đang giữ kỷ lục 16 chiến thắng li&ecirc;n tiếp ở Ngoại hạng Anh, kể từ trận h&ograve;a Everton 1-1 tại v&ograve;ng hai. Bại tướng gần nhất của họ l&agrave; Tottenham, trong trận cầu Man City chơi tr&ecirc;n ch&acirc;n suốt 90 ph&uacute;t v&agrave; gi&agrave;nh thắng lợi 4-1.</p>', '', '', '', NULL, 3, 1, '2017-12-18 02:25:56', '2018-02-23 09:18:37'),
 (4, 'Mourinho lầm tưởng Tony Pulis còn dẫn dắt West Brom', 'mourinho-lam-tuong-tony-pulis-con-dan-dat-west-brom', 'conmochieu-4.png', 'Etiam ac lacinia arcu, vitae faucibus arcu. Cras vulputate nunc ac lacus efficitur facilisis. Nullam accumsan, enim eget egestas vulputate, augue nunc fringilla augue, sed tincidunt purus est non elit. Fusce efficitur imperdiet augue eu gravida. In mollis interdum nunc, a accumsan ipsum suscipit ac. Nam quis velit eget tortor feugiat pharetra lacinia vel lorem. Maecenas vel elit dictum justo pretium eleifend. Fusce nibh eros, semper eget neque aliquet, venenatis lacinia massa. Integer posuere pharetra nunc, eget gravida libero.', '<p style=\"text-align:justify\">Ph&aacute;t biểu sau trận thắng 2-1 ở s&acirc;n The Hawthorns, HLV Jose Mourinho nhầm t&ecirc;n đồng nghiệp b&ecirc;n kia chiến tuyến: &quot;Man Utd xứng đ&aacute;ng thắng v&igrave; đ&atilde; chơi hay hơn. Ch&uacute;ng t&ocirc;i hiểu r&otilde; độ nguy hiểm của West Brom trong c&aacute;c t&igrave;nh huống cố định. Tony l&agrave; chuy&ecirc;n gia trong t&igrave;nh huống như thế. Đội của &ocirc;ng ấy gi&agrave;u thể lực v&agrave; mạnh mẽ trong kh&ocirc;ng chiến. Ch&uacute;ng t&ocirc;i đ&atilde; chuẩn bị tinh thần đối mặt pha b&oacute;ng như vậy&quot;.<br />\nMourinho kh&ocirc;ng hề ph&aacute;t hiện sai lầm, cho đến một l&uacute;c sau, khi &ocirc;ng n&oacute;i đến c&aacute;i t&ecirc;n Alan trong phần c&ograve;n lại của m&agrave;n phỏng vấn: &quot;Ch&uacute;ng t&ocirc;i đ&atilde; kiểm so&aacute;t trận đấu kh&aacute; l&acirc;u. Sau đ&oacute; họ phản kh&aacute;ng dữ dội. Alan thực hiện một số thay đổi để tăng chất lượng đội, trong đ&oacute; c&oacute; sự xuất hiện của một tiền đạo l&ugrave;i (Jay Rodriguez). Man Utd c&oacute; cơ hội để kết liễu trận đấu nhưng bỏ lỡ. Đ&oacute; cũng l&agrave; l&uacute;c họ ghi b&agrave;n. Điều n&agrave;y ho&agrave;n to&agrave;n b&igrave;nh thường. Alan đ&atilde; thử mọi phương &aacute;n nhưng ch&uacute;ng t&ocirc;i vẫn xứng đ&aacute;ng c&oacute; ba điểm&quot;.</p>\n\n<p style=\"text-align:justify\">Pulis dẫn dắt West Brom từ th&aacute;ng 1/2015 v&agrave; k&yacute; hợp đồng mới với đội hồi th&aacute;ng T&aacute;m vừa qua. Chuỗi phong độ kh&ocirc;ng tốt v&agrave; lối chơi thiếu đẹp mắt của West Brom được cho l&agrave; nguy&ecirc;n nh&acirc;n khiến nh&agrave; cầm qu&acirc;n 59 tuổi bị c&aacute;ch chức. Pulis nổi tiếng với lối chơi đậm chất thể lực truyền thống của Anh. &Ocirc;ng cũng c&oacute; quan hệ bạn b&egrave; th&acirc;n thiết với Mourinho.</p>', '', '', '', 3, 4, 1, '2017-12-18 02:27:42', '2018-01-18 18:59:15'),
@@ -313,6 +313,38 @@ INSERT INTO `category_video` (`id`, `fullname`, `meta_keyword`, `meta_descriptio
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `donation`
+--
+
+DROP TABLE IF EXISTS `donation`;
+CREATE TABLE `donation` (
+  `id` bigint(11) NOT NULL,
+  `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_keyword` text COLLATE utf8_unicode_ci,
+  `meta_description` text COLLATE utf8_unicode_ci,
+  `total_cost` text COLLATE utf8_unicode_ci,
+  `donated_cost` bigint(20) DEFAULT NULL,
+  `sort_order` int(11) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donation`
+--
+
+INSERT INTO `donation` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `total_cost`, `donated_cost`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Quyên góp 1', 'quyen-gop-1', 'metakeyword Quyên góp 1', 'metadescription Quyên góp 1', '100000000', 0, 1, 1, '2018-03-16 04:54:33', '2018-03-16 04:58:37'),
+(5, 'Quyên góp 2', 'quyen-gop-2', 'metakeyword Quyên góp 2', 'metadescription Quyên góp 2', '200000000', 0, 2, 1, '2018-03-16 04:58:10', '2018-03-16 05:00:11'),
+(6, 'Quyên góp 3', 'quyen-gop-3', 'metakeyword Quyên góp 3', 'metadescription Quyên góp 3', '300000000', 0, 3, 1, '2018-03-16 05:00:33', '2018-03-16 05:00:33'),
+(7, 'Quyên góp 4', 'quyen-gop-4', 'metakeyword Quyên góp 4', 'metadescription Quyên góp 4', '400000000', 0, 4, 1, '2018-03-16 05:00:58', '2018-03-16 05:00:58'),
+(8, 'Quyên góp 5', 'quyen-gop-5', 'metakeyword Quyên góp 5', 'metadescription Quyên góp 5', '500000000', 0, 5, 1, '2018-03-16 05:01:18', '2018-03-16 05:01:18');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `group_member`
 --
 
@@ -331,7 +363,7 @@ CREATE TABLE `group_member` (
 --
 
 INSERT INTO `group_member` (`id`, `fullname`, `alias`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', NULL, 1, '2016-12-17 05:05:18', '2018-01-09 10:42:35'),
+(1, 'Administrator', '', 1, '2016-12-17 05:05:18', '2018-03-16 04:35:35'),
 (2, 'Bài viết', NULL, 2, '2016-12-17 05:05:41', '2018-01-09 10:42:43'),
 (3, 'Thành viên thường', 'thanh-vien-thuong', 3, '2018-02-22 08:04:14', '2018-02-22 08:04:14');
 
@@ -355,75 +387,6 @@ CREATE TABLE `group_privilege` (
 --
 
 INSERT INTO `group_privilege` (`id`, `group_member_id`, `privilege_id`, `created_at`, `updated_at`) VALUES
-(2699, 1, 1, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2700, 1, 2, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2701, 1, 3, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2702, 1, 4, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2703, 1, 5, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2704, 1, 16, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2705, 1, 17, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2706, 1, 18, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2707, 1, 19, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2708, 1, 24, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2709, 1, 25, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2710, 1, 33, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2711, 1, 43, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2712, 1, 44, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2713, 1, 49, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2714, 1, 50, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2715, 1, 55, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2716, 1, 56, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2717, 1, 57, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2718, 1, 58, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2719, 1, 59, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2720, 1, 60, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2721, 1, 61, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2722, 1, 62, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2723, 1, 63, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2724, 1, 67, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2725, 1, 68, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2726, 1, 79, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2727, 1, 80, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2728, 1, 85, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2729, 1, 86, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2730, 1, 103, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2731, 1, 104, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2732, 1, 105, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2733, 1, 106, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2734, 1, 107, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2735, 1, 108, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2736, 1, 109, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2737, 1, 110, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2738, 1, 111, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2739, 1, 112, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2740, 1, 113, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2741, 1, 114, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2742, 1, 115, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2743, 1, 116, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2744, 1, 117, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2745, 1, 118, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2746, 1, 119, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2747, 1, 120, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2748, 1, 121, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2749, 1, 122, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2750, 1, 123, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2751, 1, 124, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2752, 1, 125, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2753, 1, 126, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2754, 1, 127, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2755, 1, 128, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2756, 1, 129, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2757, 1, 130, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2758, 1, 131, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2759, 1, 132, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2760, 1, 133, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2761, 1, 134, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2762, 1, 135, '2018-01-09 10:36:16', '2018-01-09 10:36:16'),
-(2763, 1, 136, '2018-01-09 10:36:17', '2018-01-09 10:36:17'),
-(2764, 1, 137, '2018-01-09 10:36:17', '2018-01-09 10:36:17'),
-(2765, 1, 138, '2018-01-09 10:36:17', '2018-01-09 10:36:17'),
-(2766, 1, 139, '2018-01-09 10:36:17', '2018-01-09 10:36:17'),
-(2767, 1, 140, '2018-01-09 10:36:17', '2018-01-09 10:36:17'),
 (2768, 2, 1, '2018-01-09 10:36:25', '2018-01-09 10:36:25'),
 (2769, 2, 2, '2018-01-09 10:36:25', '2018-01-09 10:36:25'),
 (2770, 2, 3, '2018-01-09 10:36:25', '2018-01-09 10:36:25'),
@@ -486,7 +449,78 @@ INSERT INTO `group_privilege` (`id`, `group_member_id`, `privilege_id`, `created
 (2827, 2, 137, '2018-01-09 10:36:25', '2018-01-09 10:36:25'),
 (2828, 2, 138, '2018-01-09 10:36:26', '2018-01-09 10:36:26'),
 (2829, 2, 139, '2018-01-09 10:36:26', '2018-01-09 10:36:26'),
-(2830, 2, 140, '2018-01-09 10:36:26', '2018-01-09 10:36:26');
+(2830, 2, 140, '2018-01-09 10:36:26', '2018-01-09 10:36:26'),
+(2831, 1, 1, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2832, 1, 2, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2833, 1, 3, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2834, 1, 4, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2835, 1, 5, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2836, 1, 16, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2837, 1, 17, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2838, 1, 18, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2839, 1, 19, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2840, 1, 24, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2841, 1, 25, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2842, 1, 33, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2843, 1, 43, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2844, 1, 44, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2845, 1, 49, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2846, 1, 50, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2847, 1, 55, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2848, 1, 56, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2849, 1, 57, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2850, 1, 58, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2851, 1, 59, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2852, 1, 60, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2853, 1, 61, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2854, 1, 62, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2855, 1, 63, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2856, 1, 67, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2857, 1, 68, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2858, 1, 79, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2859, 1, 80, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2860, 1, 85, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2861, 1, 86, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2862, 1, 103, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2863, 1, 104, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2864, 1, 105, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2865, 1, 106, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2866, 1, 107, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2867, 1, 108, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2868, 1, 109, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2869, 1, 110, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2870, 1, 111, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2871, 1, 112, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2872, 1, 113, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2873, 1, 114, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2874, 1, 115, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2875, 1, 116, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2876, 1, 117, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2877, 1, 118, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2878, 1, 119, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2879, 1, 120, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2880, 1, 121, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2881, 1, 122, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2882, 1, 123, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2883, 1, 124, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2884, 1, 125, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2885, 1, 126, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2886, 1, 127, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2887, 1, 128, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2888, 1, 129, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2889, 1, 130, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2890, 1, 131, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2891, 1, 132, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2892, 1, 133, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2893, 1, 134, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2894, 1, 135, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2895, 1, 136, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2896, 1, 137, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2897, 1, 138, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2898, 1, 139, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2899, 1, 140, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2900, 1, 141, '2018-03-16 04:34:54', '2018-03-16 04:34:54'),
+(2901, 1, 142, '2018-03-16 04:34:54', '2018-03-16 04:34:54');
 
 -- --------------------------------------------------------
 
@@ -1007,7 +1041,15 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (381, 1, 'xtsAh9KR7SfFPdNn4HlLA5F69jnsx5nK', '2018-02-26 01:00:19', '2018-02-26 01:00:19'),
 (383, 1, 'X87ItTJ3RXIMJ8G0rkSAxL7CpQUYdXp8', '2018-02-26 01:05:59', '2018-02-26 01:05:59'),
 (384, 1, 'KGpdNGYpzW4V5fagBv6k2dvBTzp23nJp', '2018-03-02 03:57:24', '2018-03-02 03:57:24'),
-(385, 1, 'CwMQQoU7hcUEH5Ogfye8n4h3Zr3zmWW0', '2018-03-02 03:57:24', '2018-03-02 03:57:24');
+(385, 1, 'CwMQQoU7hcUEH5Ogfye8n4h3Zr3zmWW0', '2018-03-02 03:57:24', '2018-03-02 03:57:24'),
+(386, 1, 'xldK5sKzH1MQWBnkiNf9zzl0ykB7jcXA', '2018-03-15 19:44:31', '2018-03-15 19:44:31'),
+(387, 1, '6uECGZaPtcoZVvy5HDqGZgdncsVBTurS', '2018-03-15 19:44:31', '2018-03-15 19:44:31'),
+(388, 1, 'SLSRFsU9a6VuxgJ9TILnnEQvz4r93NFe', '2018-03-15 20:56:31', '2018-03-15 20:56:31'),
+(389, 1, 'LKv69n9sikBmhFLYbjJWdj2ilWp5xtxy', '2018-03-15 20:56:31', '2018-03-15 20:56:31'),
+(390, 1, 'LRjZS3khtnxvhJThMpjjN2e8OePno9Bh', '2018-03-15 21:26:51', '2018-03-15 21:26:51'),
+(392, 1, '99DIFNM4Tfi8riyMfRWaLKq4A8cQuE4D', '2018-03-15 21:35:24', '2018-03-15 21:35:24'),
+(394, 1, 'EIYFGNgoDHAQqYKC17fmCxi8axILBuVv', '2018-03-15 21:35:40', '2018-03-15 21:35:40'),
+(395, 1, '3ItLP9ak9NfoDupu5VeSdrQ18DDifvFi', '2018-03-15 21:35:40', '2018-03-15 21:35:40');
 
 -- --------------------------------------------------------
 
@@ -1138,7 +1180,9 @@ INSERT INTO `privilege` (`id`, `fullname`, `controller`, `action`, `sort_order`,
 (137, 'category-video-list', 'category-video', 'list', 1, '2018-01-09 09:54:53', '2018-01-09 09:54:53'),
 (138, 'category-video-form', 'category-video', 'form', 2, '2018-01-09 09:55:06', '2018-01-09 09:55:06'),
 (139, 'video-list', 'video', 'list', 1, '2018-01-09 09:55:16', '2018-01-09 09:55:16'),
-(140, 'video-form', 'video', 'form', 2, '2018-01-09 09:55:24', '2018-01-09 09:55:24');
+(140, 'video-form', 'video', 'form', 2, '2018-01-09 09:55:24', '2018-01-09 09:55:24'),
+(141, 'donation-list', 'donation', 'list', 1, '2018-03-16 04:34:10', '2018-03-16 04:34:10'),
+(142, 'donation-form', 'donation', 'form', 1, '2018-03-16 04:34:28', '2018-03-16 04:34:28');
 
 -- --------------------------------------------------------
 
@@ -1183,7 +1227,8 @@ CREATE TABLE `project` (
   `meta_description` text COLLATE utf8_unicode_ci,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `count_view` int(11) DEFAULT NULL,
-  `total_cost` text COLLATE utf8_unicode_ci,
+  `total_cost` bigint(20) DEFAULT NULL,
+  `donated_cost` bigint(20) DEFAULT NULL,
   `intro` text COLLATE utf8_unicode_ci,
   `overview` text COLLATE utf8_unicode_ci,
   `plan` text COLLATE utf8_unicode_ci,
@@ -1198,8 +1243,8 @@ CREATE TABLE `project` (
 -- Đang đổ dữ liệu cho bảng `project`
 --
 
-INSERT INTO `project` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `image`, `count_view`, `total_cost`, `intro`, `overview`, `plan`, `sponsor`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(10, 'Jesse Lingard với cú bật nhảy ở Man Utd', 'jesse-lingard-voi-cu-bat-nhay-o-man-utd', 'metakeyword Jesse Lingard với cú bật nhảy ở Man Utd', 'metadescription Jesse Lingard với cú bật nhảy ở Man Utd', 'conmochieu-6.png', 347, '<p>kinh ph&iacute;&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 'Lingard một lần nữa trở thành tâm điểm trong chiến thắng 2-0 mới đây trước Everton, tiếp đà vọt đi dưới sự dạy dỗ của HLV Jose Mourinho.', '<p>tổng quan&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>kế hoạch&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>t&agrave;i trợ&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 1, 1, '2018-01-04 18:34:30', '2018-03-01 06:53:12');
+INSERT INTO `project` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `image`, `count_view`, `total_cost`, `donated_cost`, `intro`, `overview`, `plan`, `sponsor`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(10, 'Jesse Lingard với cú bật nhảy ở Man Utd', 'jesse-lingard-voi-cu-bat-nhay-o-man-utd', 'metakeyword Jesse Lingard với cú bật nhảy ở Man Utd', 'metadescription Jesse Lingard với cú bật nhảy ở Man Utd', 'conmochieu-6.png', 347, 0, NULL, 'Lingard một lần nữa trở thành tâm điểm trong chiến thắng 2-0 mới đây trước Everton, tiếp đà vọt đi dưới sự dạy dỗ của HLV Jose Mourinho.', '<p>tổng quan&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>kế hoạch&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', '<p>t&agrave;i trợ&nbsp;Jesse Lingard với c&uacute; bật nhảy ở Man Utd</p>', 1, 1, '2018-01-04 18:34:30', '2018-03-01 06:53:12');
 
 -- --------------------------------------------------------
 
@@ -1355,6 +1400,7 @@ DROP TABLE IF EXISTS `supporter`;
 CREATE TABLE `supporter` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `donation_id` int(11) DEFAULT NULL,
   `number_money` decimal(11,0) DEFAULT NULL,
   `payment_method_id` int(11) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
@@ -1367,12 +1413,13 @@ CREATE TABLE `supporter` (
 -- Đang đổ dữ liệu cho bảng `supporter`
 --
 
-INSERT INTO `supporter` (`id`, `fullname`, `number_money`, `payment_method_id`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Nguyễn Thị Thu Hằng', '1000000', 1, 1, 1, '2018-01-07 17:32:50', '2018-01-07 17:47:21'),
-(7, 'Trần Gia Lạc', '2000000', 2, 2, 1, '2018-01-07 18:02:15', '2018-01-08 07:19:18'),
-(8, 'Lê Văn Đại', '2000000', 1, 3, 1, '2018-01-08 02:38:56', '2018-01-08 09:29:07'),
-(9, 'Nguyễn Mạnh Hùng', '3000000', 2, 4, 1, '2018-01-08 02:39:19', '2018-01-08 02:39:19'),
-(10, 'Trần Tiến Dư', '3000000', 2, 5, 1, '2018-01-08 02:39:35', '2018-01-08 02:39:35');
+INSERT INTO `supporter` (`id`, `fullname`, `donation_id`, `number_money`, `payment_method_id`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Nguyễn Thị Thu Hằng', 1, '1000000', 1, 1, 1, '2018-01-07 17:32:50', '2018-01-07 17:47:21'),
+(7, 'Trần Gia Lạc', 1, '2000000', 2, 2, 1, '2018-01-07 18:02:15', '2018-01-08 07:19:18'),
+(8, 'Lê Văn Đại', 1, '2000000', 1, 3, 1, '2018-01-08 02:38:56', '2018-01-08 09:29:07'),
+(9, 'Nguyễn Mạnh Hùng', 1, '3000000', 2, 4, 1, '2018-01-08 02:39:19', '2018-01-08 02:39:19'),
+(10, 'Trần Tiến Dư', 1, '3000000', 2, 5, 1, '2018-01-08 02:39:35', '2018-01-08 02:39:35'),
+(11, 'Phan Mạnh Quỳnh', 6, '3000000', 1, 6, 1, '2018-03-16 05:19:56', '2018-03-16 05:21:10');
 
 -- --------------------------------------------------------
 
@@ -1861,7 +1908,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `image`, `address`, `phone`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-03-02 03:57:24', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 6, 1, '2017-11-12 07:23:56', '2018-03-02 03:57:24'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-03-15 21:35:40', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 6, 1, '2017-11-12 07:23:56', '2018-03-15 21:35:40'),
 (3, 'helenangochong', 'honghtn@dienkim.com', '$2y$10$cLZi575jplnHn9UGNjH0SO3VWdYj4B9rEFtmXxQzjvTrJeu8ZBNzi', NULL, '2018-02-22 02:30:55', 'Hồ Thị Ngọc Hồng', NULL, NULL, NULL, 1, NULL, '2018-02-22 01:51:24', '2018-02-23 11:40:22'),
 (4, 'linhdm', 'linhdm@dienkim.com', '$2y$10$B948upn3X5XbsZfxa6BXIOYyI/gXNIjX3QKuIXDfFE/9gcsVfQ65C', NULL, '2018-02-22 02:37:26', 'Đỗ Mỹ Linh', NULL, NULL, NULL, 2, NULL, '2018-02-22 02:03:03', '2018-02-23 11:40:22'),
 (5, 'phuongdh', 'phuongdh@dienkim.com', '$2y$10$yuiN5EfBE8DPfhdcLXlPRuaYYtCD0vAdONs/Gd6WluOOSOYZlDam6', NULL, '2018-02-22 02:52:51', 'Đặng Hùng Phương', NULL, NULL, NULL, 3, NULL, '2018-02-22 02:05:06', '2018-02-23 11:40:22'),
@@ -1990,6 +2037,12 @@ ALTER TABLE `category_product`
 -- Chỉ mục cho bảng `category_video`
 --
 ALTER TABLE `category_video`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `donation`
+--
+ALTER TABLE `donation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2218,6 +2271,12 @@ ALTER TABLE `category_video`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT cho bảng `donation`
+--
+ALTER TABLE `donation`
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT cho bảng `group_member`
 --
 ALTER TABLE `group_member`
@@ -2227,7 +2286,7 @@ ALTER TABLE `group_member`
 -- AUTO_INCREMENT cho bảng `group_privilege`
 --
 ALTER TABLE `group_privilege`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2831;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2902;
 
 --
 -- AUTO_INCREMENT cho bảng `invoice`
@@ -2287,7 +2346,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=396;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2299,7 +2358,7 @@ ALTER TABLE `photo`
 -- AUTO_INCREMENT cho bảng `privilege`
 --
 ALTER TABLE `privilege`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -2347,7 +2406,7 @@ ALTER TABLE `setting_system`
 -- AUTO_INCREMENT cho bảng `supporter`
 --
 ALTER TABLE `supporter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `throttle`

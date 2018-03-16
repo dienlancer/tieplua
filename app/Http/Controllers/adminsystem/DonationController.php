@@ -11,13 +11,12 @@ use App\MenuModel;
 use App\ProjectModel;
 use App\ProjectArticleModel;
 use App\ArticleCategoryModel;
-use App\PaymentMethodModel;
-use App\SupporterModel;
 use App\DonationModel;
+use App\SupporterModel;
 use DB;
-class SupporterController extends Controller {
-  	var $_controller="supporter";	
-  	var $_title="Tiếp lửa";
+class DonationController extends Controller {
+  	var $_controller="donation";	
+  	var $_title="Chương trình quyên góp";
   	var $_icon="icon-settings font-dark";    
   	public function getList(){		
     		$controller=$this->_controller;	
@@ -33,18 +32,16 @@ class SupporterController extends Controller {
           return view("adminsystem.no-access");
         }
   	}	    
-  	public function loadData(Request $request){             
-      $query=DB::table('supporter')  
-      ->join('payment_method','supporter.payment_method_id','=','payment_method.id')  
-      ->join('donation','supporter.donation_id','=','donation.id') ;
+  	public function loadData(Request $request){           
+      $query=DB::table('donation');        
       if(!empty(@$request->filter_search)){
-        $query->where('supporter.fullname','like','%'.trim(mb_strtolower(@$request->filter_search,'UTF-8')).'%')    ;
+        $query->where('donation.fullname','like','%'.trim(@$request->filter_search).'%');
       }
-      $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-      ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-      ->orderBy('supporter.sort_order', 'asc')->get()->toArray();                
+      $data=$query->select('donation.id','donation.fullname','donation.total_cost','donation.donated_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
+      ->groupBy('donation.id','donation.fullname','donation.total_cost','donation.donated_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
+      ->orderBy('donation.sort_order', 'asc')->get()->toArray()     ;             
       $data=convertToArray($data);    
-      $data=supporterConverter($data,$this->_controller);            
+      $data=donationConverter($data,$this->_controller);            
       return $data;
     } 
     public function getForm($task,$id=""){     
@@ -58,15 +55,13 @@ class SupporterController extends Controller {
           switch ($task) {
            case 'edit':
               $title=$this->_title . " : Update";
-              $arrRowData=SupporterModel::find((int)@$id)->toArray();                     
+              $arrRowData=DonationModel::find((int)@$id)->toArray();                     
            break;
            case 'add':
               $title=$this->_title . " : Add new";
            break;     
-        }          
-        $arrPaymentMethod=PaymentMethodModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();     
-        $arrDonation=DonationModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();     
-        return view("adminsystem.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon","arrPaymentMethod","arrDonation"));
+        }            
+        return view("adminsystem.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon"));
         }else{
           return view("adminsystem.no-access");
         }        
@@ -74,9 +69,10 @@ class SupporterController extends Controller {
      public function save(Request $request){
           $id 					        =		trim($request->id);        
           $fullname 				    =		trim($request->fullname);
-          $number_money         =   trim($request->number_money);
-          $payment_method_id    =   trim($request->payment_method_id);       
-          $donation_id          =   trim($request->donation_id);                        
+          $alias                =   trim($request->alias);                  
+          $meta_keyword         =   trim($request->meta_keyword);
+          $meta_description     =   trim($request->meta_description);             
+          $total_cost           =   trim($request->total_cost);                  
           $sort_order           =   trim($request->sort_order);
           $status               =   trim($request->status);          
           $data 		            =   array();
@@ -87,30 +83,20 @@ class SupporterController extends Controller {
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
-                 $error["fullname"]["msg"] = "Thiếu tên người hỗ trợ";
+                 $error["fullname"]["msg"] = "Thiếu tên bài viết";
           }else{
               $data=array();
               if (empty($id)) {
-                $data=ProjectModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();	        	
+                $data=DonationModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();	        	
               }else{
-                $data=ProjectModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();		
+                $data=DonationModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();		
               }  
               if (count($data) > 0) {
                   $checked = 0;
                   $error["fullname"]["type_msg"] = "has-error";
                   $error["fullname"]["msg"] = "Bài viết đã tồn tại";
               }      	
-          }      
-          if((int)@$payment_method_id == 0){
-              $checked = 0;
-              $error["payment_method_id"]["type_msg"]   = "has-error";
-              $error["payment_method_id"]["msg"]      = "Thiếu hình thức";
-          }          
-          if((int)@$donation_id == 0){
-              $checked = 0;
-              $error["donation_id"]["type_msg"]   = "has-error";
-              $error["donation_id"]["msg"]      = "Thiếu chương trình";
-          }                 
+          }                    
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
@@ -123,15 +109,17 @@ class SupporterController extends Controller {
           }
           if ($checked == 1) {    
                 if(empty($id)){
-                    $item 				= 	new SupporterModel;       
-                    $item->created_at 	=	date("Y-m-d H:i:s",time());                            
+                    $item 				= 	new DonationModel;       
+                    $item->created_at 	=	date("Y-m-d H:i:s",time());        
+                    $item->donated_cost=0;		
                 } else{
-                    $item				=	SupporterModel::find((int)@$id);                                                   
+                    $item				=	DonationModel::find((int)@$id);                           
                 }  
                 $item->fullname 		    =	$fullname;
-                $item->number_money     = str_replace('.', '',$number_money) ;
-                $item->payment_method_id = (int)@$payment_method_id;      
-                $item->donation_id=(int)@$donation_id;                                 
+                $item->alias            = $alias;                       
+                $item->meta_keyword     = $meta_keyword;
+                $item->meta_description = $meta_description;                             
+                $item->total_cost            = (int)(str_replace('.', '',@$total_cost)) ;                        
                 $item->sort_order 		  =	(int)@$sort_order;
                 $item->status 			    =	(int)@$status;    
                 $item->updated_at 		  =	date("Y-m-d H:i:s",time());    	        	
@@ -154,13 +142,14 @@ class SupporterController extends Controller {
             }        		 			       
             return $info;       
     }
-          public function changeStatus(Request $request){
+           
+      public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
                   $msg                    =   "Cập nhật thành công";              
-                  $status         =       (int)@$request->status;
-                  $item           =       SupporterModel::find((int)@$id);        
+                  $status         =       (int)$request->status;
+                  $item           =       DonationModel::find((int)@$id);        
                   $item->status   =       $status;
                   $item->save();
                   $data                   =   $this->loadData($request);
@@ -177,10 +166,17 @@ class SupporterController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $msg                    =   "Xóa thành công"; 
+            $data=SupporterModel::whereRaw("donation_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }                     
             if($checked == 1){
-              $item = SupporterModel::find((int)@$id);
-                $item->delete();                                                
+              $item = DonationModel::find((int)@$id);
+                $item->delete();                                
+                
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -207,7 +203,7 @@ class SupporterController extends Controller {
           if($checked==1){
               foreach ($arrID as $key => $value) {
                 if(!empty($value)){
-                    $item=SupporterModel::find($value);
+                    $item=DonationModel::find($value);
                     $item->status=$status;
                     $item->save();      
                 }            
@@ -234,9 +230,14 @@ class SupporterController extends Controller {
               $type_msg           =   "alert-warning";            
               $msg                =   "Vui lòng chọn ít nhất một phần tử";
             }
-            if($checked == 1){                                  
-
-                  DB::table('supporter')->whereIn('id',@$arrID)->delete();                                   
+            $data=DB::table('supporter')->whereIn('donation_id',@$arrID)->select('id')->get()->toArray();             
+            if(count($data) > 0){
+              $checked                =   0;
+              $type_msg               =   "alert-warning";            
+              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+            }   
+            if($checked == 1){                                 
+                  DB::table('donation')->whereIn('id',@$arrID)->delete();                             
             }
             $data                   =   $this->loadData($request);
             $info = array(
@@ -257,7 +258,7 @@ class SupporterController extends Controller {
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){      
                 if(!empty($value)){
-                  $item=SupporterModel::find((int)@$value->id);                
+                  $item=DonationModel::find((int)@$value->id);                
                 $item->sort_order=(int)$value->sort_order;                         
                 $item->save();                      
                 }                                                  
@@ -272,5 +273,55 @@ class SupporterController extends Controller {
             );
             return $info;
       }
+
+        public function createAlias(Request $request){
+          $id            =  trim($request->id)  ; 
+          $fullname      =  trim($request->fullname)  ;        
+          $data          =  array();
+          $info          =  array();
+          $error         =  array();
+          $item          =  null;
+          $checked       = 1;   
+          $alias='';                     
+          if(empty($fullname)){
+           $checked = 0;
+           $error["fullname"]["type_msg"] = "has-error";
+           $error["fullname"]["msg"] = "Thiếu tên bài viết";
+         }else{
+          $alias=str_slug($fullname,'-');        
+          $dataDonation=array();        
+          $checked_trung_alias=0;          
+          if (empty($id)) {              
+              $dataDonation=DonationModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();             
+            }else{
+              $dataDonation=DonationModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();    
+            }                        
+          if (count($dataDonation) > 0) {
+            $checked_trung_alias=1;
+          }  
+          if((int)$checked_trung_alias == 1){
+            $code_alias=rand(1,999);
+            $alias=$alias.'-'.$code_alias;
+          }
+        }
+        if ($checked == 1){
+          $info = array(
+            'type_msg'      => "has-success",
+            'msg'         => 'Lưu dữ liệu thành công',
+            "checked"       => 1,
+            "error"       => $error,            
+            "alias"       =>$alias
+          );
+        }else {
+          $info = array(
+            'type_msg'      => "has-error",
+            'msg'         => 'Nhập dữ liệu có sự cố',
+            "checked"       => 0,
+            "error"       => $error,
+            "alias"        => $alias
+          );
+        }    
+        return $info;
+      }      
 }
 ?>

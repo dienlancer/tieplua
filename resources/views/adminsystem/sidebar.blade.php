@@ -15,6 +15,10 @@ $li_project_management='';
 $li_project='';
 $li_project_article='';
 
+$li_donation_management='';
+$li_donation='';
+$li_supporter='';
+
 $li_product_management='';
 $li_category_product='';
 $li_product='';
@@ -34,7 +38,7 @@ $li_group_member='';
 $li_user='';
 $li_privilege='';
 $li_media='';
-$li_supporter='';
+
 $li_organization='';
 switch ($controller) {
     case 'category-article':  
@@ -68,10 +72,18 @@ switch ($controller) {
     $li_project='active open';    
     $li_project_management='active open';
     break;
-
     case 'project-article': 
     $li_project_article='active open';    
     $li_project_management='active open';
+    break;
+
+    case 'donation': 
+    $li_donation='active open';    
+    $li_donation_management='active open';
+    break;
+    case 'supporter': 
+    $li_supporter='active open';    
+    $li_donation_management='active open';
     break;
     
     case 'category-product':  
@@ -110,10 +122,7 @@ switch ($controller) {
     break; 
     case 'media':
     $li_media='active open';
-    break;
-    case 'supporter':
-    $li_supporter='active open';
-    break; 
+    break;    
     case 'organization':
     $li_organization='active open';
     break; 
@@ -233,11 +242,26 @@ switch ($controller) {
             </li>                        
         </ul>
     </li>
-    <li class="nav-item  <?php echo $li_supporter; ?>">
-        <a href="{!! route('adminsystem.supporter.getList') !!}" class="nav-link nav-toggle">
-            <i class="icon-notebook"></i>
-            <span class="title">Tiếp lửa</span>                                            
-        </a>                                                                      
+    <li class="nav-item <?php echo $li_donation_management; ?>">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-folder-open-o" ></i>
+            <span class="title">Quản lý chương trình</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">                                    
+            <li class="nav-item  <?php echo $li_donation; ?>">
+                <a href="{!! route('adminsystem.donation.getList') !!}" class="nav-link nav-toggle">
+                    <i class="icon-notebook"></i>
+                    <span class="title">Dự án</span>                                            
+                </a>                                                                      
+            </li>  
+            <li class="nav-item  <?php echo $li_supporter; ?>">
+                <a href="{!! route('adminsystem.supporter.getList') !!}" class="nav-link nav-toggle">
+                    <i class="icon-notebook"></i>
+                    <span class="title">Mạnh Thường Quân</span>                                            
+                </a>                                                                      
+            </li>                        
+        </ul>
     </li>
     <li class="nav-item  <?php echo $li_organization; ?>">
         <a href="{!! route('adminsystem.organization.getList') !!}" class="nav-link nav-toggle">
