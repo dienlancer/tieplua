@@ -10,6 +10,7 @@ $linkUpdateStatus	=	route('adminsystem.'.$controller.'.updateStatus');
 $linkTrash			=	route('adminsystem.'.$controller.'.trash');
 $linkSortOrder		=	route('adminsystem.'.$controller.'.sortOrder');
 $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_search"          value="">';
+$ddlDonation      =   cmsSelectboxCategory("donation_id","donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"");
 ?>
 <form class="form-horizontal" role="form" name="frm">	
 	{{ csrf_field() }}
@@ -39,11 +40,15 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			</div>                                 
 		</div>
 		<div class="row">                     
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div><b>Người hỗ trợ</b>  </div>
                     <div><?php echo $inputFilterSearch; ?></div>
+                </div> 
+                <div class="col-md-5">
+                    <div><b>Chương trình</b>  </div>
+                    <div><?php echo $ddlDonation; ?></div>
                 </div>            
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div>&nbsp;</div>
                     <div>
                         <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getList();">Tìm kiếm</button>                                         
@@ -74,9 +79,11 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 <script type="text/javascript" language="javascript">	
 
 	function getList() {  	
-		var token = $('form[name="frm"] input[name="_token"]').val();         
-        var filter_search=$('form[name="frm"] input[name="filter_search"]').val();
+		var token = $('input[name="_token"]').val();         
+		var donation_id=$('select[name="donation_id"]').val();
+        var filter_search=$('input[name="filter_search"]').val();
 		var dataItem={            
+			'donation_id':donation_id,
             '_token': token,
             'filter_search':filter_search,            
         };

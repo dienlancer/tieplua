@@ -205,8 +205,7 @@ var basicTable = function () {
             columns: [                
                 { data: "checked"            },                
                 { data: "fullname"      },
-                { data: "total_cost"      },
-                { data: "donated_cost"      },                              
+                { data: "total_cost"      },                            
                 { data: "sort_order"    },
                 { data: "status"        },                                
                 { data: "edited"    },         

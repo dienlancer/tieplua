@@ -389,13 +389,17 @@ class IndexController extends Controller {
       case 'supporter':            
       $meta_keyword="metakeyword tiếp lửa";
       $meta_description="metadescription tiếp lửa";  
-      $query=DB::table('supporter')->join('payment_method','supporter.payment_method_id','=','payment_method.id')->where('supporter.status',1)                     ;
+      $query=DB::table('supporter')
+            ->join('payment_method','supporter.payment_method_id','=','payment_method.id')
+            ->join('donation','supporter.donation_id','=','donation.id')
+            ->where('supporter.status',1)
+            ->where('donation.status',1);
       $data=$query->select('supporter.id')                                
                 ->groupBy('supporter.id')                        
                 ->get()->toArray();              
         $data=convertToArray($data);     
         $totalItems=count($data);
-        $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
+        $totalItemsPerPage=50; 
         $pageRange=$this->_pageRange;
         if(!empty(@$request->filter_page)){
           $currentPage=@$request->filter_page;
@@ -408,9 +412,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                
-                
-                ->groupBy('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
+        $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
+                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
                 ->orderBy('supporter.created_at', 'desc')  
                 ->skip($position)
                 ->take($totalItemsPerPage)              

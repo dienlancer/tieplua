@@ -1,13 +1,41 @@
-<?php 
-use App\PaymentMethodModel;
-?>
 <div class="margin-top-15">
 	<h2 class="tieu-de">
 		<?php echo $title; ?>		
 	</h2>
 	<?php 
+	$data_donation=App\DonationModel::select('id','fullname','total_cost')->get()->toArray();	
+	if(count($data_donation) > 0){
+		foreach ($data_donation as $key => $value) {
+			$donation_id=$value['id'];
+			$donation_name=$value['fullname'];
+			$total_cost=$value['total_cost'];
+			$query=DB::table('supporter')
+					->where('supporter.donation_id',(int)@$donation_id);
+			$data_sum=$query->groupBy('supporter.donation_id')
+							->selectRaw('sum(supporter.number_money) as donated_cost')->get()->toArray();
+			$donated_cost=0;
+			if(count($data_sum) > 0){				
+				$donated_cost=(int)$data_sum[0]->donated_cost;
+			}			
+			$donated_percent=$donated_cost / $total_cost * 100;			
+			$total_cost_text=fnPrice($total_cost);
+			?>
+			<div class="margin-top-5 row">
+				<div class="col-lg-3"><?php echo $donation_name; ?></div>
+				<div class="col-lg-6">
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $donated_percent ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $donated_percent ?>%">
+							<?php echo $donated_percent; ?>%
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3"><?php echo $total_cost_text; ?></div>
+			</div>	
+			<?php
+		}
+	}
 	if(count($items) > 0){
-		?>
+		?>		
 		<div class="margin-top-5">
 			<form action="<?php echo route('frontend.index.searchSupporter'); ?>" method="post" name="frm-ds-an-nhan" >
 				{{ csrf_field() }}
@@ -48,7 +76,7 @@ use App\PaymentMethodModel;
 					<select name="payment_method_id" class="form-control">
 						<option value="">Loại hình</option>
 						<?php 
-						$payment_method=PaymentMethodModel::whereRaw('status = 1')->select('id','fullname')->get()->toArray();
+						$payment_method=App\PaymentMethodModel::whereRaw('status = 1')->select('id','fullname')->get()->toArray();
 						foreach ($payment_method as $key => $value) {
 							$id=$value['id'];
 							$fullname=$value['fullname'];
@@ -72,7 +100,8 @@ use App\PaymentMethodModel;
 						<tr>									
 							<th>Họ tên</th>
 							<th>Số tiền</th>
-							<th>Loại hình</th>						
+							<th>Loại hình</th>		
+							<th>Quỹ quyên góp</th>				
 						</tr>
 					</thead>
 					<tbody> 
@@ -81,12 +110,14 @@ use App\PaymentMethodModel;
 							$id=$value['id'];				
 							$fullname=$value['fullname'];
 							$number_money_text=fnPrice($value['number_money']);
-							$payment_method_name=$value['payment_method_name'];							
+							$payment_method_name=$value['payment_method_name'];			
+							$donation_name=$value['donation_name'];				
 							?>
 							<tr>
 								<td><?php echo $fullname; ?></td>
 								<td align="right"><?php echo $number_money_text; ?></td>
 								<td><?php echo $payment_method_name; ?></td>
+								<td><?php echo $donation_name; ?></td>
 							</tr>   
 							<?php
 						}

@@ -37,8 +37,8 @@ class DonationController extends Controller {
       if(!empty(@$request->filter_search)){
         $query->where('donation.fullname','like','%'.trim(@$request->filter_search).'%');
       }
-      $data=$query->select('donation.id','donation.fullname','donation.total_cost','donation.donated_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
-      ->groupBy('donation.id','donation.fullname','donation.total_cost','donation.donated_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
+      $data=$query->select('donation.id','donation.fullname','donation.total_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
+      ->groupBy('donation.id','donation.fullname','donation.total_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
       ->orderBy('donation.sort_order', 'asc')->get()->toArray()     ;             
       $data=convertToArray($data);    
       $data=donationConverter($data,$this->_controller);            
@@ -110,8 +110,7 @@ class DonationController extends Controller {
           if ($checked == 1) {    
                 if(empty($id)){
                     $item 				= 	new DonationModel;       
-                    $item->created_at 	=	date("Y-m-d H:i:s",time());        
-                    $item->donated_cost=0;		
+                    $item->created_at 	=	date("Y-m-d H:i:s",time());                            
                 } else{
                     $item				=	DonationModel::find((int)@$id);                           
                 }  

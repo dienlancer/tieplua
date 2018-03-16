@@ -24,10 +24,11 @@ class SupporterController extends Controller {
     		$task="list";
     		$title=$this->_title;
     		$icon=$this->_icon;		        
+        $arrDonation=DonationModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();     
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-list";         
         if(in_array($requestControllerAction,$arrPrivilege)){
-          return view("adminsystem.".$this->_controller.".list",compact("controller","task","title","icon")); 
+          return view("adminsystem.".$this->_controller.".list",compact("controller","task","title","icon","arrDonation")); 
         }
         else{
           return view("adminsystem.no-access");
@@ -39,6 +40,9 @@ class SupporterController extends Controller {
       ->join('donation','supporter.donation_id','=','donation.id') ;
       if(!empty(@$request->filter_search)){
         $query->where('supporter.fullname','like','%'.trim(mb_strtolower(@$request->filter_search,'UTF-8')).'%')    ;
+      }
+      if((int)@$request->donation_id > 0){
+        $query->where('supporter.donation_id','=',(int)@$request->donation_id); 
       }
       $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
       ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')

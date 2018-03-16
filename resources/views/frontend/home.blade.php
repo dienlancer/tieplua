@@ -8,7 +8,7 @@ if(count($data_slideshow) > 0){
 	$items=$data_slideshow["items"];
 	if(count($items) > 0){
 		?>
-		<div class="slideshow margin-top-20">
+		<div class="slideshow relative">
 			<script type="text/javascript" language="javascript">        
 				$(document).ready(function(){
 					$(".slick-slideshow").slick({

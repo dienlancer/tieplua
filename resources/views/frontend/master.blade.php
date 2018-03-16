@@ -191,7 +191,7 @@ if(count($arrCart) > 0){
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <!-- end fanpage -->
-	<header class="header relative">
+	<header class="header zicmanhon relative">
 		<div class="container margin-top-15">			
 			<div class="rena margin-left-10">			
 				<center>
@@ -232,7 +232,7 @@ if(count($arrCart) > 0){
 				</center>				
 			</div>
 		</div>		
-		<div class="bg-header">
+		
 			<div class="container">        
 				<div class="logo">
 					<center>
@@ -263,8 +263,8 @@ if(count($arrCart) > 0){
 				<div class="clr"></div>          
 			</div>            
 		</div>       
-	</div>  
-	<div class="menu-cerex">
+	
+
 		<div class="container">
 			<div class="red-menu">
 				<?php     
@@ -288,7 +288,7 @@ if(count($arrCart) > 0){
 				<div class="clr"></div>    
 			</div>      
 		</div>
-	</div> 
+	
 	<div class="mobilemenu">
 		<div class="container">
 			<div>

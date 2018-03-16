@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 16, 2018 lúc 06:21 AM
+-- Thời gian đã tạo: Th3 16, 2018 lúc 11:52 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -324,7 +324,6 @@ CREATE TABLE `donation` (
   `meta_keyword` text COLLATE utf8_unicode_ci,
   `meta_description` text COLLATE utf8_unicode_ci,
   `total_cost` text COLLATE utf8_unicode_ci,
-  `donated_cost` bigint(20) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -335,12 +334,13 @@ CREATE TABLE `donation` (
 -- Đang đổ dữ liệu cho bảng `donation`
 --
 
-INSERT INTO `donation` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `total_cost`, `donated_cost`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Quyên góp 1', 'quyen-gop-1', 'metakeyword Quyên góp 1', 'metadescription Quyên góp 1', '100000000', 0, 1, 1, '2018-03-16 04:54:33', '2018-03-16 04:58:37'),
-(5, 'Quyên góp 2', 'quyen-gop-2', 'metakeyword Quyên góp 2', 'metadescription Quyên góp 2', '200000000', 0, 2, 1, '2018-03-16 04:58:10', '2018-03-16 05:00:11'),
-(6, 'Quyên góp 3', 'quyen-gop-3', 'metakeyword Quyên góp 3', 'metadescription Quyên góp 3', '300000000', 0, 3, 1, '2018-03-16 05:00:33', '2018-03-16 05:00:33'),
-(7, 'Quyên góp 4', 'quyen-gop-4', 'metakeyword Quyên góp 4', 'metadescription Quyên góp 4', '400000000', 0, 4, 1, '2018-03-16 05:00:58', '2018-03-16 05:00:58'),
-(8, 'Quyên góp 5', 'quyen-gop-5', 'metakeyword Quyên góp 5', 'metadescription Quyên góp 5', '500000000', 0, 5, 1, '2018-03-16 05:01:18', '2018-03-16 05:01:18');
+INSERT INTO `donation` (`id`, `fullname`, `alias`, `meta_keyword`, `meta_description`, `total_cost`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Quyên góp 1', 'quyen-gop-1', 'metakeyword Quyên góp 1', 'metadescription Quyên góp 1', '100000000', 1, 1, '2018-03-16 04:54:33', '2018-03-16 10:11:08'),
+(5, 'Quyên góp 2', 'quyen-gop-2', 'metakeyword Quyên góp 2', 'metadescription Quyên góp 2', '200000000', 2, 0, '2018-03-16 04:58:10', '2018-03-16 10:11:06'),
+(6, 'Quyên góp 3', 'quyen-gop-3', 'metakeyword Quyên góp 3', 'metadescription Quyên góp 3', '300000000', 3, 0, '2018-03-16 05:00:33', '2018-03-16 09:00:15'),
+(7, 'Quyên góp 4', 'quyen-gop-4', 'metakeyword Quyên góp 4', 'metadescription Quyên góp 4', '400000000', 4, 0, '2018-03-16 05:00:58', '2018-03-16 09:00:15'),
+(8, 'Quyên góp 5', 'quyen-gop-5', 'metakeyword Quyên góp 5', 'metadescription Quyên góp 5', '500000000', 5, 0, '2018-03-16 05:01:18', '2018-03-16 09:00:15'),
+(9, 'Quyên góp 7', 'quyen-gop-7', 'metakeyword Quyên góp 7', 'metadescription Quyên góp 7', '700000000', 7, 0, '2018-03-16 08:42:34', '2018-03-16 09:00:15');
 
 -- --------------------------------------------------------
 
@@ -775,12 +775,12 @@ CREATE TABLE `page` (
 INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Trung tâm tiếp lửa', 'trung-tam-tiep-lua', 'trung-tam-widget', NULL, '', '<p><strong>Địa chỉ :</strong> Th&ocirc;n 7 x&atilde; An Ph&uacute; - Pleiku - Gia Lai</p>\n\n<p><strong>Đơn vị trực thuộc :</strong> C&ocirc;ng ty cổ phần TaGroup</p>\n\n<p><strong>Chịu tr&aacute;ch nhiệm nội dung :</strong> L&ecirc; Th&uacute;c Vinh</p>', '', '', '', NULL, 8, 1, '2017-12-28 04:10:41', '2018-01-14 13:00:43'),
 (2, 'Về chúng tôi', 've-chung-toi', 'about-us-widget', NULL, '', '<p>Nghị lực sống l&agrave; một doanh nghiệp x&atilde; hội hoạt động trong lĩnh vực hỗ trợ ho&agrave; nhập to&agrave;n diện cho người khuyết tật ( NKT ) th&ocirc;ng qua đ&agrave;o tạo , tư vấn định hướng gi&uacute;p NKT t&igrave;m được việc l&agrave;m ph&ugrave; hợp , hỗ trợ t&igrave;m nguồn ti&ecirc;u thụ sản phẩm của NKT . Từ đ&oacute; , gi&uacute;p NKT tự tin v&agrave; dễ d&agrave;ng ho&agrave; nhập với cộng đồng , giảm bớt g&aacute;nh nặng cho gia đ&igrave;nh v&agrave; x&atilde; hội .</p>', '', '', '', NULL, 3, 1, '2017-12-28 04:54:45', '2018-01-14 13:00:54'),
-(4, 'Giới thiệu', 'gioi-thieu', NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nWhy do we use it?\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '', 'metakeyword giới thiệu', 'metadescription giới thiệu', 211, 7, 1, '2018-01-03 10:35:10', '2018-03-03 15:30:57'),
+(4, 'Giới thiệu', 'gioi-thieu', NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nWhy do we use it?\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '', 'metakeyword giới thiệu', 'metadescription giới thiệu', 212, 7, 1, '2018-01-03 10:35:10', '2018-03-16 10:11:36'),
 (5, 'Thông tin liên hệ', 'thong-tin-lien-he', 'thong-tin-lien-he-widget', NULL, '', '<p style=\"text-align:justify\"><span style=\"font-size:28px\"><span style=\"color:#ff8c00\"><strong>C&ocirc;ng Ty TNHH VIDOCO</strong></span></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Địa chỉ: 35/6 B&ugrave;i Quang L&agrave; - P.12 - Q. G&ograve; Vấp - HCM</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Website: www.vienthammyyurihanh.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>E-mail: tieplua.net@gmail.com</strong></span></p>\n\n<p style=\"text-align:justify\"><span style=\"font-size:18px\"><strong>Tel: <span style=\"color:#ff0000\">096.302.7720</span></strong></span></p>', '', '', '', NULL, 1, 1, '2018-01-03 18:36:03', '2018-01-14 16:15:30'),
 (6, 'Dịch vụ hoạt động', 'dich-vu-hoat-dong', 'dich-vu-hoat-dong-widget', 'conmochieu-1.png', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metadescription dịch vụ hoạt động', 4, 2, 1, '2018-01-04 02:38:17', '2018-01-18 19:00:56'),
 (7, 'Dự án', 'du-an', 'du-an-widget', 'conmochieu-2.png', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '', 'chú thích dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 'metakeyword dịch vụ hoạt động', 2, 4, 1, '2018-01-04 02:39:28', '2018-01-18 19:01:04'),
 (8, 'Tham vấn đồng cảnh', 'tham-van-dong-canh', 'tham-van-widget', 'conmochieu-4.png', 'Vivamus accumsan neque id auctor ultricies. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porttitor suscipit odio, ac viverra erat. Nullam ac felis nec erat placerat tincidunt. Phasellus dui libero, sollicitudin vitae vestibulum a, sagittis a risus. Nunc volutpat dolor nec erat congue, eu consequat erat consequat. Quisque nec placerat ligula. Donec convallis elit urna, nec dignissim lorem fermentum in. Ut vestibulum urna diam, ultrices porttitor massa blandit et. Ut a iaculis arcu. Sed accumsan in ipsum in suscipit. Quisque faucibus sed nisi quis accumsan. Vivamus sed nulla vel ante euismod faucibus nec in elit. Vestibulum quis est mauris.', '', 'chú thích tham vấn đồng cảnh', 'metakeyword tham vấn đồng cảnh', 'metadescription thấm vấn đồng cảnh', 4, 6, 1, '2018-01-04 02:40:35', '2018-01-21 10:38:52'),
-(9, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, '<div class=\"fb-page\" data-href=\"https://www.facebook.com/Test-127067831421037/\" data-tabs=\"timeline\" data-width=\"250\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/gonguyenlieumy/\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/gonguyenlieumy/\">Công ty tnhh Greenecolife</a></blockquote></div>', '', '', '', '', NULL, 9, 1, '2018-01-18 15:55:58', '2018-02-26 08:06:12');
+(9, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, '<div class=\"fb-page\" data-href=\"https://www.facebook.com/congtytnhhgreenecolife/\" data-tabs=\"timeline\" data-width=\"250\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/gonguyenlieumy/\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/gonguyenlieumy/\">Công ty tnhh Greenecolife</a></blockquote></div>', '', '', '', '', NULL, 9, 1, '2018-01-18 15:55:58', '2018-03-16 08:57:00');
 
 -- --------------------------------------------------------
 
@@ -1049,7 +1049,13 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (390, 1, 'LRjZS3khtnxvhJThMpjjN2e8OePno9Bh', '2018-03-15 21:26:51', '2018-03-15 21:26:51'),
 (392, 1, '99DIFNM4Tfi8riyMfRWaLKq4A8cQuE4D', '2018-03-15 21:35:24', '2018-03-15 21:35:24'),
 (394, 1, 'EIYFGNgoDHAQqYKC17fmCxi8axILBuVv', '2018-03-15 21:35:40', '2018-03-15 21:35:40'),
-(395, 1, '3ItLP9ak9NfoDupu5VeSdrQ18DDifvFi', '2018-03-15 21:35:40', '2018-03-15 21:35:40');
+(395, 1, '3ItLP9ak9NfoDupu5VeSdrQ18DDifvFi', '2018-03-15 21:35:40', '2018-03-15 21:35:40'),
+(396, 1, 'sDo5YPxvLafGMrsszlrfCe2FimKiHduF', '2018-03-16 00:32:13', '2018-03-16 00:32:13'),
+(397, 1, 'ERdYiOQoCbAvXaEwHaKqS5B0Qqlw9oNe', '2018-03-16 00:32:13', '2018-03-16 00:32:13'),
+(398, 1, 'ryZ0IdEncIz6rh8F6vZwa2uZUj4wWAZ0', '2018-03-16 01:03:43', '2018-03-16 01:03:43'),
+(399, 1, 'YGo55HcVt13if42kkQkvH4LvZ0vuO6VJ', '2018-03-16 01:03:43', '2018-03-16 01:03:43'),
+(400, 1, 'JavTQMwHxxS9Hn6lXf80IfPTQzE6cHoy', '2018-03-16 01:49:29', '2018-03-16 01:49:29'),
+(401, 1, 'DHWsyvwKKX9rPFTAn7iYCTlMlpRwUi2A', '2018-03-16 01:49:29', '2018-03-16 01:49:29');
 
 -- --------------------------------------------------------
 
@@ -1414,12 +1420,10 @@ CREATE TABLE `supporter` (
 --
 
 INSERT INTO `supporter` (`id`, `fullname`, `donation_id`, `number_money`, `payment_method_id`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Nguyễn Thị Thu Hằng', 1, '1000000', 1, 1, 1, '2018-01-07 17:32:50', '2018-01-07 17:47:21'),
-(7, 'Trần Gia Lạc', 1, '2000000', 2, 2, 1, '2018-01-07 18:02:15', '2018-01-08 07:19:18'),
-(8, 'Lê Văn Đại', 1, '2000000', 1, 3, 1, '2018-01-08 02:38:56', '2018-01-08 09:29:07'),
-(9, 'Nguyễn Mạnh Hùng', 1, '3000000', 2, 4, 1, '2018-01-08 02:39:19', '2018-01-08 02:39:19'),
-(10, 'Trần Tiến Dư', 1, '3000000', 2, 5, 1, '2018-01-08 02:39:35', '2018-01-08 02:39:35'),
-(11, 'Phan Mạnh Quỳnh', 6, '3000000', 1, 6, 1, '2018-03-16 05:19:56', '2018-03-16 05:21:10');
+(2, 'Nguyễn Thị Thu Hằng', 1, '40000000', 1, 2, 1, '2018-01-07 17:32:50', '2018-03-16 10:21:42'),
+(11, 'Phan Mạnh Quỳnh', 1, '30000000', 1, 1, 1, '2018-03-16 05:19:56', '2018-03-16 10:21:28'),
+(12, 'Trần Thị Như', 5, '20000000', 2, 3, 1, '2018-03-16 08:43:54', '2018-03-16 10:22:01'),
+(13, 'Lương Thành Thái', 5, '30000000', 1, 4, 1, '2018-03-16 08:44:13', '2018-03-16 10:22:15');
 
 -- --------------------------------------------------------
 
@@ -1908,7 +1912,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `image`, `address`, `phone`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-03-15 21:35:40', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 6, 1, '2017-11-12 07:23:56', '2018-03-15 21:35:40'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$5lqJ4.ezQjGFnGjeIp/lB.tTvNhQUPbwiUsjS.BOpPIKGmmckNSu.', NULL, '2018-03-16 01:49:29', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', NULL, NULL, 6, 1, '2017-11-12 07:23:56', '2018-03-16 01:49:29'),
 (3, 'helenangochong', 'honghtn@dienkim.com', '$2y$10$cLZi575jplnHn9UGNjH0SO3VWdYj4B9rEFtmXxQzjvTrJeu8ZBNzi', NULL, '2018-02-22 02:30:55', 'Hồ Thị Ngọc Hồng', NULL, NULL, NULL, 1, NULL, '2018-02-22 01:51:24', '2018-02-23 11:40:22'),
 (4, 'linhdm', 'linhdm@dienkim.com', '$2y$10$B948upn3X5XbsZfxa6BXIOYyI/gXNIjX3QKuIXDfFE/9gcsVfQ65C', NULL, '2018-02-22 02:37:26', 'Đỗ Mỹ Linh', NULL, NULL, NULL, 2, NULL, '2018-02-22 02:03:03', '2018-02-23 11:40:22'),
 (5, 'phuongdh', 'phuongdh@dienkim.com', '$2y$10$yuiN5EfBE8DPfhdcLXlPRuaYYtCD0vAdONs/Gd6WluOOSOYZlDam6', NULL, '2018-02-22 02:52:51', 'Đặng Hùng Phương', NULL, NULL, NULL, 3, NULL, '2018-02-22 02:05:06', '2018-02-23 11:40:22'),
@@ -2274,7 +2278,7 @@ ALTER TABLE `category_video`
 -- AUTO_INCREMENT cho bảng `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `group_member`
@@ -2346,7 +2350,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=396;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=402;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2406,7 +2410,7 @@ ALTER TABLE `setting_system`
 -- AUTO_INCREMENT cho bảng `supporter`
 --
 ALTER TABLE `supporter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `throttle`

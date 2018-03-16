@@ -690,6 +690,12 @@ font-family: 'FontAwesome';
 .breadcrumb-title a{
     color: #b93d00;
 }
+.slideshow{
+    margin-top: -25px;
+}
+.zicmanhon{
+    z-index: 1;
+}
 @media (max-width: 768px){    
     div.mobilemenu{
         display: block;
