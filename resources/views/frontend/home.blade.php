@@ -1,14 +1,33 @@
 @extends("frontend.master")
 @section("content")
 <?php 
-use App\PaymentMethodModel;
 $data_slideshow=getBanner("slideshow");
 $seo=getSeo();
 if(count($data_slideshow) > 0){
-	$items=$data_slideshow["items"];
-	if(count($items) > 0){
+	$items_banner=$data_slideshow["items"];
+	$donation_name="";
+	$total_cost_text="";
+	$donated_cost=0;
+	if(count($items_banner) > 0){
+		$data_donation=App\DonationModel::whereRaw('status = 1')->select('id','fullname','total_cost')->get()->toArray();				
+		if(count($data_donation) > 0){
+			$donation_id=$data_donation[0]['id'];
+			$donation_name=$data_donation[0]['fullname'];
+			$total_cost=$data_donation[0]['total_cost'];
+			$query=DB::table('supporter')
+					->where('supporter.donation_id',(int)@$donation_id);
+			$data_sum=$query->groupBy('supporter.donation_id')
+							->selectRaw('sum(supporter.number_money) as donated_cost')->get()->toArray();
+			$donated_cost=0;
+			if(count($data_sum) > 0){				
+				$donated_cost=(int)$data_sum[0]->donated_cost;
+			}			
+			$donated_percent=$donated_cost / $total_cost * 100;			
+			$total_cost_text=fnPrice($total_cost);			
+			$donated_cost_text=fnPrice($donated_cost);
+		}
 		?>
-		<div class="slideshow relative">
+		<div class="slideshow">
 			<script type="text/javascript" language="javascript">        
 				$(document).ready(function(){
 					$(".slick-slideshow").slick({
@@ -23,11 +42,33 @@ if(count($data_slideshow) > 0){
 			</script>
 			<div class="slick-slideshow">    
 				<?php 
-				foreach ($items as $key => $value) {
+				foreach ($items_banner as $key => $value) {
 					$alt=$value["alt"];
 					$featuredImg=asset('upload/'.$value["image"]);
 					?>
-					<div><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></div>
+					<div class="relative">
+						<div><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></div>						
+						<div class="afuiasdiu">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-12">																
+										<div><span class="oiweurjkafj">Chương trình : </span><span class="jqheqjwjjqqs"><?php echo $donation_name; ?></span></div>
+										<div><span class="oiweurjkafj">Chỉ tiêu quyên góp :</span><span class="jqheqjwjjqqs"><?php echo $total_cost_text; ?></span></div>
+										<div><span class="oiweurjkafj">Số tiền quyên góp được :</span><span class="jqheqjwjjqqs"><?php echo $donated_cost_text; ?></span></div>		
+										<div>
+											<div class="tinafsaiuus">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $donated_percent ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $donated_percent ?>%">
+														<?php echo $donated_percent; ?>%
+													</div>
+												</div>
+											</div>											
+										</div>									
+									</div>
+								</div>							
+							</div>		
+						</div>	
+					</div>
 					<?php 
 				}
 				?>              
@@ -226,7 +267,7 @@ if(count($data_slideshow) > 0){
 								<select name="payment_method_id" class="soratv">
 									<option value="">Loại hình</option>
 									<?php 
-									$payment_method=PaymentMethodModel::whereRaw('status = 1')->select('id','fullname')->get()->toArray();
+									$payment_method=App\PaymentMethodModel::whereRaw('status = 1')->select('id','fullname')->get()->toArray();
 									foreach ($payment_method as $key => $value) {
 										$id=$value['id'];
 										$fullname=$value['fullname'];

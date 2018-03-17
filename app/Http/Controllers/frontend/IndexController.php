@@ -392,8 +392,7 @@ class IndexController extends Controller {
       $query=DB::table('supporter')
             ->join('payment_method','supporter.payment_method_id','=','payment_method.id')
             ->join('donation','supporter.donation_id','=','donation.id')
-            ->where('supporter.status',1)
-            ->where('donation.status',1);
+            ->where('supporter.status',1);
       $data=$query->select('supporter.id')                                
                 ->groupBy('supporter.id')                        
                 ->get()->toArray();              

@@ -3,7 +3,7 @@
 		<?php echo $title; ?>		
 	</h2>
 	<?php 
-	$data_donation=App\DonationModel::select('id','fullname','total_cost')->get()->toArray();	
+	$data_donation=App\DonationModel::whereRaw('status = 1')->select('id','fullname','total_cost')->get()->toArray();	
 	if(count($data_donation) > 0){
 		foreach ($data_donation as $key => $value) {
 			$donation_id=$value['id'];
