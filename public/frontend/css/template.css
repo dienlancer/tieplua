@@ -718,30 +718,30 @@ font-family: 'FontAwesome';
     div.mobilemenu{
         display: block;
     }     
-    .rappit{
-        display: none;
-    }    
-     .info-header{
+    
+    .info-header{
         width: 100%;
     }
     .logo{
-    width: 100%;    
-   }
-   .red-menu{
-    display: none;
-   }
-
-   .soratv{
+        width: 100%;    
+    }
+    .red-menu{
+        display: none;
+    }
+    .soratv{
         padding: 5px 0px;
         width: 100%;
         margin-top: 5px;
     }
     .immotal{
-            padding-top: 15px;
+        padding-top: 15px;
     }      
-   .rena{
-    width: 100%;
-   }
+    .rena{
+        width: 100%;
+    }
+}
+@media (max-width: 576px){
+
 }
 
 
