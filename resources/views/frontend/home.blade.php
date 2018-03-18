@@ -49,24 +49,18 @@ if(count($data_slideshow) > 0){
 					<div class="relative">
 						<div><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></div>						
 						<div class="afuiasdiu">
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-12">																
-										<div><span class="oiweurjkafj">Chương trình : </span><span class="jqheqjwjjqqs"><?php echo $donation_name; ?></span></div>
-										<div><span class="oiweurjkafj">Chỉ tiêu quyên góp :</span><span class="jqheqjwjjqqs"><?php echo $total_cost_text; ?></span></div>
-										<div><span class="oiweurjkafj">Số tiền quyên góp được :</span><span class="jqheqjwjjqqs"><?php echo $donated_cost_text; ?></span></div>		
-										<div>
-											<div class="tinafsaiuus">
-												<div class="progress">
-													<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $donated_percent ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $donated_percent ?>%">
-														<?php echo $donated_percent; ?>%
-													</div>
-												</div>
-											</div>											
-										</div>									
+							<div><span class="oiweurjkafj">Chương trình : </span><span class="jqheqjwjjqqs"><?php echo $donation_name; ?></span></div>
+							<div><span class="oiweurjkafj">Chỉ tiêu quyên góp :</span><span class="jqheqjwjjqqs"><?php echo $total_cost_text; ?></span></div>
+							<div><span class="oiweurjkafj">Số tiền quyên góp được :</span><span class="jqheqjwjjqqs"><?php echo $donated_cost_text; ?></span></div>		
+							<div>
+								<div class="tinafsaiuus">
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $donated_percent ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $donated_percent ?>%">
+											<?php echo $donated_percent; ?>%
+										</div>
 									</div>
-								</div>							
-							</div>		
+								</div>											
+							</div>			
 						</div>	
 					</div>
 					<?php 

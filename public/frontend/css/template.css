@@ -698,24 +698,18 @@ font-family: 'FontAwesome';
 }
 .afuiasdiu{
     position: absolute;
-    right: 0;
-    top: 250px;
+    right: 20px;
+    bottom: 0;
     z-index: 9999;
-}
-.oiweurjkafj{
-        color: #ff0000;
-    font-size: 28px;
+    font-size: 20px;
+    color: #ff0000;
     text-transform: uppercase;
     font-style: italic;
+    text-shadow: 1px 1px 1px #ffffff;
 }
-.jqheqjwjjqqs{
-        color: #ff0000;
-    font-size: 28px;
-    text-transform: uppercase;
-    font-style: italic;
-}
+
 .tinafsaiuus{
-    width: 400px;
+    
 }
 @media (max-width: 768px){    
     div.mobilemenu{
