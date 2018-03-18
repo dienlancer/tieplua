@@ -452,7 +452,7 @@ footer{
     margin-right: 10px
 }
 .immotal{        
-        margin-top: 45px;
+   
     padding-top: 0;
     margin-bottom: 15px;
 }
@@ -702,7 +702,7 @@ font-family: 'FontAwesome';
     bottom: 0;
     z-index: 9999;
     font-size: 20px;
-    color: #ff0000;
+    color: #D80027;
     text-transform: uppercase;
     font-style: italic;
     text-shadow: 1px 1px 1px #ffffff;
@@ -711,19 +711,26 @@ font-family: 'FontAwesome';
 .tinafsaiuus{
     
 }
+.progress-bar{
+    background:  #D80027;
+}
 @media (max-width: 768px){    
     div.mobilemenu{
         display: block;
     }     
-    .menu-cerex{
+    .rappit{
         display: none;
-    }
-    .info-header{
+    }    
+     .info-header{
         width: 100%;
     }
     .logo{
     width: 100%;    
    }
+   .red-menu{
+    display: none;
+   }
+
    .soratv{
         padding: 5px 0px;
         width: 100%;
@@ -731,11 +738,7 @@ font-family: 'FontAwesome';
     }
     .immotal{
             padding-top: 15px;
-    }
-
-    .rappit{
-        display: none;
-    }       
+    }      
    .rena{
     width: 100%;
    }

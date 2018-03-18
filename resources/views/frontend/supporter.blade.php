@@ -101,7 +101,8 @@
 							<th>Họ tên</th>
 							<th>Số tiền</th>
 							<th>Loại hình</th>		
-							<th>Quỹ quyên góp</th>				
+							<th>Quỹ quyên góp</th>	
+							<th>Vật chất</th>			
 						</tr>
 					</thead>
 					<tbody> 
@@ -111,13 +112,15 @@
 							$fullname=$value['fullname'];
 							$number_money_text=fnPrice($value['number_money']);
 							$payment_method_name=$value['payment_method_name'];			
-							$donation_name=$value['donation_name'];				
+							$donation_name=$value['donation_name'];	
+							$accessory=$value['accessory'];			
 							?>
 							<tr>
 								<td><?php echo $fullname; ?></td>
 								<td align="right"><?php echo $number_money_text; ?></td>
 								<td><?php echo $payment_method_name; ?></td>
 								<td><?php echo $donation_name; ?></td>
+								<td><?php echo $accessory; ?></td>
 							</tr>   
 							<?php
 						}

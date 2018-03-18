@@ -411,8 +411,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
-                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
+        $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.accessory','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
+                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.accessory','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
                 ->orderBy('supporter.created_at', 'desc')  
                 ->skip($position)
                 ->take($totalItemsPerPage)              
