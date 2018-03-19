@@ -5,13 +5,16 @@
 	$breadcrumb='';
 	if(count(@$category) > 0){
 		$breadcrumb= getBreadCrumbCategoryArticle(@$category);	
+		?><h1 style="display: none;"><?php echo $category['fullname']; ?></h1><?php		
 	}else{
 		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">'.$title.'</a>';
-	}	
+		?><h1 style="display: none;"><?php echo $title; ?></h1><?php		
+	}		
 	?>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
 	<div class="breadcrumb-title">
 		<?php echo $breadcrumb; ?>
-	</div>
+	</div>	
 	<div class="row">
 		<?php 	
 		if(count($items) > 0){

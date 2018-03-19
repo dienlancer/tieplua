@@ -86,7 +86,7 @@ if(count($data_slideshow) > 0){
 					$intro=substr($module["intro"], 0,250) ;
 					?>
 					<div class="article-simon margin-top-25">						
-						<h1 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h1>
+						<h2 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h2>
 								<div class="gaiden"><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" /></a></center></div>
 								<div class="ruby margin-top-15"><?php echo $intro; ?></div>
 								<div class="readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>				
@@ -105,7 +105,7 @@ if(count($data_slideshow) > 0){
 					$intro=substr($module["intro"], 0,250) ;
 					?>
 					<div class="article-simon margin-top-25">						
-						<h1 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h1>
+						<h2 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h2>
 								<div class="gaiden"><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" /></a></center></div>
 								<div class="ruby margin-top-15"><?php echo $intro; ?></div>
 								<div class="readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>				
@@ -124,7 +124,7 @@ if(count($data_slideshow) > 0){
 					$intro=substr($module["intro"], 0,250) ;
 					?>
 					<div class="article-simon margin-top-25">						
-						<h1 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h1>
+						<h2 class="react-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h2>
 								<div class="gaiden"><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" /></a></center></div>
 								<div class="ruby margin-top-15"><?php echo $intro; ?></div>
 								<div class="readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>				

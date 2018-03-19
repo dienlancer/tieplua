@@ -1,20 +1,12 @@
 <?php 
 $setting=getSettingSystem();
-$map_url=$setting['map_url']['field_value']; 
-if(empty($breadcrumb)){
-	?>
-	<h2 class="tieu-de margin-top-15">
-		<?php echo $title; ?>		
-	</h2>
-	<?php
-}else{
-	?>
-	<h2 class="breadcrumb-title margin-top-15">
-		<?php echo $breadcrumb; ?>
-	</h2>
-	<?php
-}      
+$map_url=$setting['map_url']['field_value'];    
 ?>
+<div class="tieu-de margin-top-15">
+		<?php echo $title; ?>		
+	</div>
+	<h1 style="display: none;"><?php echo $title; ?></h1>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
 <form action="" method="POST" class="box-article margin-top-10" >
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}		
@@ -38,7 +30,7 @@ if(empty($breadcrumb)){
 							</div>	
 
 						</div>
-						<div class="margin-top-5"><b><?php echo $fullname; ?></b></div>				
+						<div class="margin-top-5"><h3 class="ioretuiwiutereruwii"><b><?php echo $fullname; ?></b></h3></div>				
 					</div>					
 				</div>
 				<?php

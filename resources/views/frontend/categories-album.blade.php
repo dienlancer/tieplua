@@ -1,21 +1,13 @@
 <?php 
 $setting=getSettingSystem();
 $map_url=$setting['map_url']['field_value'];       
-if(empty($breadcrumb)){
-	?>
-	<h2 class="tieu-de margin-top-15">
-		<?php echo $title; ?>		
-	</h2>
-	<?php
-}else{
-	?>
-	<h2 class="breadcrumb-title margin-top-15">
-		<?php echo $breadcrumb; ?>
-	</h2>
-	<?php
-}	
-?>
 
+?>
+	<div class="tieu-de margin-top-15">
+		<?php echo $title; ?>		
+	</div>
+	<h1 style="display: none;"><?php echo $title; ?></h1>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
 	<form action="" method="POST" class="box-article margin-top-10">
 		<input type="hidden" name="filter_page" value="1">         
 		{{ csrf_field() }}	
@@ -34,7 +26,7 @@ if(empty($breadcrumb)){
 					<div class="col-lg-3 no-padding-left">
 						<div class="margin-top-15">
 							<div class="album-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div>
-							<div class="margin-top-5"><b><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></b></div>
+							<div class="margin-top-5"><h3 class="ioretuiwiuter"><b><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></b></h3></div>
 						</div>
 					</div>
 					<?php

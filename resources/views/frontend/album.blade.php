@@ -5,21 +5,11 @@ $map_url=$setting['map_url']['field_value'];
 <form action="" method="POST">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<?php 		
-	if(empty($breadcrumb)){
-		?>
-		<h2 class="tieu-de margin-top-15">
+	<div class="tieu-de margin-top-15">
 			<?php echo $title; ?>		
-		</h2>
-		<?php
-	}else{
-		?>
-		<h2 class="breadcrumb-title margin-top-15">
-			<?php echo $breadcrumb; ?>
-		</h2>
-		<?php
-	}	
-	?>
+	</div>
+	<h1 style="display: none;"><?php echo $title; ?></h1>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>		
 	<div class="margin-top-15">
 		<?php 
 		if(count($items) > 0){
@@ -29,9 +19,9 @@ $map_url=$setting['map_url']['field_value'];
 				$large_image=asset('upload/'.$value['image']);
 				$small_image=asset('upload/400x250-'.$value['image']);
 				?>
-				<div class="box-photo">
+				<h2 class="box-photo">
 					<center><figure><a data-fancybox="gallery" href="<?php echo $large_image ; ?>"><img src="<?php echo $small_image; ?>" /></a></figure></center>
-				</div>
+				</h2>
 				<?php
 				if($k%7==0 || $k==count($items)){
 					echo '<div class="clr"></div>';

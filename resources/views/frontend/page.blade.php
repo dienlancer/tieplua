@@ -15,18 +15,18 @@ if(count($item) > 0){
 	/* end cập nhật count view */
 	?>
 	<div class="margin-top-15 box-article">
-		<h2 class="tieu-de-bai-viet">
+		<h1 class="tieu-de-bai-viet">
 			<?php echo $fullname; ?>		
-		</h2>
+		</h1>
 		<div class="margin-top-15">			
 			<span class="post-view">
 				<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
 			</span>
 		</div>		
 		<hr class="duong-ngang" />
-		<div class="margin-top-10 article-excerpt  justify">
+		<h2 class="margin-top-10 article-excerpt  justify">
 			<?php echo $intro; ?>
-		</div>	
+		</h2>	
 		<hr class="duong-ngang" />	
 		<div class="margin-top-15">
 			<?php echo $content; ?>

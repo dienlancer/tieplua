@@ -1,7 +1,9 @@
 <div class="margin-top-15">
-	<h2 class="tieu-de">
+	<div class="tieu-de">
 		<?php echo $title; ?>		
-	</h2>
+	</div>
+	<h1 style="display: none;"><?php echo $title; ?></h1>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
 	<?php 
 	$data_donation=App\DonationModel::whereRaw('status = 1')->select('id','fullname','total_cost')->get()->toArray();	
 	if(count($data_donation) > 0){

@@ -6,9 +6,11 @@ use App\ProjectMemberModel;
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<h2 class="tieu-de">
+	<div class="tieu-de">
 		<?php echo $title; ?>		
-	</h2>
+	</div>
+	<h1 style="display: none;"><?php echo $title; ?></h1>
+	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
 	<div class="row">
 		<?php 	
 		if(count($items) > 0){
@@ -22,7 +24,6 @@ use App\ProjectMemberModel;
 				$intro=substr($value['intro'],0,200).'...' ;
 				$count_view=(int)@$value['count_view'];
 				$count_view_text=number_format($count_view,0,",",".");
-
 				$dataMember=DB::table('users')
 				->join('project_member','users.id','=','project_member.member_id')
 				->select('users.id')

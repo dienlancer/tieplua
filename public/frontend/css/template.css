@@ -492,8 +492,9 @@ footer{
     
 }
 .article-excerpt{
-        color: #000000;
+    color: #000000;
     font-weight: bold;
+    font-size: 13px;
 }
 
 .box-title a{
@@ -713,6 +714,12 @@ font-family: 'FontAwesome';
 }
 .progress-bar{
     background:  #D80027;
+}
+.ioretuiwiuter a{
+    font-size: 20px;
+}
+.ioretuiwiutereruwii{
+    font-size: 13px;
 }
 @media (max-width: 768px){    
     div.mobilemenu{
