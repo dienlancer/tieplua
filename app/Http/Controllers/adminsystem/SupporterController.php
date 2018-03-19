@@ -79,7 +79,7 @@ class SupporterController extends Controller {
           $id 					        =		trim($request->id);        
           $fullname 				    =		trim($request->fullname);
           $number_money         =   trim($request->number_money);
-          $accessory            =   trim($request->accessory);
+          $note            =   trim($request->note);
           $payment_method_id    =   trim($request->payment_method_id);       
           $donation_id          =   trim($request->donation_id);                        
           $sort_order           =   trim($request->sort_order);
@@ -135,7 +135,7 @@ class SupporterController extends Controller {
                 }  
                 $item->fullname 		    =	$fullname;
                 $item->number_money     = str_replace('.', '',$number_money) ;
-                $item->accessory=@$accessory;
+                $item->note=@$note;
                 $item->payment_method_id = (int)@$payment_method_id;      
                 $item->donation_id=(int)@$donation_id;                                 
                 $item->sort_order 		  =	(int)@$sort_order;

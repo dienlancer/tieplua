@@ -110,8 +110,9 @@ class IndexController extends Controller {
     $items=array();                            
     $component='supporter';      
     $title="Tìm kiếm ân nhân giúp đỡ";        
-    $query=DB::table('supporter')  
+    $query=DB::table('supporter')                
               ->join('payment_method','supporter.payment_method_id','=','payment_method.id')
+              ->join('donation','supporter.donation_id','=','donation.id')
               ->where('supporter.status',1);  
     if(!empty(@$request->month)){
       $query->whereMonth('supporter.created_at',(int)@$request->month);
@@ -144,12 +145,12 @@ class IndexController extends Controller {
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;             
     
-    $data=$query->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                                                                 
-    ->groupBy('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')  
-    ->orderBy('supporter.created_at', 'desc')  
-    ->skip($position)
-    ->take($totalItemsPerPage)                             
-    ->get()->toArray();                    
+    $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.note','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
+                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.note','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
+                ->orderBy('supporter.created_at', 'desc')  
+                ->skip($position)
+                ->take($totalItemsPerPage)              
+                ->get()->toArray();                                
     $items=convertToArray($data);      
     return view("frontend.index",compact("component","title","items","pagination","layout"));
   }
@@ -411,8 +412,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.accessory','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
-                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.accessory','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
+        $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.note','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
+                ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.note','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
                 ->orderBy('supporter.created_at', 'desc')  
                 ->skip($position)
                 ->take($totalItemsPerPage)              

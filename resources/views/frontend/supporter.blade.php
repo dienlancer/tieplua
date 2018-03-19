@@ -2,8 +2,8 @@
 	<div class="tieu-de">
 		<?php echo $title; ?>		
 	</div>
-	<h1 style="display: none;"><?php echo $title; ?></h1>
-	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
+	<h1 style="display: none;"><?php echo @$title; ?></h1>
+	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>
 	<?php 
 	$data_donation=App\DonationModel::whereRaw('status = 1')->select('id','fullname','total_cost')->get()->toArray();	
 	if(count($data_donation) > 0){
@@ -19,7 +19,7 @@
 			if(count($data_sum) > 0){				
 				$donated_cost=(int)$data_sum[0]->donated_cost;
 			}			
-			$donated_percent=$donated_cost / $total_cost * 100;			
+			$donated_percent=round($donated_cost / $total_cost * 100);			
 			$total_cost_text=fnPrice($total_cost);
 			?>
 			<div class="margin-top-5 row">
@@ -104,7 +104,7 @@
 							<th>Số tiền</th>
 							<th>Loại hình</th>		
 							<th>Quỹ quyên góp</th>	
-							<th>Vật chất</th>			
+							<th>Ghi chú</th>			
 						</tr>
 					</thead>
 					<tbody> 
@@ -115,14 +115,14 @@
 							$number_money_text=fnPrice($value['number_money']);
 							$payment_method_name=$value['payment_method_name'];			
 							$donation_name=$value['donation_name'];	
-							$accessory=$value['accessory'];			
+							$note=$value['note'];			
 							?>
 							<tr>
 								<td><?php echo $fullname; ?></td>
 								<td align="right"><?php echo $number_money_text; ?></td>
 								<td><?php echo $payment_method_name; ?></td>
 								<td><?php echo $donation_name; ?></td>
-								<td><?php echo $accessory; ?></td>
+								<td><?php echo $note; ?></td>
 							</tr>   
 							<?php
 						}

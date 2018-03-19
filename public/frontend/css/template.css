@@ -303,7 +303,7 @@ ul.list-style-none{
     z-index: 2;
 }
 .content{
-    background: url("../images/bg-content.png");        
+    background: #f8f8f8;        
     padding:0px 0px 25px 0px;
 }
 .article-simon{
@@ -698,15 +698,18 @@ font-family: 'FontAwesome';
     z-index: 1;
 }
 .afuiasdiu{
-    position: absolute;
+        position: absolute;
     right: 20px;
     bottom: 0;
     z-index: 9999;
     font-size: 20px;
-    color: #D80027;
+    color: #1b1464;
     text-transform: uppercase;
-    font-style: italic;
     text-shadow: 1px 1px 1px #ffffff;
+    background: rgba(247, 239, 239, 0.81);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
 }
 
 .tinafsaiuus{

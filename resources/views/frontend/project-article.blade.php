@@ -24,9 +24,9 @@ if(count($item) > 0){
 	}		
 	?>
 	<div class="margin-top-15 box-article">
-		<h2 class="tieu-de-bai-viet">
+		<h1 class="tieu-de-bai-viet">
 			<?php echo $title; ?>		
-		</h2>
+		</h1>
 		<div class="margin-top-15">
 			<span class="box-article-category">
 				<i class="fa fa-folder" aria-hidden="true"></i>
@@ -37,9 +37,9 @@ if(count($item) > 0){
 			</span>
 		</div>	
 		<hr class="duong-ngang" />	
-		<div class="margin-top-10 article-excerpt justify">
+		<h2 class="margin-top-10 article-excerpt justify">
 			<?php echo $intro; ?>
-		</div>		
+		</h2>		
 		<div class="margin-top-15">
 			<?php echo $content; ?>
 		</div>	

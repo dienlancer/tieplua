@@ -22,7 +22,7 @@ if(count($data_slideshow) > 0){
 			if(count($data_sum) > 0){				
 				$donated_cost=(int)$data_sum[0]->donated_cost;
 			}			
-			$donated_percent=$donated_cost / $total_cost * 100;			
+			$donated_percent=round($donated_cost / $total_cost * 100);			
 			$total_cost_text=fnPrice($total_cost);			
 			$donated_cost_text=fnPrice($donated_cost);
 		}
@@ -50,9 +50,9 @@ if(count($data_slideshow) > 0){
 						<div><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></div>						
 						<div class="afuiasdiu">
 							<div><span class="oiweurjkafj">Chương trình : </span><span class="jqheqjwjjqqs"><?php echo $donation_name; ?></span></div>
-							<div><span class="oiweurjkafj">Chỉ tiêu :</span><span class="jqheqjwjjqqs"><?php echo $total_cost_text; ?></span></div>
-							<div><span class="oiweurjkafj">Số tiền quyên góp :</span><span class="jqheqjwjjqqs"><?php echo $donated_cost_text; ?></span></div>		
-							<div>
+							<div class="margin-top-5"><span class="oiweurjkafj">Chỉ tiêu :</span><span class="jqheqjwjjqqs"><?php echo $total_cost_text; ?></span></div>
+							<div class="margin-top-5"><span class="oiweurjkafj">Số tiền quyên góp :</span><span class="jqheqjwjjqqs"><?php echo $donated_cost_text; ?></span></div>		
+							<div class="margin-top-5">
 								<div class="tinafsaiuus">
 									<div class="progress">
 										<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $donated_percent ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $donated_percent ?>%">

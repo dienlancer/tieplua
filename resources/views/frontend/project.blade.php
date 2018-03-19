@@ -23,7 +23,7 @@ if(count($item) > 0){
 	/* end cập nhật count view */	
 	?>
 	<div class="margin-top-15 box-article">
-		<h2 class="tieu-de-bai-viet relative">
+		<h1 class="tieu-de-bai-viet relative">
 			<?php echo $title; ?>		
 			<div class="tham-gia margin-top-10">
 				<form method="post" name="frm-join-project">
@@ -53,7 +53,7 @@ if(count($item) > 0){
 					?>					
 				</form>				
 			</div>
-		</h2>
+		</h1>
 		<div class="margin-top-15">			
 			<span class="post-view">
 				<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
@@ -91,7 +91,7 @@ if(count($item) > 0){
 				<div class="clr"></div>           
 			</div>
 			<div id="overview" class="tabcontent">
-				<div class="justify"><?php echo $overview; ?></div>
+				<div class="justify"><h2 class="ioretuiwiutereruwii"><?php echo $overview; ?></h2></div>
 			</div>
 			<div id="total_cost" class="tabcontent">
 				<div class="justify"><?php echo $total_cost; ?></div>

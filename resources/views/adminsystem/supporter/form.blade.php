@@ -6,7 +6,7 @@ $linkCancel             =   route('adminsystem.'.$controller.'.getList');
 $linkSave               =   route('adminsystem.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"       value="'.@$arrRowData['fullname'].'">'; 
 $inputNumberMoney          =   '<input type="text" class="form-control" name="number_money" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['number_money']).'">'; 
-$inputAccessory          =   '<input type="text" class="form-control" name="accessory"       value="'.@$arrRowData['accessory'].'">'; 
+$inputNote          =   '<input type="text" class="form-control" name="note"       value="'.@$arrRowData['note'].'">'; 
 $ddlPaymentMethod      =   cmsSelectboxCategory("payment_method_id","form-control",@$arrPaymentMethod,@$arrRowData['payment_method_id'],"");
 $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"");
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"     value="'.@$arrRowData['sort_order'].'">';
@@ -76,9 +76,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Vật chất</b></label>
+                        <label class="col-md-2 control-label"><b>Ghi chú</b></label>
                         <div class="col-md-10">
-                            <?php echo $inputAccessory; ?>
+                            <?php echo $inputNote; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
@@ -140,7 +140,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var id=$('input[name="id"]').val();        
         var fullname=$('input[name="fullname"]').val();        
         var number_money=$('input[name="number_money"]').val();
-        var accessory=$('input[name="accessory"]').val();
+        var note=$('input[name="note"]').val();
         var payment_method_id=$('select[name="payment_method_id"]').val();
         var donation_id=$('select[name="donation_id"]').val();
         var sort_order=$('input[name="sort_order"]').val();
@@ -151,7 +151,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             "id":id,
             "fullname":fullname,
             "number_money":number_money, 
-            "accessory":accessory,   
+            "note":note,   
             "payment_method_id":payment_method_id,            
             "donation_id":donation_id,                                 
             "sort_order":sort_order,
