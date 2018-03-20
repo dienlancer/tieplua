@@ -321,6 +321,7 @@ ul.list-style-none{
 .gaiden img{
     border:3px solid #ec2227;
     border-radius: 0px 30px 0px 30px;
+    width: 100%;
 }
 .ruby{
         text-align: justify;
