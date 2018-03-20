@@ -750,9 +750,14 @@ font-family: 'FontAwesome';
     .rena{
         width: 100%;
     }
+    .rappit{
+        width: 56%
+    }
 }
 @media (max-width: 576px){
-
+    .rappit{
+        display: none;
+    }
 }
 
 

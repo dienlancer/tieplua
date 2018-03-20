@@ -66,8 +66,7 @@ class ProjectArticleController extends Controller {
          $title=$this->_title . " : Add new";
          break;     
        }    
-       $arrProject=ProjectModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();              
-       $arrDistrict=DistrictModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();                        
+       $arrProject=ProjectModel::select("id","fullname")->orderBy("sort_order","asc")->get()->toArray();                                      
        return view("adminsystem.".$this->_controller.".form",compact("arrProject","arrRowData","controller","task","title","icon"));
      }else{
       return view("adminsystem.no-access");
