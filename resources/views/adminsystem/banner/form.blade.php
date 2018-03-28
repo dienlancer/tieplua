@@ -5,6 +5,7 @@ $setting= getSettingSystem();
 $linkCancel             =   route('adminsystem.'.$controller.'.getList',[@$category_id]);
 $linkSave               =   route('adminsystem.'.$controller.'.save');
 
+
 $inputCaption           =   '<textarea name="caption" rows="2" cols="100" class="form-control" >'.@$arrRowData['caption'].'</textarea>'; 
 $inputAlt               =   '<textarea name="alt" rows="2" cols="100" class="form-control" >'.@$arrRowData['alt'].'</textarea>'; 
 $inputPageurl           =   '<input type="text" class="form-control" name="page_url"     value="'.@$arrRowData['page_url'].'">'; 
