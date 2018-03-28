@@ -65,40 +65,46 @@ $ddlAlbum               =   cmsSelectboxCategory("album_id","form-control",$arrA
         var album_id  =   $('select[name="album_id"]');        
         $(album_id).closest('.form-group').removeClass("has-error");
         $(album_id).closest('.form-group').find('span').empty().hide();
-    }    
-    function save(){        
-        var token = $('input[name="_token"]').val();   
+    }        
+    function save(){
+        var dataItem = new FormData();
         var album_id=$('select[name="album_id"]').val();   
+        var token = $('input[name="_token"]').val();   
         var tbody=$("table.setting-system > tbody")[0];
         var rows=tbody.rows;
-        for(var i=0;i<rows.length;i++){            
-            var ctrl_media=$(rows[i].cells[0]).find('input[type="file"][name="media_file"]');    
-            var file_upload=$(ctrl_media).get(0);        
-            var files = file_upload.files;
-            var file  = files[0];    
-            var frmdata = new FormData();        
-            frmdata.append("image", file);
-            frmdata.append("album_id",album_id);
-            frmdata.append("_token", token);            
-            $.ajax({
+        if(rows.length > 0){
+            for(var i=0;i<rows.length;i++){
+                var media_ctrl=$(rows[i].cells[0]).find('input[type="file"][name="media_file"]');            
+                var media_file=null;                  
+                if($(media_ctrl).length > 0){
+                    var media_files = $(media_ctrl).get(0).files;        
+                    if(media_files.length > 0){            
+                        media_file  = media_files[0];  
+                        dataItem.append("source_media_file[]", media_file);
+                    }
+                }           
+            }        
+        }   
+        dataItem.append('album_id',album_id);            
+        dataItem.append('_token',token);            
+        $.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
-            data: frmdata,
+            data: dataItem,
             async: false,
-            contentType: false, 
-            processData: false,
-            success: function (data) {
-                
+            success: function (data) {                                
+                window.location.href = "<?php echo $linkCancel; ?>";
             },
             error : function (data){
-                
+                spinner.hide();
             },
             beforeSend  : function(jqXHR,setting){
                 spinner.show();
             },
+            cache: false,
+            contentType: false,
+            processData: false
         });
-        }
-        window.location.href = "<?php echo $linkCancel; ?>";
     }
     function addRow() {
         var tbody=$("table.setting-system > tbody")[0];

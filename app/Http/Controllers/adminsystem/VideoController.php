@@ -75,7 +75,10 @@ class VideoController extends Controller {
           $id                   =   trim(@$request->id);   
           $fullname             =   trim($request->fullname);
           $category_id    =   trim(@$request->category_id);                                
-          $image                =   trim(@$request->image);          
+          $image_file           =   null;
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }
           $image_hidden         =   trim(@$request->image_hidden); 
           $video_url            =   trim(@$request->video_url);             
           $sort_order           =   trim(@$request->sort_order);
@@ -84,7 +87,8 @@ class VideoController extends Controller {
           $info                 =   array();
           $error                =   array();
           $item                 =   null;
-          $checked              =   1;        
+          $checked              =   1;   
+
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
@@ -136,21 +140,27 @@ class VideoController extends Controller {
              $error["status"]["msg"]      = "Thiếu trạng thái";
           }
           if ($checked == 1) {    
+                $image_name='';
+          if($image_file != null){                     
+            $width=0;
+            $height=0;                            
+            $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);        
+          }  
                 if(empty($id)){
                     $item         =   new VideoModel;       
                     $item->created_at   = date("Y-m-d H:i:s",time());        
-                    if(!empty($image)){
-                      $item->image    =   trim($image) ;  
-                    }       
+                    if(!empty($image_name)){
+                  $item->image    =   trim($image_name) ;  
+                }      
                 } else{
                     $item       = VideoModel::find((int)@$id);   
                     $item->image=null;                       
                     if(!empty($image_hidden)){
                       $item->image =$image_hidden;          
                     }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
-                    }                    
+                    if(!empty($image_name))  {
+                  $item->image=$image_name;                                                
+                }                   
                 }        
                 $item->fullname         = $fullname;          
                 $item->category_id       = (int)@$category_id;

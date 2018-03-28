@@ -74,7 +74,10 @@ class CategoryVideoController extends Controller {
           $alias                =   trim($request->alias);                    
           $meta_keyword         =   trim($request->meta_keyword);
           $meta_description     =   trim($request->meta_description);
-          $image                =   trim($request->image);
+          $image_file           =   null;
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }
           $image_hidden         =   trim($request->image_hidden);                      
           $sort_order           =   trim($request->sort_order);
           $status               =   trim($request->status);          
@@ -110,22 +113,28 @@ class CategoryVideoController extends Controller {
              $error["status"]["type_msg"] 		= "has-error";
              $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
-          if ($checked == 1) {    
+          if ($checked == 1) {   
+                $image_name='';
+          if($image_file != null){                     
+            $width=0;
+            $height=0;                            
+            $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);        
+          }   
                 if(empty($id)){
                     $item 				= 	new CategoryVideoModel;       
                     $item->created_at 	=	date("Y-m-d H:i:s",time());        
-                    if(!empty($image)){
-                      $item->image    =   trim($image) ;  
-                    }				
+                    if(!empty($image_name)){
+                  $item->image    =   trim($image_name) ;  
+                }			
                 } else{
                     $item				=	CategoryVideoModel::find((int)@$id);   
                     $item->image=null;                       
                     if(!empty($image_hidden)){
                       $item->image =$image_hidden;          
                     }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
-                    }                    
+                    if(!empty($image_name))  {
+                  $item->image=$image_name;                                                
+                }                     
                 }  
                 $item->fullname 		    =	$fullname;
                 $item->alias            = $alias;                       

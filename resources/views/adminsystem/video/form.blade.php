@@ -129,17 +129,6 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         $(status).closest('.form-group').find('span').empty().hide();        
     }
 
-    function uploadFileImport(){    
-        var token = $('input[name="_token"]').val();       
-        var image=$('input[name="image"]'); 
-        var file_upload=$(image).get(0);
-        var files = file_upload.files;
-        var file  = files[0];    
-        var frmdata = new FormData();        
-        frmdata.append("image", file);
-        frmdata.append("_token", token);
-        $.ajax({ url: '<?php echo $linkUploadFile; ?>', method: 'post', data: frmdata, contentType: false, processData: false })
-    }
     function deleteImage(){
         var xac_nhan = 0;
         var msg="Bạn có muốn xóa ?";
@@ -165,18 +154,19 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
-        resetErrorStatus();
-        var dataItem={
-            "id":id,
-            "fullname":fullname,
-            "video_url":video_url,            
-            "image":image,  
-            "image_hidden":image_hidden,                      
-            "category_video_id":category_video_id,                        
-            "sort_order":sort_order,
-            "status":status,
-            "_token": token
-        };
+        resetErrorStatus();        
+        var dataItem = new FormData();
+        dataItem.append('id',id);
+        dataItem.append('fullname',fullname);
+        dataItem.append('video_url',video_url);    
+        if(image_files.length > 0){
+            dataItem.append('image',image_file);
+        }        
+        dataItem.append('image_hidden',image_hidden);    
+        dataItem.append('category_video_id',category_video_id);          
+        dataItem.append('sort_order',sort_order); 
+        dataItem.append('status',status); 
+        dataItem.append('_token',token);      
         $.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
@@ -184,7 +174,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             async: false,
             success: function (data) {
                 if(data.checked==1){
-                    uploadFileImport();
+                    
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
                     var data_error=data.error;
@@ -223,6 +213,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             beforeSend  : function(jqXHR,setting){
                 spinner.show();
             },
+            cache: false,
+            contentType: false,
+            processData: false
         });
     }
     

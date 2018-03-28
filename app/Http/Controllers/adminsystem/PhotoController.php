@@ -69,56 +69,57 @@ class PhotoController extends Controller {
           return view("adminsystem.no-access");
         }        
     }
-    public function save(Request $request){      
-      $album_id=trim($request->album_id); 
-      $fileObj=$_FILES["image"];
-      $data 		            =   array();
-      $info 		            =   array();
-      $error 		            =   array();
-      $item		              =   null;
-      $checked 	            =   1;  
-      if(empty($album_id)){
-        $checked = 0;
-        $error["album_id"]["type_msg"]   = "has-error";
-        $error["album_id"]["msg"]      = "Thiếu danh mục";
-      } 
-      if($fileObj['tmp_name'] == null){
-        $checked=0;
-      }          
-      if ($checked == 1) {  
-        $fileName   = $fileObj['name'];
-
-        $setting= getSettingSystem();
-      $article_width=$setting['article_width']['field_value'];
-    $article_height=$setting['article_height']['field_value'];
-      uploadImage($_FILES["image"],$article_width,$article_height);
-
-        $item         =   new PhotoModel;        
-        $item->image    =   trim($fileName) ;
-        $item->album_id=(int)@$album_id;
-        $item->sort_order = 1;
-        $item->status = 1;
-        $item->created_at   = date("Y-m-d H:i:s",time());
-        $item->updated_at       = date("Y-m-d H:i:s",time());  
-        $item->save();                    
-        $info = array(
-          'type_msg' 			=> "has-success",
-          'msg' 				=> 'Lưu dữ liệu thành công',
-          "checked" 			=> 1,
-          "error" 			=> $error,
-          "id"    			=> $id
-        );
-      }else {
-        $info = array(
-          'type_msg' 			=> "has-error",
-          'msg' 				=> 'Lưu dữ liệu thất bại',
-          "checked" 			=> 0,
-          "error" 			=> $error,
-          "id"				=> ""
-        );
-      }              		 			       
-      return $info;       
-    }
+          public function save(Request $request){      
+            $album_id=trim($request->album_id); 
+            $source_media_file=array();            
+            if(isset($_FILES['source_media_file'])){
+              $source_media_file=$_FILES['source_media_file'];
+            }   
+            $data 		            =   array();
+            $info 		            =   array();
+            $error 		            =   array();
+            $item		              =   null;
+            $checked 	            =   1;  
+            $setting= getSettingSystem();
+            $width=$setting['article_width']['field_value'];
+            $height=$setting['article_height']['field_value'];   
+            if(empty($album_id)){
+              $checked = 0;
+              $error["album_id"]["type_msg"]   = "has-error";
+              $error["album_id"]["msg"]      = "Thiếu danh mục";
+            }               
+            if ($checked == 1) {  
+              if(count($source_media_file) > 0){
+                foreach ($source_media_file['name'] as $key => $value){
+                  $media_item=uploadImage($value,$source_media_file['tmp_name'][$key],$width,$height);
+                  $item         =   new PhotoModel;        
+                  $item->image    =   trim($media_item) ;
+                  $item->album_id=(int)@$album_id;
+                  $item->sort_order = 1;
+                  $item->status = 1;
+                  $item->created_at   = date("Y-m-d H:i:s",time());
+                  $item->updated_at       = date("Y-m-d H:i:s",time());  
+                  $item->save();           
+                }
+              }                 
+              $info = array(
+                'type_msg' 			=> "has-success",
+                'msg' 				=> 'Lưu dữ liệu thành công',
+                "checked" 			=> 1,
+                "error" 			=> $error,
+                "id"    			=>0
+              );
+            }else {
+              $info = array(
+                'type_msg' 			=> "has-error",
+                'msg' 				=> 'Lưu dữ liệu thất bại',
+                "checked" 			=> 0,
+                "error" 			=> $error,
+                "id"				=> ""
+              );
+            }              		 			       
+            return $info;       
+          }
           public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
                   $checked                =   1;
