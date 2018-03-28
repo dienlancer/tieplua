@@ -4,7 +4,7 @@
 $setting= getSettingSystem();
 $linkCancel             =   route('adminsystem.'.$controller.'.getList');
 $linkSave               =   route('adminsystem.'.$controller.'.save');
-$linkUploadFile         =   route('adminsystem.'.$controller.'.uploadFile');
+
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"      value="'.@$arrRowData['fullname'].'">'; 
 $inputVideoUrl          =   '<input type="text" class="form-control" name="video_url"     value="'.@$arrRowData['video_url'].'">'; 
  
