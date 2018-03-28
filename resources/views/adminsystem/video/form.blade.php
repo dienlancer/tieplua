@@ -8,7 +8,7 @@ $linkSave               =   route('adminsystem.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"      value="'.@$arrRowData['fullname'].'">'; 
 $inputVideoUrl          =   '<input type="text" class="form-control" name="video_url"     value="'.@$arrRowData['video_url'].'">'; 
  
-$ddlCategoryVideo      =   cmsSelectboxCategory("category_video_id","form-control",$arrCategoryVideo,@$arrRowData['category_video_id'],"");
+$ddlCategoryVideo      =   cmsSelectboxCategory("category_id","form-control",$arrCategoryVideo,@$arrRowData['category_id'],"");
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -112,19 +112,19 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var id                   =   $('input[name="id"]');
         var fullname             =   $('input[name="fullname"]');
         var video_url             =   $('input[name="video_url"]');        
-        var category_video_id  =   $('select[name="category_video_id"]');
+        var category_id  =   $('select[name="category_id"]');
         var sort_order           =   $('input[name="sort_order"]');
         var status               =   $('select[name="status"]');
         
         $(fullname).closest('.form-group').removeClass("has-error");
         $(video_url).closest('.form-group').removeClass("has-error");                
-        $(category_video_id).closest('.form-group').removeClass("has-error");
+        $(category_id).closest('.form-group').removeClass("has-error");
         $(sort_order).closest('.form-group').removeClass("has-error");
         $(status).closest('.form-group').removeClass("has-error");        
 
         $(fullname).closest('.form-group').find('span').empty().hide();
         $(video_url).closest('.form-group').find('span').empty().hide();                
-        $(category_video_id).closest('.form-group').find('span').empty().hide();
+        $(category_id).closest('.form-group').find('span').empty().hide();
         $(sort_order).closest('.form-group').find('span').empty().hide();
         $(status).closest('.form-group').find('span').empty().hide();        
     }
@@ -145,11 +145,15 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var id=$('input[name="id"]').val();    
         var fullname=$('input[name="fullname"]').val();    
         var video_url=$('input[name="video_url"]').val();                    
-        var category_video_id=$('select[name="category_video_id"]').val();
-        var image = $('input[name="image"]').val();
-        if (image != ''){
-            image = image.substr(image.lastIndexOf('\\') + 1);       
-        }
+        var category_id=$('select[name="category_id"]').val();
+        /* begin xử lý image */
+        var image_file=null;
+        var image_ctrl=$('input[name="image"]');         
+        var image_files = $(image_ctrl).get(0).files;        
+        if(image_files.length > 0){            
+            image_file  = image_files[0];  
+        }        
+        /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val();         
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
@@ -163,7 +167,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             dataItem.append('image',image_file);
         }        
         dataItem.append('image_hidden',image_hidden);    
-        dataItem.append('category_video_id',category_video_id);          
+        dataItem.append('category_id',category_id);          
         dataItem.append('sort_order',sort_order); 
         dataItem.append('status',status); 
         dataItem.append('_token',token);      
@@ -188,10 +192,10 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
                         $('input[name="video_url"]').closest('.form-group').find('span').text(data_error.video_url.msg);
                         $('input[name="video_url"]').closest('.form-group').find('span').show();                        
                     }                   
-                    if(typeof data_error.category_video_id               != "undefined"){
-                        $('select[name="category_video_id"]').closest('.form-group').addClass(data_error.category_video_id.type_msg);
-                        $('select[name="category_video_id"]').closest('.form-group').find('span').text(data_error.category_video_id.msg);
-                        $('select[name="category_video_id"]').closest('.form-group').find('span').show();                        
+                    if(typeof data_error.category_id               != "undefined"){
+                        $('select[name="category_id"]').closest('.form-group').addClass(data_error.category_id.type_msg);
+                        $('select[name="category_id"]').closest('.form-group').find('span').text(data_error.category_id.msg);
+                        $('select[name="category_id"]').closest('.form-group').find('span').show();                        
                     }
                     if(typeof data_error.sort_order               != "undefined"){
                         $('input[name="sort_order"]').closest('.form-group').addClass(data_error.sort_order.type_msg);
