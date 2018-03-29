@@ -1,16 +1,18 @@
-<?php 
-use App\ProjectModel;
-use App\ProjectArticleModel;
-use App\ProjectMemberModel;
-?>
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<div class="tieu-de">
-		<?php echo $title; ?>		
-	</div>
-	<h1 style="display: none;"><?php echo $title; ?></h1>
-	<h2 style="display: none;"><?php echo $meta_description; ?></h2>
+	<?php 			
+	$seo=getSeo();
+	$seo_title=$seo["title"];
+	$seo_meta_keyword=$seo["meta_keyword"];
+	$seo_meta_description=$seo["meta_description"];	
+	$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">Dự án</a>';	
+	?>
+	<h1 style="display: none;"><?php echo $seo_title; ?></h1>
+	<h2 style="display: none;"><?php echo $seo_meta_description; ?></h2>
+	<div class="breadcrumb-title">
+		<?php echo $breadcrumb; ?>
+	</div>	
 	<div class="row">
 		<?php 	
 		if(count($items) > 0){

@@ -49,52 +49,51 @@ class IndexController extends Controller {
   }  
   public function search(Request $request){
     /* begin standard */    
+    
     $layout="two-column";                                                           
     $totalItems=0;
     $totalItemsPerPage=0;
     $pageRange=0;      
     $currentPage=1;  
     $pagination ;                                              
-    $setting= getSettingSystem();     
-         
+    
+    $setting=getSettingSystem();
     /* end standard */     
     $items=array();                            
-    $component='search';              
-    $title="Tìm kiếm"; 
-    $query=DB::table('article')
-                ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')
-                ->where('article.status',1);
-    if(!empty(@$request->q)){
-      $query->where('article.fullname','like', '%'.trim(@$request->q).'%');
-    }                     
-    $data=$query->select('article.id')
-                ->groupBy('article.id')                
-                ->get()->toArray();
-        $data=convertToArray($data);
-        $totalItems=count($data);
-        $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
-        $pageRange=$this->_pageRange;
-        if(!empty(@$request->filter_page)){
-          $currentPage=@$request->filter_page;
-        }       
-        $arrPagination=array(
-          "totalItems"=>$totalItems,
-          "totalItemsPerPage"=>$totalItemsPerPage,
-          "pageRange"=>$pageRange,
-          "currentPage"=>$currentPage   
-        );           
-        $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        
-    $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()->toArray();   
-        $items=convertToArray($data);      
-    return view("frontend.index",compact("component","title","items","pagination","layout"));
+    $component='projects';                 
+    $query=DB::table('project')    
+    ->where('project.status',1);
+    if(isset($request->q)){
+      if(!empty(@$request->q)){
+        $query->where('project.fullname','like', '%'.trim(@$request->q).'%');
+      }
+    }                        
+    $data=$query->select('project.id')
+    ->groupBy('project.id')                
+    ->get()->toArray();
+    $data=convertToArray($data);
+    $totalItems=count($data);
+    $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
+    $pageRange=$this->_pageRange;
+    if(!empty(@$request->filter_page)){
+      $currentPage=@$request->filter_page;
+    }       
+    $arrPagination=array(
+      "totalItems"=>$totalItems,
+      "totalItemsPerPage"=>$totalItemsPerPage,
+      "pageRange"=>$pageRange,
+      "currentPage"=>$currentPage   
+    );           
+    $pagination=new PaginationModel($arrPagination);
+    $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                           
+    $data=$query->select('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
+    ->groupBy('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
+    ->orderBy('project.created_at', 'desc')
+    ->skip($position)
+    ->take($totalItemsPerPage)
+    ->get()->toArray();   
+    $items=convertToArray($data);      
+    return view("frontend.index",compact("component","items","pagination","layout"));
   }
   public function searchSupporter(Request $request){
     /* begin standard */  
