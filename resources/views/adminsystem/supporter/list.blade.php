@@ -10,7 +10,7 @@ $linkUpdateStatus	=	route('adminsystem.'.$controller.'.updateStatus');
 $linkTrash			=	route('adminsystem.'.$controller.'.trash');
 $linkSortOrder		=	route('adminsystem.'.$controller.'.sortOrder');
 $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_search"          value="">';
-$ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"");
+$ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"",'Chọn danh mục');
 ?>
 <form class="form-horizontal" role="form" name="frm">	
 	{{ csrf_field() }}
