@@ -76,17 +76,18 @@ class PhotoController extends Controller {
               $source_media_file=$_FILES['source_media_file'];
             }   
             $data 		            =   array();
-            $info 		            =   array();
-            $error 		            =   array();
+            
             $item		              =   null;
-            $checked 	            =   1;  
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
             $setting= getSettingSystem();
             $width=$setting['article_width']['field_value'];
             $height=$setting['article_height']['field_value'];   
             if(empty($album_id)){
               $checked = 0;
-              $error["album_id"]["type_msg"]   = "has-error";
-              $error["album_id"]["msg"]      = "Thiếu danh mục";
+              
+              $msg["album_id"]      = "Thiếu danh mục";
             }               
             if ($checked == 1) {  
               if(count($source_media_file) > 0){
@@ -102,58 +103,48 @@ class PhotoController extends Controller {
                   $item->save();           
                 }
               }                 
-              $info = array(
-                'type_msg' 			=> "has-success",
-                'msg' 				=> 'Lưu dữ liệu thành công',
-                "checked" 			=> 1,
-                "error" 			=> $error,
-                "id"    			=>0
-              );
-            }else {
-              $info = array(
-                'type_msg' 			=> "has-error",
-                'msg' 				=> 'Lưu dữ liệu thất bại',
-                "checked" 			=> 0,
-                "error" 			=> $error,
-                "id"				=> ""
-              );
-            }              		 			       
-            return $info;       
+              $msg['success']='Lưu thành công';  
+            }        		 			       
+            $info = array(
+        "checked"       => $checked,          
+        'msg'       => $msg,                
+        "id"            => (int)@$id
+      );                       
+      return $info;    
           }
           public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
-                  $checked                =   1;
-                  $type_msg               =   "alert-success";
-                  $msg                    =   "Cập nhật thành công";              
+                  $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();     
                   $status         =       (int)$request->status;
                   $item           =       PhotoModel::find((int)@$id);        
                   $item->status   =       $status;
                   $item->save();
+                  $msg['success']='Cập nhật thành công';             
                   $data                   =   $this->loadData($request);
                   $info = array(
-                    'checked'           => $checked,
-                    'type_msg'          => $type_msg,                
-                    'msg'               => $msg,                
-                    'data'              => $data
-                  );
+              "checked"       => $checked,          
+        'msg'       => $msg,           
+              'data'              => $data
+            );
                   return $info;
           }
         
       public function deleteItem(Request $request){
             $id                     =   (int)$request->id;              
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                    
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();         
             if($checked == 1){
               $item = PhotoModel::find((int)@$id);
                 $item->delete();                                
-                
+                $msg['success']='Xóa thành công';   
             }        
             $data                   =   $this->loadData($request);
             $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
+              "checked"       => $checked,          
+        'msg'       => $msg,    
               'data'              => $data
             );
             return $info;
@@ -161,15 +152,16 @@ class PhotoController extends Controller {
       public function updateStatus(Request $request){
         $strID                 =   $request->str_id;     
         $status                 =   $request->status;            
-        $checked                =   1;
-        $type_msg               =   "alert-success";
-        $msg                    =   "Cập nhật thành công";                  
+        
+        $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();      
         $strID=substr($strID, 0,strlen($strID) - 1);
         $arrID=explode(',',$strID);                 
         if(empty($strID)){
-          $checked                =   0;
-          $type_msg               =   "alert-warning";            
-          $msg                    =   "Vui lòng chọn ít nhất một phần tử";
+          $checked            =   0;
+         
+          $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
         }
         if($checked==1){
           foreach ($arrID as $key => $value) {
@@ -179,47 +171,47 @@ class PhotoController extends Controller {
               $item->save();      
             }            
           }
+          $msg['success']='Cập nhật thành công';
         }                 
         $data                   =   $this->loadData($request);
         $info = array(
-          'checked'           => $checked,
-          'type_msg'          => $type_msg,                
-          'msg'               => $msg,                
+          "checked"       => $checked,          
+        'msg'       => $msg,    
           'data'              => $data
         );
         return $info;
       }
       public function trash(Request $request){
             $strID                 =   $request->str_id;               
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                  
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();       
             $strID=substr($strID, 0,strlen($strID) - 1);
             $arrID=explode(',',$strID);                 
             if(empty($strID)){
-              $checked     =   0;
-              $type_msg           =   "alert-warning";            
-              $msg                =   "Vui lòng chọn ít nhất một phần tử";
+              $checked            =   0;
+          
+          $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
             }
             if($checked == 1){                                  
-                  DB::table('photo')->whereIn('id',@$arrID)->delete();                                
+                  DB::table('photo')->whereIn('id',@$arrID)->delete();   
+                  $msg['success']='Xóa thành công';                                      
             }
             $data                   =   $this->loadData($request);
             $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
-              'data'              => $data
-            );
+          "checked"       => $checked,          
+        'msg'       => $msg,         
+          'data'              => $data
+        );
             return $info;
       }
       public function sortOrder(Request $request){
             $sort_json              =   $request->sort_json;           
             $data_order             =   json_decode($sort_json);       
           
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Cập nhật thành công";      
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){      
                 if(!empty($value)){
@@ -230,28 +222,31 @@ class PhotoController extends Controller {
               }           
             }        
             $data                   =   $this->loadData($request);
-            $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
-              'data'              => $data
-            );
-            return $info;
+            $msg['success']='Cập nhật thành công'; 
+        $data                   =   $this->loadData($request);
+        $info = array(
+          "checked"       => $checked,          
+        'msg'       => $msg,          
+          'data'              => $data
+        );
+        return $info;
       }
 
         public function createAlias(Request $request){
           $id            =  trim($request->id)  ; 
           $fullname      =  trim($request->fullname)  ;        
           $data          =  array();
-          $info          =  array();
-          $error         =  array();
+          
           $item          =  null;
-          $checked       = 1;   
+          
+          $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
           $alias='';                     
           if(empty($fullname)){
            $checked = 0;
-           $error["fullname"]["type_msg"] = "has-error";
-           $error["fullname"]["msg"] = "Thiếu tên bài viết";
+           
+           $msg["fullname"] = "Thiếu tên bài viết";
          }else{
           $alias=str_slug($fullname,'-');
           $dataCategoryArticle=array();
@@ -300,22 +295,13 @@ class PhotoController extends Controller {
           }
         }
         if ($checked == 1){
-          $info = array(
-            'type_msg'      => "has-success",
-            'msg'         => 'Lưu dữ liệu thành công',
-            "checked"       => 1,
-            "error"       => $error,            
-            "alias"       =>$alias
-          );
-        }else {
-          $info = array(
-            'type_msg'      => "has-error",
-            'msg'         => 'Nhập dữ liệu có sự cố',
-            "checked"       => 0,
-            "error"       => $error,
-            "alias"        => $alias
-          );
-        }    
+        $msg['success']='Lưu thành công';     
+      }  
+      $info = array(
+        "checked"       => $checked,          
+        'msg'       => $msg,      
+        "alias"            => $alias
+      );          
         return $info;
       }      
 }
