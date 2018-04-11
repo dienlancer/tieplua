@@ -90,7 +90,7 @@ class AlbumController extends Controller {
                 $height=0;              
           if(empty($fullname)){
                  $checked = 0;                 
-                 $msg["fullname"][ = "Thiếu tên bài viết";
+                 $msg["fullname"] = "Thiếu tên bài viết";
           }else{
               $data=array();
               if (empty($id)) {
@@ -101,18 +101,18 @@ class AlbumController extends Controller {
               if (count($data) > 0) {
                   $checked = 0;
                   
-                  $msg["fullname"][ = "Bài viết đã tồn tại";
+                  $msg["fullname"] = "Bài viết đã tồn tại";
               }      	
           }                    
           if(empty($sort_order)){
              $checked = 0;
              
-             $msg["sort_order"][ 		= "Thiếu sắp xếp";
+             $msg["sort_order"] 		= "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              
-             $msg["status"][ 			= "Thiếu trạng thái";
+             $msg["status"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {    
                 $image_name='';
@@ -299,7 +299,7 @@ class AlbumController extends Controller {
           if(empty($fullname)){
            $checked = 0;
            
-           $msg["fullname"][ = "Thiếu tên";
+           $msg["fullname"]= "Thiếu tên";
          }else{
           $alias=str_slug($fullname,'-');
           $dataCategoryArticle=array();
