@@ -27,6 +27,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
+        <div class="note"  style="display: none;"></div>
         <div class="caption">
             <i class="{{$icon}}"></i>
             <span class="caption-subject font-dark sbold uppercase">{{$title}}</span>
@@ -115,26 +116,6 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
     </div>
 </div>
 <script type="text/javascript" language="javascript">
-    function resetErrorStatus(){
-        var id                   =   $('input[name="id"]');
-        var fullname             =   $('input[name="fullname"]');  
-        var payment_method_id  =   $('select[name="payment_method_id"]');   
-        var donation_id  =   $('select[name="donation_id"]');     
-        var sort_order           =   $('input[name="sort_order"]');
-        var status               =   $('select[name="status"]');
-        
-        $(fullname).closest('.form-group').removeClass("has-error");    
-        $(payment_method_id).closest('.form-group').removeClass("has-error");    
-        $(donation_id).closest('.form-group').removeClass("has-error");    
-        $(sort_order).closest('.form-group').removeClass("has-error");
-        $(status).closest('.form-group').removeClass("has-error");        
-
-        $(fullname).closest('.form-group').find('span').empty().hide();    
-        $(payment_method_id).closest('.form-group').find('span').empty().hide();    
-        $(donation_id).closest('.form-group').find('span').empty().hide();    
-        $(sort_order).closest('.form-group').find('span').empty().hide();
-        $(status).closest('.form-group').find('span').empty().hide();        
-    }
 
     function save(){
         var id=$('input[name="id"]').val();        
@@ -146,7 +127,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
-        resetErrorStatus();
+        
         var dataItem={
             "id":id,
             "fullname":fullname,
@@ -167,33 +148,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                 if(data.checked==1){                    
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
-                    var data_error=data.error;
-                    if(typeof data_error.fullname               != "undefined"){
-                        $('input[name="fullname"]').closest('.form-group').addClass(data_error.fullname.type_msg);
-                        $('input[name="fullname"]').closest('.form-group').find('span').text(data_error.fullname.msg);
-                        $('input[name="fullname"]').closest('.form-group').find('span').show();                        
-                    }          
-                    if(typeof data_error.payment_method_id               != "undefined"){
-                        $('select[name="payment_method_id"]').closest('.form-group').addClass(data_error.payment_method_id.type_msg);
-                        $('select[name="payment_method_id"]').closest('.form-group').find('span').text(data_error.payment_method_id.msg);
-                        $('select[name="payment_method_id"]').closest('.form-group').find('span').show();                        
-                    }     
-                    if(typeof data_error.donation_id               != "undefined"){
-                        $('select[name="donation_id"]').closest('.form-group').addClass(data_error.donation_id.type_msg);
-                        $('select[name="donation_id"]').closest('.form-group').find('span').text(data_error.donation_id.msg);
-                        $('select[name="donation_id"]').closest('.form-group').find('span').show();                        
-                    }                                                    
-                    if(typeof data_error.sort_order               != "undefined"){
-                        $('input[name="sort_order"]').closest('.form-group').addClass(data_error.sort_order.type_msg);
-                        $('input[name="sort_order"]').closest('.form-group').find('span').text(data_error.sort_order.msg);
-                        $('input[name="sort_order"]').closest('.form-group').find('span').show();                        
-                    }
-                    if(typeof data_error.status               != "undefined"){
-                        $('select[name="status"]').closest('.form-group').addClass(data_error.status.type_msg);
-                        $('select[name="status"]').closest('.form-group').find('span').text(data_error.status.msg);
-                        $('select[name="status"]').closest('.form-group').find('span').show();
-
-                    }                    
+                    showMsg('note',data);
                 }
                 spinner.hide();
             },

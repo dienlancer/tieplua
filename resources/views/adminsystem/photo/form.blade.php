@@ -9,6 +9,7 @@ $ddlAlbum               =   cmsSelectboxCategory("album_id","form-control",$arrA
     {{ csrf_field() }}           
     <div class="portlet light bordered">
         <div class="portlet-title">
+            <div class="note"  style="display: none;"></div>
             <div class="caption">
                 <i class="{{$icon}}"></i>
                 <span class="caption-subject font-dark sbold uppercase">{{$title}}</span>
@@ -60,12 +61,7 @@ $ddlAlbum               =   cmsSelectboxCategory("album_id","form-control",$arrA
     </div>
 </form>
 <script type="text/javascript" language="javascript">
-    function resetErrorStatus(){
-        var id                   =   $('input[name="id"]');
-        var album_id  =   $('select[name="album_id"]');        
-        $(album_id).closest('.form-group').removeClass("has-error");
-        $(album_id).closest('.form-group').find('span').empty().hide();
-    }        
+      
     function save(){
         var dataItem = new FormData();
         var album_id=$('select[name="album_id"]').val();   

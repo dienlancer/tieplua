@@ -17,9 +17,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 	<input type="hidden" name="sort_json"  value="" />	
 	<div class="portlet light bordered">
 		<div class="portlet-title">
-			<div class="alert alert-success" id="alert" style="display: none">
-				<strong>Success!</strong> 
-			</div>
+			<div class="note"  style="display: none;"></div>
 			<div class="caption font-dark">
 				<i class="{{$icon}}"></i>
 				<span class="caption-subject bold uppercase">{{$title}}</span>
@@ -124,7 +122,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 			type: 'POST',     
 			data: dataItem,
 			success: function (data, status, jqXHR) {   							                              				
-				showMsg('alert',data.msg,data.type_msg);               		
+				showMsg('note',data);               		
 				vSupporterTable.clear().draw();
 				vSupporterTable.rows.add(data.data).draw();
 				spinner.hide();
@@ -155,7 +153,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 			type: 'POST', 			
 			data: dataItem,
 			success: function (data, status, jqXHR) {  				
-				showMsg('alert',data.msg,data.type_msg);               		
+				showMsg('note',data);               		
 				vSupporterTable.clear().draw();
 				vSupporterTable.rows.add(data.data).draw();
 				spinner.hide();
@@ -187,7 +185,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 			type: 'POST', 			             
 			data: dataItem,
 			success: function (data, status, jqXHR) {   							                              				
-				showMsg('alert',data.msg,data.type_msg);               		
+				showMsg('note',data);               		
 				vSupporterTable.clear().draw();
 				vSupporterTable.rows.add(data.data).draw();
 				spinner.hide();
@@ -227,7 +225,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 			             
 			data: dataItem,
 			success: function (data, status, jqXHR) {
-				showMsg('alert',data.msg,data.type_msg);  
+				showMsg('note',data);  
 				vSupporterTable.clear().draw();
 				vSupporterTable.rows.add(data.data).draw();
 				spinner.hide();
@@ -253,7 +251,7 @@ $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDon
 			             
 			data: dataItem,
 			success: function (data, status, jqXHR) {   	
-				showMsg('alert',data.msg,data.type_msg);  
+				showMsg('note',data);  
 				vSupporterTable.clear().draw();
 				vSupporterTable.rows.add(data.data).draw();
 				spinner.hide();
