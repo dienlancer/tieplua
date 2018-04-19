@@ -1,14 +1,15 @@
 <?php 
 $seo_alias="";
-if(isset($alias)){
+if(!empty($alias)){
     $seo_alias=$alias;
 }
 ?>
 @extends("frontend.master")
 @section("content")
-<div class="container">
+<div class="container">    
     <div class="immotal">
-        <?php     
+        <div class="row">
+            <?php     
         switch ($layout){
             case 'two-column':  
             ?>
@@ -169,6 +170,7 @@ if(isset($alias)){
             break;
         }
         ?>
+        </div>        
     </div>    
 </div>
 @endsection()               
