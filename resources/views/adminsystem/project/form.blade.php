@@ -10,13 +10,13 @@ $inputFullName          =   '<input type="text" class="form-control" name="fulln
  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled      value="'.@$arrRowData['alias'].'">';
 $inputIntro             =   '<textarea   name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputOverview             =   '<textarea   name="overview" rows="5" cols="100" class="form-control" >'.@$arrRowData['overview'].'</textarea>'; 
+$inputOverview             =   '<textarea   name="overview" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['overview'].'</textarea>'; 
 $inputDescription       =   '<textarea  name="description" rows="2" cols="100" class="form-control" >'.@$arrRowData['description'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea   name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
-$inputTotalCost             =   '<textarea   name="total_cost" rows="2" cols="100" class="form-control" >'.@$arrRowData['total_cost'].'</textarea>';  
-$inputPlan             =   '<textarea  name="plan" rows="2" cols="100" class="form-control" >'.@$arrRowData['plan'].'</textarea>'; 
-$inputSponsor             =   '<textarea   name="sponsor" rows="2" cols="100" class="form-control" >'.@$arrRowData['sponsor'].'</textarea>'; 
+$inputTotalCost             =   '<textarea   name="total_cost" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['total_cost'].'</textarea>';  
+$inputPlan             =   '<textarea  name="plan" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['plan'].'</textarea>'; 
+$inputSponsor             =   '<textarea   name="sponsor" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['sponsor'].'</textarea>'; 
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -35,6 +35,7 @@ if(count(@$arrRowData)>0){
     }        
 }   
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@$strImage.'" />';
+$inputCallback='<input type="hidden" name="callback_url"  value="'.route('adminsystem.media.saveSummerFile').'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -57,7 +58,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
         <form class="form-horizontal" name="frm" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <?php echo $inputPictureHidden; ?>                
-            <?php echo  $inputID; ?>                   
+            <?php echo  $inputID; ?>           
+            <?php echo $inputCallback; ?>         
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -111,12 +113,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
                         <div class="col-md-10">                            
                             <?php echo $inputTotalCost; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('total_cost',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>   
@@ -135,12 +132,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
                         <div class="col-md-10">                            
                             <?php echo $inputOverview; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('overview',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>   
@@ -150,12 +142,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
                         <div class="col-md-10">                            
                             <?php echo $inputPlan; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('plan',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>   
@@ -165,12 +152,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
                         <div class="col-md-10">                            
                             <?php echo $inputSponsor; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('sponsor',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>                    
@@ -225,11 +207,11 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" value="'.@
         }        
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val();         
-        var total_cost=CKEDITOR.instances['total_cost'].getData();
+        var total_cost=$('textarea[name="total_cost"]').summernote('code');
         var intro=$('textarea[name="intro"]').val();        
-        var overview=CKEDITOR.instances['overview'].getData();        
-        var plan=CKEDITOR.instances['plan'].getData();        
-        var sponsor=CKEDITOR.instances['sponsor'].getData();
+        var overview=$('textarea[name="overview"]').summernote('code');        
+        var plan=$('textarea[name="plan"]').summernote('code');        
+        var sponsor=$('textarea[name="sponsor"]').summernote('code');
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   

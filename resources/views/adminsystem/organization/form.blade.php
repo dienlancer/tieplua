@@ -15,7 +15,7 @@ $inputPhone             =   '<input type="text" class="form-control" name="phone
 $inputEmail             =   '<input type="text" class="form-control" name="email"           value="'.@$arrRowData['email'].'">'; 
 $inputWebsite           =   '<input type="text" class="form-control" name="website"         value="'.@$arrRowData['website'].'">'; 
 $inputIntro             =   '<textarea   name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputContent           =   '<textarea   name="content" rows="2" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
+$inputContent           =   '<textarea   name="content" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -34,6 +34,7 @@ if(count(@$arrRowData)>0){
     }        
 }  
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.@$strImage.'" />';
+$inputCallback='<input type="hidden" name="callback_url"  value="'.route('adminsystem.media.saveSummerFile').'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -56,7 +57,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         <form class="form-horizontal" name="frm" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <?php echo $inputPictureHidden; ?>                
-            <?php echo  $inputID; ?>                   
+            <?php echo  $inputID; ?>         
+            <?php echo $inputCallback; ?>                  
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -154,12 +156,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                         <div class="col-md-10">                            
                             <?php echo $inputContent; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('content',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>                                    
@@ -208,7 +205,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var email=$('input[name="email"]').val();
         var website=$('input[name="website"]').val();
         var intro=$('textarea[name="intro"]').val();        
-        var content=CKEDITOR.instances['content'].getData();
+        var content=$('textarea[name="content"]').summernote('code');
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
