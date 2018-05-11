@@ -21,10 +21,10 @@ function uploadImage($name,$tmp_name,$width,$height){
   $code = implode($source_character, '');
   $code = str_shuffle($code);
   $code_alias   = substr($code, 0, 12);
-  /* end code_alias */ 
-  $image_name=$image_slug. '-' . $code_alias .'.'.$ext;   
-  $image_path=base_path("upload".DS.$image_name);
-  @copy($image_tmp_name, $image_path);  
+  /* end code_alias */
+  $image_name=$image_slug. '-' . $code_alias .'.'.$ext;     
+  $image_path=base_path("upload".DS.$image_name);  
+  move_uploaded_file($image_tmp_name, $image_path);  
   if((int)@$width > 0 && (int)@$height > 0){
     require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;       
     $thumb = PhpThumbFactory::create($image_path);        
@@ -54,7 +54,7 @@ function uploadAttachedFile($name,$tmp_name){
   $image_tmp_name=$tmp_name;
   $ext = pathinfo($image_name, PATHINFO_EXTENSION);                  
   $image_slug=str_slug($image_name,'.');
-  $pattern_ext='#.doc|.docx|.xls|.xlsx|.pdf|.png|.jpg|.gif#';
+  $pattern_ext='#.doc|.docx|.xls|.xlsx|.pdf#';
   $pattern_dot='#\.#';
   $image_slug=preg_replace($pattern_ext, '', $image_slug);                      
   $image_slug=preg_replace($pattern_dot, '-', $image_slug);   
@@ -130,13 +130,6 @@ function fnPrice($value){
     break;
   }
   return $strCurrency;
-}
-function randomString($length = 5){
-  $arrCharacter = array_merge(range('a','z'), range(0,9));
-  $arrCharacter = implode($arrCharacter, '');
-  $arrCharacter = str_shuffle($arrCharacter);
-  $result   = substr($arrCharacter, 0, $length);
-  return $result;
 }
 function randomCodeNumber(){
   $data = range(1,9);
