@@ -89,7 +89,7 @@ $ddlAlbum               =   cmsSelectboxCategory("album_id","form-control",$arrA
             data: dataItem,
             async: false,
             success: function (data) {                                
-                window.location.href = "<?php echo $linkCancel; ?>";
+                window.location.href = data.link_edit;
             },
             error : function (data){
                 spinner.hide();
