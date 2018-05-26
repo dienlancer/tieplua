@@ -88,7 +88,8 @@ $ddlAlbum               =   cmsSelectboxCategory("album_id","form-control",$arrA
             type: 'POST',
             data: dataItem,
             async: false,
-            success: function (data) {                                
+            success: function (data) {    
+            alert(data.msg.success);                                  
                 window.location.href = data.link_edit;
             },
             error : function (data){
