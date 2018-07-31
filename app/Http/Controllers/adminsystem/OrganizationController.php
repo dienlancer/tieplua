@@ -42,7 +42,7 @@ public function loadData(Request $request){
   ->select('organization.id','organization.fullname','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')                
   ->where('organization.fullname','like','%'.trim(mb_strtolower($filter_search,'UTF-8')).'%')                     
   ->groupBy('organization.id','organization.fullname','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')   
-  ->orderBy('organization.sort_order', 'asc')                
+  ->orderBy('organization.sort_order', 'desc')                
   ->get()->toArray();              
   $data=convertToArray($data);    
   $data=organizationConverter($data,$this->_controller);            

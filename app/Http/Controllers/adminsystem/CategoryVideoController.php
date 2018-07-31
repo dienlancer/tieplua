@@ -41,7 +41,7 @@ public function loadData(Request $request){
   }
   $data=$query->select('category_video.id','category_video.fullname','category_video.image','category_video.sort_order','category_video.status','category_video.created_at','category_video.updated_at')
   ->groupBy('category_video.id','category_video.fullname','category_video.image','category_video.sort_order','category_video.status','category_video.created_at','category_video.updated_at')
-  ->orderBy('category_video.sort_order', 'asc')->get()->toArray()     ;              
+  ->orderBy('category_video.sort_order', 'desc')->get()->toArray()     ;              
   $data=convertToArray($data);    
   $data=categoryVideoConverter($data,$this->_controller);            
   return $data;

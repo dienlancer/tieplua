@@ -39,7 +39,7 @@ class AlbumController extends Controller {
       }
       $data=$query->select('album.id','album.fullname','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
       ->groupBy('album.id','album.fullname','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
-      ->orderBy('album.sort_order', 'asc')->get()->toArray()     ;              
+      ->orderBy('album.sort_order', 'desc')->get()->toArray()     ;              
       $data=convertToArray($data);    
       $data=albumConverter($data,$this->_controller);            
       return $data;

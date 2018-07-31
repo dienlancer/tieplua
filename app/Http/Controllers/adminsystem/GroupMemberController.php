@@ -34,7 +34,7 @@ class GroupMemberController extends Controller {
       }
       $data=$query->select('group_member.id','group_member.fullname','group_member.sort_order','group_member.created_at','group_member.updated_at')
       ->groupBy('group_member.id','group_member.fullname','group_member.sort_order','group_member.created_at','group_member.updated_at')
-      ->orderBy('group_member.sort_order', 'asc')->get()->toArray()     ;              
+      ->orderBy('group_member.sort_order', 'desc')->get()->toArray()     ;              
       $data=convertToArray($data);    
       $data=groupMemberConverter($data,$this->_controller);            
       return $data;

@@ -16,7 +16,18 @@ $inputEmail             =   '<input type="text" class="form-control" name="email
 $inputWebsite           =   '<input type="text" class="form-control" name="website"         value="'.@$arrRowData['website'].'">'; 
 $inputIntro             =   '<textarea   name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
 $inputContent           =   '<textarea   name="content" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
+
+$sort_order=1;
+if(@$arrRowData == null){
+    $source_sort_order=App\OrganizationModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
+    }
+}else{
+    $sort_order=@$arrRowData['sort_order'];
+}
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"  value="'.@$sort_order.'">';
+
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");

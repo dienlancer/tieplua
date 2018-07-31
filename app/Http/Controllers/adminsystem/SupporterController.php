@@ -46,7 +46,7 @@ public function loadData(Request $request){
   }
   $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
   ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-  ->orderBy('supporter.sort_order', 'asc')->get()->toArray();                
+  ->orderBy('supporter.sort_order', 'desc')->get()->toArray();                
   $data=convertToArray($data);    
   $data=supporterConverter($data,$this->_controller);            
   return $data;

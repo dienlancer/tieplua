@@ -9,7 +9,18 @@ $inputNumberMoney          =   '<input type="text" class="form-control" name="nu
 $inputNote          =   '<input type="text" class="form-control" name="note"       value="'.@$arrRowData['note'].'">'; 
 $ddlPaymentMethod      =   cmsSelectboxCategory("payment_method_id","form-control",@$arrPaymentMethod,@$arrRowData['payment_method_id'],"",'Chọn danh mục');
 $ddlDonation      =   cmsSelectboxCategory("donation_id","form-control",@$arrDonation,@$arrRowData['donation_id'],"",'Chọn danh mục');
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"     value="'.@$arrRowData['sort_order'].'">';
+
+$sort_order=1;
+if(@$arrRowData == null){
+    $source_sort_order=App\SupporterModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
+    }
+}else{
+    $sort_order=@$arrRowData['sort_order'];
+}
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"  value="'.@$sort_order.'">';
+
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");

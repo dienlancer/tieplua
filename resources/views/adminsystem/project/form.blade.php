@@ -17,7 +17,18 @@ $inputMetadescription             =   '<textarea  name="meta_description" rows="
 $inputTotalCost             =   '<textarea   name="total_cost" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['total_cost'].'</textarea>';  
 $inputPlan             =   '<textarea  name="plan" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['plan'].'</textarea>'; 
 $inputSponsor             =   '<textarea   name="sponsor" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['sponsor'].'</textarea>'; 
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
+
+$sort_order=1;
+if(@$arrRowData == null){
+    $source_sort_order=App\ProjectModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
+    }
+}else{
+    $sort_order=@$arrRowData['sort_order'];
+}
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"  value="'.@$sort_order.'">';
+
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");

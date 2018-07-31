@@ -37,7 +37,7 @@ public function loadData(Request $request){
   }
   $data=$query->select('project.id','project.fullname','project.image','project.sort_order','project.status','project.created_at','project.updated_at')
   ->groupBy('project.id','project.fullname','project.image','project.sort_order','project.status','project.created_at','project.updated_at')
-  ->orderBy('project.sort_order', 'asc')->get()->toArray()     ;    		      
+  ->orderBy('project.sort_order', 'desc')->get()->toArray()     ;    		      
   $data=convertToArray($data);		
   $data=projectConverter($data,$this->_controller);		         
   return $data;

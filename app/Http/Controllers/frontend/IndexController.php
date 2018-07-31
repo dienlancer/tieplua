@@ -88,7 +88,7 @@ class IndexController extends Controller {
     $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                           
     $data=$query->select('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
     ->groupBy('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
-    ->orderBy('project.created_at', 'desc')
+    ->orderBy('project.sort_order', 'desc')
     ->skip($position)
     ->take($totalItemsPerPage)
     ->get()->toArray();   
@@ -146,7 +146,7 @@ class IndexController extends Controller {
     
     $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.note','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
                 ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.note','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-                ->orderBy('supporter.created_at', 'desc')  
+                ->orderBy('supporter.sort_order', 'desc')  
                 ->skip($position)
                 ->take($totalItemsPerPage)              
                 ->get()->toArray();                                
@@ -263,7 +263,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
                     ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                    ->orderBy('article.created_at', 'desc')
+                    ->orderBy('article.sort_order', 'desc')
                     ->skip($position)
                     ->take($totalItemsPerPage)
                     ->get()
@@ -333,7 +333,7 @@ class IndexController extends Controller {
         $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
                           
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.content','article.count_view')
-                ->orderBy('article.created_at', 'desc')
+                ->orderBy('article.sort_order', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();        
@@ -365,7 +365,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')                                
                 ->groupBy('project.id','project.alias','project.fullname','project.image','project.intro','project.count_view')
-                ->orderBy('project.created_at', 'desc')
+                ->orderBy('project.sort_order', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();                   
@@ -413,7 +413,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('supporter.id','supporter.fullname','donation.fullname as donation_name','supporter.number_money','supporter.note','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                                
                 ->groupBy('supporter.id','supporter.fullname','donation.fullname','supporter.number_money','supporter.note','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-                ->orderBy('supporter.created_at', 'desc')  
+                ->orderBy('supporter.sort_order', 'desc')  
                 ->skip($position)
                 ->take($totalItemsPerPage)              
                 ->get()->toArray();              
@@ -445,7 +445,7 @@ class IndexController extends Controller {
         $data= $query->select('organization.id','organization.fullname','organization.alias','organization.intro','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')                
                                                 
                 ->groupBy('organization.id','organization.fullname','organization.alias','organization.intro','organization.image','organization.phone','organization.email','organization.website','organization.sort_order','organization.status','organization.created_at','organization.updated_at')   
-                ->orderBy('organization.sort_order', 'asc')                
+                ->orderBy('organization.sort_order', 'desc')                
                 ->skip($position)
                 ->take($totalItemsPerPage)              
                 ->get()->toArray();                     
@@ -483,7 +483,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('album.id','album.fullname','album.alias','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
         ->groupBy('album.id','album.fullname','album.alias','album.image','album.sort_order','album.status','album.created_at','album.updated_at')
-        ->orderBy('album.sort_order', 'asc')
+        ->orderBy('album.sort_order', 'desc')
         ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();
@@ -520,7 +520,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('photo.id','photo.image')
         ->groupBy('photo.id','photo.image')
-        ->orderBy('photo.sort_order', 'asc')
+        ->orderBy('photo.sort_order', 'desc')
         ->skip($position)
         ->take($totalItemsPerPage)
         ->get()->toArray();
@@ -557,7 +557,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;                
         $data=$query->select('video.id','video.fullname','video.image','video.video_url')
         ->groupBy('video.id','video.fullname','video.image','video.video_url')
-        ->orderBy('video.sort_order', 'asc')
+        ->orderBy('video.sort_order', 'desc')
         ->skip($position)
         ->take($totalItemsPerPage)
         ->get()->toArray();
@@ -776,7 +776,7 @@ class IndexController extends Controller {
                 ->select('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname as payment_method_name','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')                
                 ->where('supporter.status',1)                     
                 ->groupBy('supporter.id','supporter.fullname','supporter.number_money','payment_method.fullname','supporter.sort_order','supporter.status','supporter.created_at','supporter.updated_at')
-                ->orderBy('supporter.created_at', 'desc')                
+                ->orderBy('supporter.sort_order', 'desc')                
                 ->get()->toArray();              
         $data=convertToArray($data);     
         $data=supporterTiepluaConverter($data);            

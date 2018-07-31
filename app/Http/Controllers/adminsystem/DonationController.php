@@ -39,7 +39,7 @@ public function loadData(Request $request){
   }
   $data=$query->select('donation.id','donation.fullname','donation.total_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
   ->groupBy('donation.id','donation.fullname','donation.total_cost','donation.sort_order','donation.status','donation.created_at','donation.updated_at')
-  ->orderBy('donation.sort_order', 'asc')->get()->toArray()     ;             
+  ->orderBy('donation.sort_order', 'desc')->get()->toArray()     ;             
   $data=convertToArray($data);    
   $data=donationConverter($data,$this->_controller);            
   return $data;

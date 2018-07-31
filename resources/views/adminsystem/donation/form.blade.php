@@ -13,7 +13,18 @@ $inputAlias             =   '<input type="text" class="form-control" name="alias
 $inputMetakeyword             =   '<textarea   name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
 $inputTotalCost             =   '<input type="text" class="form-control" name="total_cost" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['total_cost']).'">';  
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
+
+$sort_order=1;
+if(@$arrRowData == null){
+    $source_sort_order=App\DonationModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
+    }
+}else{
+    $sort_order=@$arrRowData['sort_order'];
+}
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"  value="'.@$sort_order.'">';
+
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");
